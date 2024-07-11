@@ -1,5 +1,22 @@
+
+:root {
+    /* Colours */
+    --background: #d3d3d3 ;
+    --dark-grey: #5a5a5a;
+    --black: #000;
+    --gren: #00a97f;
+    --purpule: #9e9dff;
+
+    /* Utils */
+    --border: 1px solid #00000030;
+}
+
+.text-color-white {
+    color: var(--background);
+}
+
 body {
-    background: #FAF8FF;
+    background: var(--background);
     width: 100%;
     margin: 0;
     padding: 0;    
@@ -10,16 +27,34 @@ body {
     max-width: 100% !important;
 }
 
-.intro-text {
-    margin: 0 auto;
-    padding: 5% 10%;    
+#signin {
+    font-size: large;
 }
 
 .nav-bar {
-    background-color: #87c0f8;
-    border-bottom: 1px solid #e3e7ea;
-    border-radius: 0;
+    background: url(../images/navbar-image.webp) no-repeat left top/cover;
     margin: 0;
-    min-height: 90vh;
+    min-height: 99.9vh;
     padding: 0;
+}
+
+#offcanvasNavbar {
+    background: url(../images/navbar-image.webp) no-repeat left top;
+    background-size: contain;
+    color: var(--background);
+    border-right: none;
+}
+
+.offcanvas-header {
+    color: var(--background);   
+    padding-bottom: 0;
+}
+
+#intro-header {
+    font-size: 4rem;
+}
+
+.card-body {
+    background: var(--dark-grey);
+    border: var(--border);
 }
