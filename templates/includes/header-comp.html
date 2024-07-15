@@ -1,20 +1,22 @@
 {% load static %}
 
+{% with request.resolver_match.url_name as url_name %}
 <div class="col-2 nav-bar d-none d-md-block navbar-expand-md">
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="nav navbar-nav flex-column text-color-white px-3">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#">Home</a>
+          <a class="nav-link {% if url_name == 'home'%}active{% endif %}" href="{% url 'home' %}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Gyms</a>
+          <a class="nav-link {% if url_name == 'gyms'%}active{% endif %}" href="#">Gyms</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Articels</a>
+          <a class="nav-link {% if url_name == 'articels'%}active{% endif %}" href="#">Articels</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
+          <a class="nav-link {% if url_name == 'contact'%}active{% endif %}" href="#">Contact</a>
         </li>
       </ul>
     </div>
 </div>
+{% endwith %}
