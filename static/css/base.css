@@ -11,9 +11,7 @@
     --border: 1px solid #00000030;
 }
 
-.text-color-white {
-    color: var(--background);
-}
+/* General styling */
 
 body {
     background: var(--background);
@@ -22,27 +20,23 @@ body {
     padding: 0;    
 }
 
+.text-clr-white {
+    color: var(--background);
+}
+
 .container {
     margin: 0;
     max-width: 100% !important;
 }
 
-#signin {
-    font-size: large;
-}
 
-.nav-bar {
-    background: url(../images/navbar-image.webp) no-repeat left top/cover;
-    margin: 0;
-    min-height: 150vh;
-    padding: 0;
-}
+/* Navbars */
 
 .active {
     font-size: larger;
     font-weight: bold;
 }
-
+    /* Up to medium screens */
 #offcanvasNavbar {
     background: linear-gradient(90deg, rgba(0,0,0,1) 35%, rgba(255,255,255,0) 35%), url(../images/navbar-image.webp) no-repeat center top;
     background-size: contain;
@@ -58,6 +52,21 @@ body {
     color: var(--background);   
     padding-bottom: 0;
 }
+    /* Medium screens and up */
+.nav-bar {
+    background: url(../images/navbar-image.webp) no-repeat left top/cover;
+    margin: 0;
+    min-height: 150vh;
+    padding: 0;
+}
+
+    /* Sign in links */
+#signin {
+    font-size: large;
+}
+
+
+/* Home page */
 
 #intro-header {
     font-size: 4rem;
