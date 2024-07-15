@@ -28,6 +28,9 @@
     </div>
     {% if request.user.is_authenticated %}
     <div class="p-2">
+      <a class='nav-link' href="{% url 'profile' request.user.id %}">Profile</a>
+    </div>
+    <div class="p-2">
         <a class='nav-link' href="{% url 'account_logout' %}">Log out</a>
     </div>
     <div class="p-2">
