@@ -3,7 +3,35 @@
 {% block title %}Profile{% endblock %}
 
 {% block content %}
-    <h1>{{ user.username }}</h1>
-    <p>{{ user.profile.bio }}</p>
-    <p>{{ user.profile.fav_climb }}</p>
+    <div class="container one-site-box">
+        <div class="row text-center">
+            <div class="col">
+                <h1>Profile</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row align-items-start">
+                <div class="col">
+                    <h2>{{ user.username }}</h2>
+                    <img src="{{ profile.profile_pic }}" alt="profile image" class="img-fluid">
+                </div>
+                <div class="col">
+                    <h3>About me</h3>
+                    <div class="col">
+                    <p>{{ profile.bio }}</p>
+                    </div>
+                    <p>{{ user.email }}</p>
+                    <p>{{ profile.fav_climb }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h4>My comments</h4>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
