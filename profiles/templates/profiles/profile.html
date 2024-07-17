@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}Profile{% endblock %}
+{% block title %}Profile - {{ profile.user.username }}{% endblock %}
 
 {% block content %}
     <div class="container one-site-box">
@@ -9,19 +10,36 @@
                 <h1>Profile</h1>
             </div>
         </div>
-        <div class="row">
-            <div class="row align-items-start">
-                <div class="col">
+        <div class="container">
+            <div class="row d-flex align-items-start">
+                <div class="col profile-image">
                     <h2>{{ user.username }}</h2>
-                    <img src="{{ profile.profile_pic }}" alt="profile image" class="img-fluid">
+                    <div class="profile-image text-center">
+                        {% if profile.profile_pic != Null %}
+                        <img src="{{ profile.profile_pic }}" alt="{{ profile.user.username }}" class="img-fluid">
+                        {% else %}
+                        <img src="{% static 'images/default_profile_pic.webp' %}" alt="{{ profile.user.username }}" class="img-fluid">
+                        {% endif %}
+                    </div>
+
+                    {% if request.user == profile.user %}
+                    <div class="edit-btn">
+                        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile</button>
+                        <button class="btn btn-danger" data-bs-toggle="#" data-bs-target="#">Delete Profile</button>
+                    </div>
+                    {% endif %}
+                        
+
                 </div>
                 <div class="col">
                     <h3>About me</h3>
-                    <div class="col">
-                    <p>{{ profile.bio }}</p>
+                    {{ profile.bio|safe }}
+                    <div class="text-info-profile">
+                        <p><strong>Joined: </strong> {{ profile.user.date_joined|date:'d M Y' }}</p>
+                        <p><strong>Favotie Type of Climbing: </strong> {{ profile.fav_climb }}</p>
+                        {% comment %} <p><strong>Reveiws: </strong> {{ profile.location }}</p> {% endcomment %}
                     </div>
                     <p>{{ user.email }}</p>
-                    <p>{{ profile.fav_climb }}</p>
                 </div>
             </div>
         </div>
