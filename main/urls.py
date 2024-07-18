@@ -22,5 +22,6 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('djrichtextfield/', include('djrichtextfield.urls')),
     path('profiles/', include('profiles.urls')),
+    path('climb_gyms/', include('climb_gyms.urls')),
     path('', include('home.urls'), name='home'),
 ]
