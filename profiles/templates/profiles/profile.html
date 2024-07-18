@@ -7,16 +7,15 @@
     <div class="container one-site-box">
         <div class="row text-center">
             <div class="col">
-                <h1>Profile</h1>
+                <h1>Profile - {{ user.username }}</h1>
             </div>
         </div>
         <div class="container">
-            <div class="row d-flex align-items-start">
-                <div class="col profile-image">
-                    <h2>{{ user.username }}</h2>
+            <div class="d-flex align-items-start info-box">
+                <div class="col align-items-center">
                     <div class="profile-image text-center">
-                        {% if profile.profile_pic != Null %}
-                        <img src="{{ profile.profile_pic }}" alt="{{ profile.user.username }}" class="img-fluid">
+                        {% if profile.profile_pic %}
+                        <img src="{{ profile.profile_pic.url }}" alt="{{ profile.user.username }}" class="img-fluid">
                         {% else %}
                         <img src="{% static 'images/default_profile_pic.webp' %}" alt="{{ profile.user.username }}" class="img-fluid">
                         {% endif %}
@@ -28,8 +27,6 @@
                         <button class="btn btn-danger" data-bs-toggle="#" data-bs-target="#">Delete Profile</button>
                     </div>
                     {% endif %}
-                        
-
                 </div>
                 <div class="col">
                     <h3>About me</h3>
