@@ -15,7 +15,7 @@
             <a class="nav-link {% if url_name == 'home'%}active{% endif %}" href="{% url 'home' %}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {% if url_name == 'gyms'%}active{% endif %}" href="#">Gyms</a>
+            <a class="nav-link {% if url_name == 'search_gyms'%}active{% endif %}" href="#">Gyms</a>
           </li>
           <li class="nav-item">
             <a class="nav-link {% if url_name == 'articels'%}active{% endif %}" href="#">Articels</a>
@@ -25,27 +25,29 @@
           </li>
         </ul>
       </div>
+    </div>    
+    <div class="d-flex">
+      {% if request.user.is_authenticated %}
+        <div class="p-2">
+          <a class='nav-link' href="{% url 'profile' request.user.id %}">Profile</a>
+        </div>
+        <div class="p-2">
+            <a class='nav-link' href="{% url 'account_logout' %}">Log out</a>
+        </div>
+        <div class="p-2">
+            <i class="fa-solid fa-lock-open"></i>
+        </div>
+      {% else %}
+        <div class="p-2">
+            <a class='nav-link' href="{% url 'account_signup' %}">Sign up</a>
+        </div>
+        <div class="p-2">
+            <a class='nav-link' href="{% url 'account_login' %}">Log in</a>
+        </div>
+        <div class="p-2">
+          <i class="fa-solid fa-lock"></i>
+        </div>
+      {% endif %}
     </div>
-    {% if request.user.is_authenticated %}
-    <div class="p-2">
-      <a class='nav-link' href="{% url 'profile' request.user.id %}">Profile</a>
-    </div>
-    <div class="p-2">
-        <a class='nav-link' href="{% url 'account_logout' %}">Log out</a>
-    </div>
-    <div class="p-2">
-        <i class="fa-solid fa-lock-open"></i>
-    </div>
-    {% else %}
-    <div class="p-2">
-        <a class='nav-link' href="{% url 'account_signup' %}">Sign up</a>
-    </div>
-    <div class="p-2">
-        <a class='nav-link' href="{% url 'account_login' %}">Log in</a>
-    </div>
-    <div class="p-2">
-      <i class="fa-solid fa-lock"></i>
-    </div>
-    {% endif %}
 </div>
 {% endwith %}

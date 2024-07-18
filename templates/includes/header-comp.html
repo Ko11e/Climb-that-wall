@@ -2,13 +2,13 @@
 
 {% with request.resolver_match.url_name as url_name %}
 <div class="col-2 nav-bar d-none d-md-block navbar-expand-md">
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse mt-3" id="navbarNav">
       <ul class="nav navbar-nav flex-column text-clr-white px-3">
         <li class="nav-item">
           <a class="nav-link {% if url_name == 'home'%}active{% endif %}" href="{% url 'home' %}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if url_name == 'gyms'%}active{% endif %}" href="#">Gyms</a>
+          <a class="nav-link {% if url_name == 'search_gyms'%}active{% endif %}" href="{% url 'search_gyms' %}">Gyms</a>
         </li>
         <li class="nav-item">
           <a class="nav-link {% if url_name == 'articels'%}active{% endif %}" href="#">Articels</a>
