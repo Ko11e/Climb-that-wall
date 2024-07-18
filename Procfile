@@ -1,0 +1,1 @@
+web: gunicorn climb-that-wall.wsgi
