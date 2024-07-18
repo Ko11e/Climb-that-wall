@@ -75,11 +75,10 @@ body {
 
 /* Profile page */
 .one-site-box {
-    background-color: var(--grey-green);
+    background-color: var(--off-white);
     opacity: 0.85;
-    margin-top: 5px ;
     border: var(--border);
-    border-radius: 20px;
+    border-radius: 20px;;
 }
 
 .profile-image {
@@ -101,11 +100,19 @@ body {
     border-radius: 50%;
 }
 
+.text-info-profile {
+    margin-bottom: 16px;
+}
+
+.text-info-profile p {
+    color: var(--black);
+    margin: 0;
+}
+
 .edit-btn {
     display: flex;
     align-items: flex-end;
     justify-content: space-evenly;
-    margin-top: 2rem;
 }
 
 /* Search climbing gyms page */

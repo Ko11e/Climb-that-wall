@@ -5,14 +5,14 @@
 
 {% block content %}
     <div class="container one-site-box">
-        <div class="row text-center">
+        <div class="row mt-2 text-center">
             <div class="col">
                 <h1>Profile - {{ user.username }}</h1>
             </div>
         </div>
         <div class="container">
-            <div class="d-flex align-items-start info-box">
-                <div class="col align-items-center">
+            <div class="row align-items-start">
+                <div class="col-12 col-md-6">
                     <div class="profile-image text-center">
                         {% if profile.profile_pic %}
                         <img src="{{ profile.profile_pic.url }}" alt="{{ profile.user.username }}" class="img-fluid">
@@ -22,16 +22,18 @@
                     </div>
 
                     {% if request.user == profile.user %}
-                    <div class="edit-btn">
+                    <div class="edit-btn m-3">
                         <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile</button>
                         <button class="btn btn-danger" data-bs-toggle="#" data-bs-target="#">Delete Profile</button>
                     </div>
                     {% endif %}
                 </div>
-                <div class="col">
+                <div class="col-12 col-md-6">
                     <h3>About me</h3>
-                    {{ profile.bio|safe }}
                     <div class="text-info-profile">
+                    {{ profile.bio|safe }}
+                    </div>
+                    <div>
                         <p><strong>Joined: </strong> {{ profile.user.date_joined|date:'d M Y' }}</p>
                         <p><strong>Favotie Type of Climbing: </strong> {{ profile.fav_climb }}</p>
                         {% comment %} <p><strong>Reveiws: </strong> {{ profile.location }}</p> {% endcomment %}
@@ -43,9 +45,11 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col">
-                <h4>My comments</h4>
+            <div class="col mt-3">
+                <h2>My comments</h2>
             </div>
+        </div>
+        <div class="col one-site-box">
         </div>
     </div>
 
