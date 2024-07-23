@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
     /* Colours */
@@ -7,6 +8,12 @@
     --light-blue: #accacc;
     --red: #aa2610;
     --light-red: #b57887;
+
+    /* Fonts */
+    --h1-font: 'Amatic SC', sans-serif;
+    --heading-font: 'Arsenal SC', sans-serif;
+    --header-font: 'Poppins', sans-serif;
+    --body-font: 'Montserrat', sans-serif;
 
     /* Utils */
     --border: 2px solid #00000030;
@@ -22,6 +29,24 @@ body {
     padding: 0;    
 }
 
+h1 {
+    font-family: var(--h1-font);
+    font-weight: 700;
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: var(--header-font);
+}
+
+a {
+    text-decoration: none;
+    color: var(--black);
+}
+
+a:hover {
+    font-weight: bold;
+}
+
 .text-clr-white {
     color: var(--off-white);
 }
@@ -35,14 +60,28 @@ body {
 /* Navbars */
 
 .active {
-    font-size: larger;
     font-weight: bold;
+    border-bottom: 1px solid var(--off-white);
 }
+
+.offcanvas-body .active {
+    border-bottom: none;
+}
+
+.offcanvas-body .active:after {
+    content: '';
+    display: block;
+    position: relative;
+    width: 50%;
+    border: 1px solid var(--off-white);
+}
+
     /* Up to medium screens */
 #offcanvasNavbar {
-    background: linear-gradient(90deg, rgba(0,0,0,1) 25%, rgba(255,255,255,0) 25%), url(../images/navbar-image.webp) no-repeat center top;
+    background: linear-gradient(90deg, rgba(0,0,0,1) 35%, rgba(255,255,255,0) 35%), url(../images/navbar-image.webp) no-repeat center top;
+    font-family: var(--heading-font);
     background-size: contain;
-    color: var(--background);
+    color: var(--off-white);
     border-right: none;
 }
 
@@ -51,12 +90,19 @@ body {
 }
 
 .offcanvas-header {
-    color: var(--background);   
+    color: var(--off-white);   
     padding-bottom: 0;
+}
+
+.offcanvas-header .btn-close {
+    color: var(--off-white);
+    padding: 2px;
 }
     /* Medium screens and up */
 .nav-bar {
     background: url(../images/navbar-image.webp) no-repeat top center/cover;
+    font-family: var(--heading-font);
+    font-size: 25px;
     margin: 0;
     min-height: 150vh;
     padding: 0;
@@ -65,12 +111,14 @@ body {
     /* Sign in links */
 #signin {
     font-size: large;
+    font-family: var(--heading-font);
+    font-weight: bold;
 }
 
 /* Home page */
 
 #intro-header {
-    font-size: 4rem;
+    font-size: 5vw;
 }
 
 /* Profile page */
@@ -78,7 +126,8 @@ body {
     background-color: var(--off-white);
     opacity: 0.85;
     border: var(--border);
-    border-radius: 20px;;
+    border-radius: 20px;
+    margin: 1rem 5vw;
 }
 
 .profile-image {
@@ -116,14 +165,36 @@ body {
 }
 
 /* Search climbing gyms page */
+.btn-search {
+    background-color: var(--light-blue);
+    font-weight: 600;
+    margin: 0 1rem;
+}
+
+.btn-search:hover {
+    background-color: none;
+    border:2px solid var(--light-blue);
+}
+
 .card {
     background-color: var(--off-white);
     opacity: 0.85;
     margin: 0 auto;
     border: var(--border);
-    box-shadow: 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 8px 8px 7px rgba(0, 0, 0, 0.2), 0px 5px 10px 1px rgba(0, 0, 0, 0.19);
 }
 
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.gym-listing {
+    margin: 0 auto;
+    padding: 1.2rem 4rem;
+}
 
 .climbing_gyms {
     text-decoration: none;
@@ -132,4 +203,43 @@ body {
 
 .climbing_gyms:hover {
     cursor: pointer;
+}
+
+.img-fluid {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.city-name{
+    font-weight: bold;
+    margin-bottom: .5rem;
+}
+
+.small-description {
+    font-size: 0.8rem;
+}
+
+/* Details info for gym */
+
+.image-item {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gymtitle {
+    font-size: 6vw;
+    font-weight: 700;
+}
+
+.icons-socialmedia {
+    font-size: 2vw;
+    margin: 0 1rem;
+}
+
+.btn-website {
+    background-color: var(--grey-green);
+    width: 20vw;
+    margin: 1rem 0.5rem;
 }
