@@ -1,8 +1,9 @@
 from django.urls import path
 
-from .views import ClimbingGymsView
+# imported the views
+from .views import ClimbingGymsView, ClimbGymView
 
 urlpatterns = [
     path("search/", ClimbingGymsView.as_view(), name="search_gyms"),
-    # path("/<title>", ClimbGymView.as_view(), name="gyms"),
+    path("<slug:slug>/", ClimbGymView.as_view(), name="gyms"),
 ]

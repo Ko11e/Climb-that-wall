@@ -1,11 +1,11 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from django.db.models import Q
 
-from .models import ClimbingGyms
+from .models import ClimbingGyms, Comments
 
 class ClimbingGymsView(ListView):
-    """" Climbing gyms view """
+    """" Search view for the Climbing gyms """
     template_name = 'climb_gyms/climb-gyms.html'
     model = ClimbingGyms
     context_object_name = 'climbing_gyms'
@@ -29,4 +29,10 @@ class ClimbingGymsView(ListView):
         else:
             climbing_gyms = self.model.objects.all()
 
-        return climbing_gyms 
+        return climbing_gyms
+    
+class ClimbGymView(DetailView):
+    """"  gym view """
+    template_name = 'climb_gyms/gym.html'
+    model = ClimbingGyms
+    context_object_name = "gym"
