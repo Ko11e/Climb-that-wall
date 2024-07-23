@@ -120,6 +120,66 @@
                 </div>
             </div>
         </div>
+        <div class="col mx-4">
+            <div class="col">
+                <h2 class="p-1">Comments</h2>
+            </div>
+            <!--Comments -->
+            {% if request.user.is_authenticated %}
+            <div class="col">
+                {% comment %} <form method="POST" action="{% url 'add_comment' gym.id %}" class="comment-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="comment">Comment</label>
+                        <textarea class="form-control" id="comment" name="comment" rows="3"></textarea> 
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form> {% endcomment %}
+            </div>
+            <div class="comments">
+                {% if comments %}
+                    {% for comment in comments %}
+                    <div class="row">
+                    <!-- Media object -->
+                        <div class=" d-flex comment">
+                            <!-- Image -->
+                            <a href="{% url 'profile' comment.user.profile.id %}" aria-label="Click to view user profile {{comment.user.username}}">
+                                <img src="{{ comment.user.profile.profile_pic.url }}" class="me-3 rounded-circle" style="width: 60px; height: 60px;" alt="{{ comment.user.username }} Profile Photo">
+                            </a>
+                            <!-- Media body -->
+                            <div class="media-body">
+                                <h5 class="fw-bold">{{comment.user.username}}</h5>
+                                <small class="text-muted">Posted on  {{ comment.created_on }}</small>
+                                <p id="comment-body{{ comment.id }}">{{ comment.body  }}</p>
+                            </div>
+                            <!--End Media body -->
+                            <div class="ms-auto">
+                                {% if user.is_authenticated and comment.author == user %}
+                                    <button class="btn btn-edit d-flex comment-icon" comment_id="{{ comment.id }}"><i class="fa-regular fa-pen-to-square"></i></button>
+                                    <button class="btn btn-delete  d-flex comment-icon" comment_id="{{ comment.id }}"><i class="fa-regular fa-trash-can"></i></button>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="form-title text-center my-4">
+                    <h1>Did you Try this Climbing Gym?</h1>
+                </div>
+                <h5 class="text-center">Share your Experience with us</h5>
+                {% endif %}
+            
+            </div>
+            {% else %}
+            <div class="col text-center">
+                <div>Did you Try this Climbing Gym?</div>
+                <div>Share your Experience with us</div>
+                <h3 class="text-center"><a chref="{% url 'account_login' %}">Log in</a> to leave a comment</h3>
+            </div>
+            {% endif %}
+
+        </div>
     </div>
 
-{% endblock %}
+{% endblock %}  

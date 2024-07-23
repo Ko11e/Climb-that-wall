@@ -36,3 +36,8 @@ class ClimbGymView(DetailView):
     template_name = 'climb_gyms/gym.html'
     model = ClimbingGyms
     context_object_name = "gym"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comments'] = Comments.objects.filter(climbing_gym=self.get_object())
+        return context
