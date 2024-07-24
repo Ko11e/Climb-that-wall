@@ -15,6 +15,8 @@ class ClimbingGymsView(ListView):
         """ Get queryset """
         query = self.request.GET.get('q')
         button_query = self.request.GET.get('button_query')
+        reset_filter = self.request.GET.get('reset')
+        filter_query = self.request.GET.get('filter')
 
         if query:
             climbing_gyms = self.model.objects.filter(
@@ -25,6 +27,15 @@ class ClimbingGymsView(ListView):
             climbing_gyms = self.model.objects.filter(
                 Q(city__icontains=button_query)
             )
+        elif reset_filter:
+            climbing_gyms = self.model.objects.all()
+        elif filter_query:
+            if filter_query == 'rating':
+                climbing_gyms = self.model.objects.all().order_by('-rating')
+            elif filter_query == 'az':
+                climbing_gyms = self.model.objects.all().order_by('title')
+            elif filter_query == 'za':
+                climbing_gyms = self.model.objects.all().order_by('-title')
 
         else:
             climbing_gyms = self.model.objects.all()
