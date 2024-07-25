@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django_resized import ResizedImageField
+from django.db.models import Avg
+
+# import the User model
 
 # Create your models here.
 
@@ -70,10 +73,17 @@ class ClimbingGyms(models.Model):
     city = models.CharField(max_length=100, blank=False, null=False)
     maps = models.CharField(max_length=100, blank=False, null=False)
     images = models.ForeignKey(Images, on_delete=models.CASCADE)
-    rating = models.FloatField(blank=True, null=True)
+    rating = models.FloatField(blank=True, null=True, default=0)
     socialmedia = models.ForeignKey(Socialmedia, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def average_rating(self) -> float:
+        """ Get the average rating of the gym """
+        self.rating = Ratings.objects.filter(climbing_gym=self).aggregate(Avg("rating"))["rating__avg"] or 0
+        number_of_ratings = Ratings.objects.filter(climbing_gym=self).count()
+
+        return self.rating, number_of_ratings
 
     class Meta:
         ordering = ['created_at']
@@ -86,7 +96,7 @@ class Ratings(models.Model):
     """ Model for ratings """
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=False, null=False)
     climbing_gym = models.ForeignKey(ClimbingGyms, on_delete=models.CASCADE, blank=False, null=False)
-    rating = models.FloatField(blank=False, null=False)
+    rating = models.IntegerField(blank=False, null=False)
 
     def __str__(self):
         return f"{self.rating} by {self.user.username}"
