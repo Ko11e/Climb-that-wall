@@ -4,7 +4,7 @@
 {% block title %}Profile - {{ profile.user.username }}{% endblock %}
 
 {% block content %}
-    <div class="container one-site-box">
+    <div class="one-site-box">
         <div class="row mt-2 text-center">
             <h1 class="d-none">Profile page</h1>
             <div class="col">
@@ -24,8 +24,8 @@
 
                     {% if request.user == profile.user %}
                     <div class="edit-btn m-3">
-                        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile</button>
-                        <button class="btn btn-danger" data-bs-toggle="#" data-bs-target="#">Delete Profile</button>
+                        <button id="myBtn" class="btn btn-edit" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile</button>
+                        <button class="btn btn-delete" data-bs-toggle="#" data-bs-target="#">Delete Profile</button>
                     </div>
                     {% endif %}
                 </div>
@@ -53,5 +53,58 @@
         <div class="col one-site-box">
         </div>
     </div>
+    
+    <!-- The Modal -->
+    <div id="myModal" class="modal mt-5">
 
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close fs-1">&times;</span>
+      <form method="POST" action="{% url 'edit_profile' request.user.id %}" enctype="multipart/form-data">
+        <h3>Edit Profile</h3>
+        {% csrf_token %}
+        {{ form|crispy }}
+        {{ form.media }}
+        <div class="d-flex justify-content-center">
+          <button type="submit" class="btn btn-edit">Edit</button>
+        </div>
+
+      </form>
+    </div>
+  
+  </div>
+
+
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+    <script>
+        // Get the modal
+        const modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        const btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        const span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        
+    </script>
 {% endblock %}
