@@ -26,6 +26,15 @@
         {% include "includes/header-comp.html" %}
         <div class="col">
           {% include "includes/header-mobile.html" %}
+          
+          <div class="col-md-8 offset-md-2 mt-4">
+            {% for message in messages %}
+              <div class="alert {{ message.tags }} alert-dismissible fade show text-center" id="msg" role="alert">
+                {{ message | safe }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          </div>
 
           {% block content %}
           {% endblock %}

@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import logout
 from django.shortcuts import redirect
+from django.contrib import messages
 
 from django.contrib.auth.models import User
 from .models import Profile
@@ -33,6 +34,7 @@ class EditProfileView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def form_valid(self, form):
         self.success_url = f'/profiles/user/{self.kwargs["pk"]}/'
+        messages.success(self.request, 'Your profile has been updated.')
         return super().form_valid(form)
     
     def test_func(self):
@@ -70,6 +72,7 @@ class DeleteProfileView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         # Log the user out
         logout(self.request)
         # Redirect to the success URL
+        messages.info(self.request, 'Your account has been deleted.')
         return redirect(self.get_success_url())
     
 

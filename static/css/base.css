@@ -57,6 +57,24 @@ a:hover {
     max-width: 100% !important;
 }
 
+/* Messages */
+.success {
+    background-color: var(--grey-green);
+    border: 1px solid #69a57f;
+    border-radius: 15px;
+}
+
+.info {
+    background-color: var(--light-blue);
+    border: 1px solid #6cb8d1;
+    border-radius: 15px;
+}
+
+.error {
+    background-color: var(--light-red);
+    border: 1px solide var(--red);
+    border-radius: 15px;
+}
 
 /* Navbars */
 
@@ -326,5 +344,5 @@ a:hover {
 /* Sign out */
 
 #logout-div {
-    margin-top: 25%;
+    margin-top: 15%;
 }
