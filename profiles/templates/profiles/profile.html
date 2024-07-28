@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %}Profile - {{ profile.user.username }}{% endblock %}
 
@@ -50,8 +51,26 @@
                 <h2>My comments</h2>
             </div>
         </div>
-        <div class="col one-site-box">
-        </div>
+        {% if request.user == profile.user %}
+            {% if comments %}
+                {% for comment in comments %}
+                <div class="col one-site-box">
+                    <image src="{{ comment.climbing_gym.images.headimage.url }}" alt="{{ comment.climbing_gym.images.headimage_alt }}" class="img-fluid comment-img">
+                    <div class="row">
+                        <h3>{{ comment.climbing_gym.title }}</h3>
+                        <div class="col">
+                            <div>{{ comment.rating }}</div>
+                            <div>{{ comment.comment }}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="col one-site-box text-center">
+                    <div>No comments yet</div>
+                </div>
+            {% endif %}   
+        {% endif %}                 
     </div>
     
     <!-- The Modal -->
