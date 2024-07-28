@@ -105,7 +105,7 @@ a:hover {
     font-family: var(--heading-font);
     font-size: 25px;
     margin: 0;
-    min-height: 150vh;
+    min-height: 100svh;
     padding: 0;
 }
 
@@ -114,6 +114,24 @@ a:hover {
     font-size: large;
     font-family: var(--heading-font);
     font-weight: bold;
+}
+
+/* Footer */
+
+.the-footer {
+    position: relative;
+    bottom: 0;
+    background-color: var(--black);
+    color: var(--off-white);
+    font-family: var(--h1-font);
+    font-size: 1rem;
+    padding: 1rem 0;
+}
+
+.the-footer a {
+    color: var(--off-white);
+    font-size: 150%;
+    padding: 0 15px;
 }
 
 /* Home page */
