@@ -26,7 +26,7 @@
                     {% if request.user == profile.user %}
                     <div class="edit-btn m-3">
                         <button id="myBtn" class="btn btn-edit" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile</button>
-                        <button class="btn btn-delete" data-bs-toggle="#" data-bs-target="#">Delete Profile</button>
+                        <a class="btn btn-delete" href="{% url 'delete_profile_confirm' request.user.id %}">Delete Profile</a>
                     </div>
                     {% endif %}
                 </div>
