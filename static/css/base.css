@@ -137,7 +137,7 @@ a:hover {
 /* Home page */
 
 #intro-header {
-    font-size: 5vw;
+    font-size: 9.5vw;
 }
 
 /* Profile page */
@@ -321,4 +321,10 @@ a:hover {
     background-color: var(--grey-green);
     width: 20vw;
     margin: 1rem 0.5rem;
+}
+
+/* Sign out */
+
+#logout-div {
+    margin-top: 25%;
 }
