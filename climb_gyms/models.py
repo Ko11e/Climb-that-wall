@@ -80,11 +80,9 @@ class ClimbingGyms(models.Model):
 
     def average_rating(self) -> float:
         """ Get the average rating of the gym """
-        self.rating = Ratings.objects.filter(climbing_gym=self).aggregate(Avg("rating"))["rating__avg"] or 0
-        number_of_ratings = Ratings.objects.filter(climbing_gym=self).count()
+        self.rating = Comments.objects.filter(climbing_gym=self).aggregate(Avg("rating"))["rating__avg"] or 0
 
-        return self.rating, number_of_ratings
-
+        return self.rating
     class Meta:
         ordering = ['created_at']
 
@@ -107,7 +105,7 @@ class Comments(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=False, null=False)
     climbing_gym = models.ForeignKey(ClimbingGyms, on_delete=models.CASCADE, blank=False, null=False)
     body = models.TextField(max_length=2000, blank=True, null=True)
-    rating = models.ForeignKey(Ratings, on_delete=models.CASCADE, blank=True, null=True)
+    rating = models.IntegerField(blank=False, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

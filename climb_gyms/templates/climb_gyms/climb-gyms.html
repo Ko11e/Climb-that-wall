@@ -52,10 +52,10 @@
         </div>
         <div class="container">
             <div class="row d-flex align-items-start">
-                <div class="col px-md-4 gym-listing">
+                <div class="col py-md-2 px-md-4 px-1 gym-listing">
                     {% if climbing_gyms|length == 0 %}
                     <div class="text-center">
-                        <h2>No climbing gyms found</h2>
+                        <h2 class="fw-bold">No climbing gyms found</h2>
                     </div>
                     {% else %}
                     {% for gym in climbing_gyms %}
