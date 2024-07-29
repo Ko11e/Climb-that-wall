@@ -67,9 +67,15 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                        <div class="d-flex justify-content-between">
+                                        <div class="d-flex justify-content-between info-header">
                                             <h4 class="card-title">{{ gym.title }}</h4>
-                                            <p class='rating'><strong>Rating:</strong> </p>
+                                                <h5 class="card-title"><strong>Rating:</strong><br>
+                                                    <i class="{% if gym.rating > 0 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                    <i class="{% if gym.rating > 1 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                    <i class="{% if gym.rating > 2 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                    <i class="{% if gym.rating > 3 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                    <i class="{% if gym.rating > 4 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                </h5>
                                             <div data-coreui-read-only="true" data-coreui-toggle="rating" data-coreui-value="3">
                                             </div>
                                         </div>

@@ -67,11 +67,11 @@ DJRICHTEXTFIELD_CONFIG = {
     'init_template': 'djrichtextfield/init/ckeditor.js',
     'settings': {
         'toolbar': [
-            ['Format','Bold', 'Italic', 'Underline'],
+            ['Format', 'Bold', 'Italic', 'Underline'],
             ['NumberedList', 'BulletedList'], ['Undo', 'Redo'],
-            ['Maximize'],
+            ['Maximize']
         ],
-        'format_tags': 'p;h3'
+        'format_tags': 'p;h1;h2;h3'
     }
 }
 
