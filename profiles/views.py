@@ -8,6 +8,7 @@ from django.contrib import messages
 
 from django.contrib.auth.models import User
 from .models import Profile
+from climb_gyms.models import ClimbingGyms
 
 from .forms import ProfileForm
 
@@ -17,8 +18,10 @@ class ProfileView(TemplateView):
 
     def get_context_data(self, **kwargs):
         profile = Profile.objects.get(user=self.kwargs['pk'])
+        my_gyms = ClimbingGyms.objects.filter(user=self.kwargs['pk'])
         context = {
             'profile': profile,
+            'climbing_gyms': my_gyms,
             'form': ProfileForm(instance=profile)
         }
 
