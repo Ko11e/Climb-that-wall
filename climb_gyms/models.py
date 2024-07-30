@@ -82,7 +82,6 @@ class ClimbingGyms(models.Model):
         """ Get the average rating of the gym """
         self.rating = Comments.objects.filter(climbing_gym=self).aggregate(Avg("rating"))["rating__avg"] or 0
 
-        return self.rating
     class Meta:
         ordering = ['created_at']
 
