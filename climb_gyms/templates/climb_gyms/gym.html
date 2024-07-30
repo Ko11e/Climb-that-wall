@@ -127,14 +127,31 @@
             <!--Comments -->
             {% if request.user.is_authenticated %}
             <div class="col">
-                {% comment %} <form method="POST" action="{% url 'add_comment' gym.id %}" class="comment-form">
+                <form method="POST" action="{% url 'create_comment' gym.id %}" class="comment-form">
                     {% csrf_token %}
-                    <div class="form-group">
-                        <label for="comment">Comment</label>
-                        <textarea class="form-control" id="comment" name="comment" rows="3"></textarea> 
+                    <h3>Leave a Review</h3>
+                    <div> Username: {{ user.username }}</div>
+                    <div class="rating-box ">
+                        <h4 class="mb-0">Rating</h4>
+                        <div class="rating-input">
+                            <label for="star-1"></label>
+                            <label for="star-2"></label>
+                            <label for="star-3"></label>
+                            <label for="star-4"></label>
+                            <label for="star-5"></label>
+
+                            <input type="radio" id="star-1" name="rating" value="1">
+                            <input type="radio" id="star-2" name="rating" value="2">
+                            <input type="radio" id="star-3" name="rating" value="3">
+                            <input type="radio" id="star-4" name="rating" value="4">
+                            <input type="radio" id="star-5" name="rating" value="5">
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form> {% endcomment %}
+
+                        <label for="comment">Comment</label>
+                        <textarea class="form-control" id="comment" name="body" rows="3"></textarea>
+                    <button type="submit" class="btn btn-search">Submit</button>
+                </form>
             </div>
             <div class="comments">
                 {% if comments %}
@@ -143,18 +160,18 @@
                     <!-- Media object -->
                         <div class=" d-flex comment">
                             <!-- Image -->
-                            <a href="{% url 'profile' comment.user.profile.id %}" aria-label="Click to view user profile {{comment.user.username}}">
+                            <a href="{% url 'profile' comment.user.id %}" aria-label="Click to view user profile {{comment.user.username}}">
                                 <img src="{{ comment.user.profile.profile_pic.url }}" class="me-3 rounded-circle" style="width: 60px; height: 60px;" alt="{{ comment.user.username }} Profile Photo">
                             </a>
                             <!-- Media body -->
                             <div class="media-body">
                                 <h5 class="fw-bold">{{comment.user.username}}</h5>
-                                <small class="text-muted">Posted on  {{ comment.created_on }}</small>
+                                <small class="text-muted">Posted on  {{ comment.created_at }}</small>
                                 <p id="comment-body{{ comment.id }}">{{ comment.body  }}</p>
                             </div>
                             <!--End Media body -->
                             <div class="ms-auto">
-                                {% if user.is_authenticated and comment.author == user %}
+                                {% if user.is_authenticated and comment.user == user %}
                                     <button class="btn btn-edit d-flex comment-icon" comment_id="{{ comment.id }}"><i class="fa-regular fa-pen-to-square"></i></button>
                                     <button class="btn btn-delete  d-flex comment-icon" comment_id="{{ comment.id }}"><i class="fa-regular fa-trash-can"></i></button>
                                 {% endif %}
@@ -183,3 +200,50 @@
     </div>
 
 {% endblock %}  
+
+{% block extra_js %}
+{{ block.super }}
+<script>
+function enableRatingModel(inputBox) {
+    const labels = [...inputBox.querySelectorAll('label')];
+    const inputs = [...inputBox.querySelectorAll('input')];
+    
+    // Set click label to active and check the responsive input
+    labels.forEach((e, index) => {
+        e.addEventListener('click', (event) => {
+            labels[index].classList.add('active');
+            setTimeout(() => {
+                labels[index].classList.remove('active');
+            }, 1000);
+        });
+    });
+    
+    // Set hovereffect on the labels
+    labels.forEach((e, index) => {
+        e.addEventListener('mouseover', (e) => {
+            for (let i = 0; i < labels.length; i++) {
+                labels[i].style.color = (i <= index) ? 'var(--yellow)' : '#888';
+            }
+        });
+    });
+
+    labels.forEach((label, index) => {
+        label.addEventListener('mouseleave', () => {
+            const checkIndex = inputs.findIndex(input => input.checked);
+            if (checkIndex === -1) {
+                // No input is checked, reset all labels to default color
+                labels.forEach(lbl => lbl.style.color = '#888');
+            } else {
+                // Set the color based on the checked input
+                labels.forEach((lbl, i) => {
+                    lbl.style.color = (i <= checkIndex) ? 'var(--yellow)' : '#888';
+                });
+            }
+        });
+    });
+
+}
+
+enableRatingModel(document.querySelector('.rating-box'));
+</script>
+{% endblock %}
