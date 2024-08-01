@@ -9,7 +9,7 @@
         <div class="row mt-2 text-center">
             <h1 class="d-none">Profile page</h1>
             <div class="col">
-                <h2>Profile - {{ user.username }}</h2>
+                <h2>Profile - {{ profile.user.username }}</h2>
             </div>
         </div>
         <div class="container">
@@ -58,14 +58,45 @@
                         <div class="accordion-body">
                             {% if comments %}
                                 {% for comment in comments %}
-                                <image src="{{ comment.climbing_gym.images.headimage.url }}" alt="{{ comment.climbing_gym.images.headimage_alt }}" class="img-fluid comment-img">
-                                    <div class="row">
-                                        <h3>{{ comment.climbing_gym.title }}</h3>
-                                        <div class="col">
-                                            <div>{{ comment.rating }}</div>
-                                            <div>{{ comment.comment }}</div>
+                                <div class="container">
+                                    <div class="row justify-content-between">
+                                        <div> <strong>Posted on:</strong> {{ comment.created_at|date:'H:i - d M Y' }}</div>
+                                        {% if comment.updated_at != comment.created_at %}
+                                        <div> Updated on: {{ comment.updated_at|date:'H:i - d M Y' }}</div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="row justify-content-evenly mt-2">
+                                        <div class="image-container-my-comments">
+                                            <image src="{{ comment.climbing_gym.images.headimage.url }}" alt="{{ comment.climbing_gym.images.headimage_alt }}" class="img-fluid comment-img">
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="d-flex justify-content-between">
+                                                <div class="col">
+                                                    <h3>{{ comment.climbing_gym.title }}</h3>
+                                                </div>
+                                                <div class="col text-end">
+                                                    <i class="{% if comment.rating > 0 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                    <i class="{% if comment.rating > 1 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                    <i class="{% if comment.rating > 2 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                    <i class="{% if comment.rating > 3 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                    <i class="{% if comment.rating > 4 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                    <span class="d-none">
+                                                        {{ comment.rating }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div><strong>Comment: </strong></div>
+                                            <div>{{ comment.body|truncatechars:50 }}</div>
+                                            <div class="col-1 edit-btn">
+                                                <a class="btn btn-edit" href="#"><i class="fa-regular fa-pen-to-square"></i></a>
+                                                <a class="btn btn-delete" href="#"><i class="fa-regular fa-trash-can"></i></a>
+                                            </div>
                                         </div>
                                     </div>
+                                    {% if commments|length != 1 %}
+                                    <hr>
+                                    {% endif %}
+                                </div>
                                 {% endfor %}
                             {% else %}
                             <div class="col text-center">

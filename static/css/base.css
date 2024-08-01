@@ -207,6 +207,7 @@ a:hover {
     display: flex;
     align-items: flex-end;
     justify-content: space-evenly;
+    width: 100%;
 }
 
 .btn-edit {
@@ -233,6 +234,23 @@ a:hover {
     border:2px solid var(--red);
 }
 
+.image-container-my-comments {
+    position: relative;
+    width: 25%;
+    max-width: 130px;
+    min-width: 100px;
+    max-height: 130px;
+    min-height: 100px; /* 1:1 Aspect Ratio */
+}
+
+.image-container-my-comments img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 /* Veiw My Comments/gyms/tips */
 
 .accordion {

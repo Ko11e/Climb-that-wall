@@ -81,6 +81,7 @@ class ClimbingGyms(models.Model):
     def average_rating(self) -> float:
         """ Get the average rating of the gym """
         self.rating = Comments.objects.filter(climbing_gym=self).aggregate(Avg("rating"))["rating__avg"] or 0
+        self.save()
 
     class Meta:
         ordering = ['created_at']
