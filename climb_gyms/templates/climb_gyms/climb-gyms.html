@@ -70,11 +70,21 @@
                                         <div class="d-flex justify-content-between info-header">
                                             <h4 class="card-title">{{ gym.title }}</h4>
                                                 <h5 class="card-title"><strong>Rating:</strong><br>
-                                                    <i class="{% if gym.rating > 0 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
-                                                    <i class="{% if gym.rating > 1 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
-                                                    <i class="{% if gym.rating > 2 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
-                                                    <i class="{% if gym.rating > 3 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
-                                                    <i class="{% if gym.rating > 4 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                    <i class="{% if gym.rating > 0.5 and gym.rating < 1 %} fa-solid fa-star-half-stroke 
+                                                    {% elif gym.rating > 1 %} fa-solid fa-star 
+                                                    {% else %} fa-regular fa-star {% endif %}"></i>
+                                                    <i class="{% if gym.rating > 1.5 and gym.rating < 2 %} fa-solid fa-star-half-stroke 
+                                                    {% elif gym.rating > 2 %} fa-solid fa-star 
+                                                    {% else %} fa-regular fa-star {% endif %}"></i>
+                                                    <i class="{% if gym.rating > 2.5 and gym.rating < 3 %} fa-solid fa-star-half-stroke 
+                                                    {% elif gym.rating > 3 %} fa-solid fa-star 
+                                                    {% else %} fa-regular fa-star {% endif %}"></i>
+                                                    <i class="{% if gym.rating > 3.5 and gym.rating < 4 %} fa-solid fa-star-half-stroke 
+                                                    {% elif gym.rating > 4 %} fa-solid fa-star 
+                                                    {% else %} fa-regular fa-star {% endif %}"></i>
+                                                    <i class="{% if gym.rating > 4.5 and gym.rating < 5 %} fa-solid fa-star-half-stroke 
+                                                    {% elif gym.rating == 5 %} fa-solid fa-star 
+                                                    {% else %} fa-regular fa-star {% endif %}"></i>
                                                 </h5>
                                             <div data-coreui-read-only="true" data-coreui-toggle="rating" data-coreui-value="3">
                                             </div>
