@@ -136,7 +136,7 @@
         </div>
         <div class="col mx-4">
             <div class="col">
-                <h2 class="p-1">Comments (<small>{{ comment_count }}</small>)</h2>
+                <h2 class="p-1">Comments <small>({{ comment_count }})</small></h2>
             </div>
             <!--Comments -->
             {% if request.user.is_authenticated %}
@@ -187,7 +187,7 @@
                                     </div>
                                     <div class="col ms-3">
                                         <h5 class="mt-0"><small>Username: </small>{{ comment.user.username }}</h5>
-                                        <small class="text-muted">Posted on  {{ comment.created_at|date:'h.m / d M Y' }}</small>
+                                        <small class="text-muted">Posted on  {{ comment.created_at|date:'H:i - d M Y' }}</small>
                                     </div>
                                 </div>
                                 <!-- Media body -->
@@ -198,8 +198,9 @@
                                 <!--End Media body -->
                                 {% if user.is_authenticated and comment.user == user %}
                                 <div class="edit-btn ms-auto">
-                                    <button class="btn btn-edit d-flex comment-icon" comment_id="{{ comment.id }}"><i class="fa-regular fa-pen-to-square"></i></button>
-                                    <button class="btn btn-delete d-flex comment-icon" comment_id="{{ comment.id }}"><i class="fa-regular fa-trash-can"></i></button>
+                                    <a class="btn btn-edit" href="{% url 'edit_comment' comment.id %}"><i class="fa-regular fa-pen-to-square"></i></a>
+                                    <a class="btn btn-delete" href="#"><i class="fa-regular fa-trash-can"></i></a>
+                                    {% comment %} {% url 'delete_comment' comment.id %} {% endcomment %}
                                 </div>
                                 {% endif %}
                             </div>
@@ -228,74 +229,10 @@
         </div>
     </div>
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal mt-5">
-
-        <!-- Modal content -->
-        <div class="modal-content">
-          <span class="close fs-1">&times;</span>
-          <form method="POST" action="{% url 'edit_profile' request.user.id %}" enctype="multipart/form-data">
-            <h3>Edit </h3>
-            {% csrf_token %}
-            {{ form|crispy }}
-            {{ form.media }}
-            <div class="d-flex justify-content-center">
-              <button type="submit" class="btn btn-edit">Edit</button>
-            </div>
-    
-          </form>
-        </div>
-      
-      </div>
-
-
-
 
 {% endblock %}  
 
 {% block extra_js %}
 {{ block.super }}
-<script>
-function enableRatingModel(inputBox) {
-    const labels = [...inputBox.querySelectorAll('label')];
-    const inputs = [...inputBox.querySelectorAll('input')];
-    
-    // Set click label to active and check the responsive input
-    labels.forEach((e, index) => {
-        e.addEventListener('click', (event) => {
-            labels[index].classList.add('active');
-            setTimeout(() => {
-                labels[index].classList.remove('active');
-            }, 1000);
-        });
-    });
-    
-    // Set hovereffect on the labels
-    labels.forEach((e, index) => {
-        e.addEventListener('mouseover', (e) => {
-            for (let i = 0; i < labels.length; i++) {
-                labels[i].style.color = (i <= index) ? 'var(--yellow)' : '#888';
-            }
-        });
-    });
-
-    labels.forEach((label, index) => {
-        label.addEventListener('mouseleave', () => {
-            const checkIndex = inputs.findIndex(input => input.checked);
-            if (checkIndex === -1) {
-                // No input is checked, reset all labels to default color
-                labels.forEach(lbl => lbl.style.color = '#888');
-            } else {
-                // Set the color based on the checked input
-                labels.forEach((lbl, i) => {
-                    lbl.style.color = (i <= checkIndex) ? 'var(--yellow)' : '#888';
-                });
-            }
-        });
-    });
-
-}
-
-enableRatingModel(document.querySelector('.rating-box'));
-</script>
+<script src="{% static 'js/star-function.js' %}"></script>
 {% endblock %}
