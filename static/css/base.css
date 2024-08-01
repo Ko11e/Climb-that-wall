@@ -293,6 +293,28 @@ a:hover {
     width: 80%;
 }
 
+/* Edit comment */
+
+.box-comment-edit {
+    background-color: var(--off-white-80);
+    border: var(--border);
+    border-radius: 20px;
+    margin: 1rem 5vw;
+    width: 72%;
+}
+
+.btn-save {
+    background-color: var(--grey-green);
+    font-weight: 600;
+    margin: 0 1rem;
+}
+
+.btn-save:hover {
+    background-color: none;
+    border:2px solid var(--grey-green);
+}
+
+
 /* Search climbing gyms page */
 .btn-search {
     background-color: var(--light-blue);
