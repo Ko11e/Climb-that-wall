@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, UpdateView
 from django.views import View
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 
@@ -104,3 +104,21 @@ class CreateCommentsView(UserPassesTestMixin, LoginRequiredMixin, View):
     
     def test_func(self):    
         return self.request.user.is_authenticated
+    
+
+class EditCommentsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    """ Edit comment view """
+    model = Comments
+    fields = ['rating', 'body']
+    template_name = 'climb_gyms/edit_comment.html'
+    success_url = '/'
+    context_object_name = 'comment'
+
+    def get_object(self, queryset=None):
+        comment = get_object_or_404(Comments, pk=self.kwargs['pk'])
+        comment.climbing_gym.average_rating()
+        return comment
+
+    
+    def test_func(self):
+        return self.request.user == self.get_object().user
