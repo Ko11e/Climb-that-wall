@@ -29,42 +29,26 @@
             <a href="{% url 'search_gyms' %}" class="small links">View all <i class="fa-solid fa-angles-right"></i></a>
         </div>
     </div>
-    <div class="row align-items-center justify-content-between">
+    <div class="row mb-4 align-items-center justify-content-between">
         <div class="col text-center">
             <i class="fa-solid fa-angles-left"></i>
         </div>
+
+        {% for gym in climbing_gyms %}
         <div class="col-3">
-            <div class="card">
-                <img src="#" class="card-img-top" alt="...">
+            <div class="card card-homepage">
+                <img src="{{ gym.images.headimage.url }}" class="card-img-top" alt="{{ gym.images.headimage_alt }}">
                 <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <h5 class="card-title">{{ gym.title }}</h5>
+                <p class="card-text">{{ gym.description|truncatechars:100 }}</p>
+                <a href="{% url 'gyms' gym.slug %}" class="btn btn-search">Read More Here</a>
                 </div>
             </div>
         </div>
-        <div class="col-3">
-            <div class="card">
-                <img src="#" class="card-img-top" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card">
-                <img src="#" class="card-img-top" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
+
         <div class="col text-center">
-            <i class="fa-solid fa-angles-right"></i>
+            <i class="fa-solid fa-angles-right"></i>    
         </div>
     </div>
 </div>
