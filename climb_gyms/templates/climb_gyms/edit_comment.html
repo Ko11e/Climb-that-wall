@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Edit/Delete Comment{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="text-center">
+        <h1>Edit/Delete Comment</h1>
+        <h2>Current Comment</h2>
+    <div class="d-flex justify-content-center">    
+        <div class="row box-comment-edit justify-content-evenly mt-2">
+            <div class="image-container-my-comments">
+                <image src="{{ comment.climbing_gym.images.headimage.url }}" alt="{{ comment.climbing_gym.images.headimage_alt }}" class="img-fluid comment-img">
+            </div>
+            <div class="col-9">
+                <div class="d-flex justify-content-between">
+                    <div class="col">
+                        <h3>{{ comment.climbing_gym.title }}</h3>
+                    </div>
+                    <div class="col text-end">
+                        <i class="{% if comment.rating > 0 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                        <i class="{% if comment.rating > 1 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                        <i class="{% if comment.rating > 2 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                        <i class="{% if comment.rating > 3 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                        <i class="{% if comment.rating > 4 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                        <span class="d-none">
+                            {{ comment.rating }}
+                        </span>
+                    </div>
+                </div>
+                <div><strong>Comment: </strong></div>
+                <div>{{ comment.body|truncatechars:50 }}</div>
+            </div>
+        </div>
+    </div>
+    <h2 class="text-center">Updated Comment</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="row justify-content-center">
+            <div class="col-4 d-grid justify-content-center">
+                <p class="mb-0"><strong>Rating</strong></p>
+                <div class="rating-box">
+                    <div class="rating-input">
+                        <label for="star-1"></label>
+                        <label for="star-2"></label>
+                        <label for="star-3"></label>
+                        <label for="star-4"></label>
+                        <label for="star-5"></label>
+
+                        <input type="radio" id="star-1" name="rating" value="1">
+                        <input type="radio" id="star-2" name="rating" value="2">
+                        <input type="radio" id="star-3" name="rating" value="3">
+                        <input type="radio" id="star-4" name="rating" value="4">
+                        <input type="radio" id="star-5" name="rating" value="5">
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="text-box fw-bold">
+                    <label for="comment">Comment</label>
+                    <textarea class="form-control" id="comment" name="body" rows="3"></textarea>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-save">Save</button>
+        <a class="btn btn-delete" href="#">Delete</a>
+        <a class="btn btn-search" href="{% url 'profile' comment.user.id %}">Cancel</a>
+    </form>
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+<script src="{% static 'js/star-function.js' %}"></script>
+{% endblock %}
