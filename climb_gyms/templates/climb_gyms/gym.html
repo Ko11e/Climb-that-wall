@@ -122,82 +122,120 @@
         </div>
         <div class="col mx-4">
             <div class="col">
-                <h2 class="p-1">Comments</h2>
+                <h2 class="p-1">Comments (<small>{{ comment_count }}</small>)</h2>
             </div>
             <!--Comments -->
             {% if request.user.is_authenticated %}
-            <div class="col">
-                <form method="POST" action="{% url 'create_comment' gym.id %}" class="comment-form">
-                    {% csrf_token %}
-                    <h3>Leave a Review</h3>
-                    <div> Username: {{ user.username }}</div>
-                    <div class="rating-box ">
-                        <h4 class="mb-0">Rating</h4>
-                        <div class="rating-input">
-                            <label for="star-1"></label>
-                            <label for="star-2"></label>
-                            <label for="star-3"></label>
-                            <label for="star-4"></label>
-                            <label for="star-5"></label>
+            <div class="row make-a-review my-3">
+                <div class="col">
+                    <form method="POST" action="{% url 'create_comment' gym.id %}" class="comment-form">
+                        {% csrf_token %}
+                        <h3>Leave a Review</h3>
+                        <div> Username: <strong>{{ user.username }}</strong></div>
+                            <div class="rating-box">
+                                <p class="mb-0"><strong>Rating</strong></p>
+                                <div class="rating-input">
+                                    <label for="star-1"></label>
+                                    <label for="star-2"></label>
+                                    <label for="star-3"></label>
+                                    <label for="star-4"></label>
+                                    <label for="star-5"></label>
 
-                            <input type="radio" id="star-1" name="rating" value="1">
-                            <input type="radio" id="star-2" name="rating" value="2">
-                            <input type="radio" id="star-3" name="rating" value="3">
-                            <input type="radio" id="star-4" name="rating" value="4">
-                            <input type="radio" id="star-5" name="rating" value="5">
-                        </div>
-                    </div>
-
-                        <label for="comment">Comment</label>
-                        <textarea class="form-control" id="comment" name="body" rows="3"></textarea>
-                    <button type="submit" class="btn btn-search">Submit</button>
-                </form>
-            </div>
-            <div class="comments">
-                {% if comments %}
-                    {% for comment in comments %}
-                    <div class="row">
-                    <!-- Media object -->
-                        <div class=" d-flex comment">
-                            <!-- Image -->
-                            <a href="{% url 'profile' comment.user.id %}" aria-label="Click to view user profile {{comment.user.username}}">
-                                <img src="{{ comment.user.profile.profile_pic.url }}" class="me-3 rounded-circle" style="width: 60px; height: 60px;" alt="{{ comment.user.username }} Profile Photo">
-                            </a>
-                            <!-- Media body -->
-                            <div class="media-body">
-                                <h5 class="fw-bold">{{comment.user.username}}</h5>
-                                <small class="text-muted">Posted on  {{ comment.created_at }}</small>
-                                <p id="comment-body{{ comment.id }}">{{ comment.body  }}</p>
+                                    <input type="radio" id="star-1" name="rating" value="1">
+                                    <input type="radio" id="star-2" name="rating" value="2">
+                                    <input type="radio" id="star-3" name="rating" value="3">
+                                    <input type="radio" id="star-4" name="rating" value="4">
+                                    <input type="radio" id="star-5" name="rating" value="5">
+                                </div>
                             </div>
-                            <!--End Media body -->
-                            <div class="ms-auto">
+                            <div class="text-box">
+                                <label for="comment">Comment</label>
+                                <textarea class="form-control" id="comment" name="body" rows="3"></textarea>
+                            </div>
+                        <button type="submit" class="btn btn-search">Submit</button>
+                    </form>
+                </div>
+                <div class="col">
+                    {% if comments %}
+                        {% for comment in comments %}
+                        <div class="row view-comments py-2">
+                        <!-- Media object -->
+                        <a href="{% url 'profile' comment.user.id %}" aria-label="Click to view user profile {{comment.user.username}}">
+                            <div class="col comment">
+                                <!-- Image and usernamne -->
+                                <div class="headercomments">
+                                    <div class="image-container">
+                                        {% if comment.user.profile.profile_pic %}
+                                        <img src="{{ comment.user.profile.profile_pic.url }}" class="me-3 rounded-circle img-thumbnail" alt="{{ comment.user.profile.fav_climb }} Profile Photo">
+                                        {% else %}
+                                        <img src="{% static 'images/default_profile_pic.webp' %}" class="me-3 rounded-circle img-thumbnail" alt="Default Profile Photo">
+                                        {% endif %}
+                                    </div>
+                                    <div class="col ms-3">
+                                        <h5 class="mt-0"><small>Username: </small>{{ comment.user.username }}</h5>
+                                        <small class="text-muted">Posted on  {{ comment.created_at|date:'h.m / d M Y' }}</small>
+                                    </div>
+                                </div>
+                                <!-- Media body -->
+                                <div class="body-comment my-3">
+                                    <div class="comment-text">{{ comment.body }}</div>
+                                </div>
+                               
+                                <!--End Media body -->
                                 {% if user.is_authenticated and comment.user == user %}
+                                <div class="edit-btn ms-auto">
                                     <button class="btn btn-edit d-flex comment-icon" comment_id="{{ comment.id }}"><i class="fa-regular fa-pen-to-square"></i></button>
-                                    <button class="btn btn-delete  d-flex comment-icon" comment_id="{{ comment.id }}"><i class="fa-regular fa-trash-can"></i></button>
+                                    <button class="btn btn-delete d-flex comment-icon" comment_id="{{ comment.id }}"><i class="fa-regular fa-trash-can"></i></button>
+                                </div>
                                 {% endif %}
                             </div>
+                        </a>
                         </div>
+                        {% endfor %}
+                    {% else %}
+                    <div class="form-title text-center my-4">
+                        <h1>Did you Try this Climbing Gym?</h1>
                     </div>
-                    {% endfor %}
+                    <h5 class="text-center">Share your Experience with us</h5>
+                    {% endif %}
+                
+                    </div>
+                    {% else %}
+                    <div class="col text-center">
+                        <div>Did you Try this Climbing Gym?</div>
+                        <div>Share your Experience with us</div>
+                        <h3 class="text-center"><a chref="{% url 'account_login' %}">Log in</a> to leave a comment</h3>
+                    </div>
+                    
                 </div>
-                {% else %}
-                <div class="form-title text-center my-4">
-                    <h1>Did you Try this Climbing Gym?</h1>
-                </div>
-                <h5 class="text-center">Share your Experience with us</h5>
-                {% endif %}
-            
-            </div>
-            {% else %}
-            <div class="col text-center">
-                <div>Did you Try this Climbing Gym?</div>
-                <div>Share your Experience with us</div>
-                <h3 class="text-center"><a chref="{% url 'account_login' %}">Log in</a> to leave a comment</h3>
             </div>
             {% endif %}
 
         </div>
     </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal mt-5">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close fs-1">&times;</span>
+          <form method="POST" action="{% url 'edit_profile' request.user.id %}" enctype="multipart/form-data">
+            <h3>Edit </h3>
+            {% csrf_token %}
+            {{ form|crispy }}
+            {{ form.media }}
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="btn btn-edit">Edit</button>
+            </div>
+    
+          </form>
+        </div>
+      
+      </div>
+
+
+
 
 {% endblock %}  
 

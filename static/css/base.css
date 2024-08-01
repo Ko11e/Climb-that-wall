@@ -9,6 +9,8 @@
     --red: #aa2610;
     --light-red: #b57887;
     --yellow: #D1C66C;
+    --off-white-80: rgb(221, 224, 217, .8);
+    --grey-green-60: rgb(142, 164, 150, .6);
 
     /* Fonts */
     --h1-font: 'Amatic SC', sans-serif;
@@ -38,6 +40,11 @@ h1 {
 
 h2, h3, h4, h5, h6 {
     font-family: var(--header-font);
+
+}
+
+h2 small {
+    color: #636363;
 }
 
 a {
@@ -367,6 +374,15 @@ a:hover {
 
 /* Review/Comment */
 
+.make-a-review {
+    flex-direction: row-reverse;
+}
+
+.text-box {
+    margin-bottom: 10px;
+}
+
+    /* Star function and styling */
 .rating-box {
     background-color: var(--grey-green);
     border-radius: 10px;
@@ -375,7 +391,7 @@ a:hover {
     width: max-content;
     align-items: center;
     gap: 10px;
-    padding: 10px 2rem;
+    padding: 1rem;
     margin: 1rem 0;
 }
 
@@ -450,6 +466,54 @@ a:hover {
         opacity: 0.7;
         transform: translate(-50%, -50%) scale(1);
     }
+}
+
+/* Style comments */
+.view-comments {
+    background-color: var(--off-white-80);
+    opacity: 0.7;
+    border: var(--border);
+    border-radius: 10px;
+    margin: 1rem 0;
+}
+
+
+.headercomments {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.image-container {
+    position: relative;
+    width: 30%;
+    max-width: 90px;
+    min-width: 80px;
+    max-height: 90px;
+    min-height: 80px; /* 1:1 Aspect Ratio */
+}
+
+.image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.body-comment {
+    background-color: var(--grey-green-60);
+    width: 100%;
+    padding: 0 1rem;
+    border: var(--border);
+    border-radius: 10px;
+}
+
+.comment-text {
+    margin: 0 auto;
+    padding: 1rem;
 }
 
 
