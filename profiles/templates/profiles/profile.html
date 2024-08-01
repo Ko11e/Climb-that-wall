@@ -15,7 +15,7 @@
         <div class="container">
             <div class="row align-items-start">
                 <div class="col-12 col-md-6">
-                    <div class="profile-image text-center">
+                    <div class="profile-image mb-3 text-center">
                         {% if profile.profile_pic %}
                         <img src="{{ profile.profile_pic.url }}" alt="{{ profile.user.username }}" class="img-fluid">
                         {% else %}
@@ -88,7 +88,7 @@
                                             <div><strong>Comment: </strong></div>
                                             <div>{{ comment.body|truncatechars:50 }}</div>
                                             <div class="col-1 edit-btn">
-                                                <a class="btn btn-edit" href="#"><i class="fa-regular fa-pen-to-square"></i></a>
+                                                <a class="btn btn-edit" href="{% url 'edit_comment' comment.id %}"><i class="fa-regular fa-pen-to-square"></i></a>
                                                 <a class="btn btn-delete" href="#"><i class="fa-regular fa-trash-can"></i></a>
                                             </div>
                                         </div>
