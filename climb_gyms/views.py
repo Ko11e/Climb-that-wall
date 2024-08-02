@@ -216,9 +216,11 @@ class DeleteClimbingGymView(LoginRequiredMixin, UserPassesTestMixin, DeleteView)
     model = ClimbingGyms
     template_name = "climb_gyms/delete_climbinggym.html"
     success_url = "climb_gyms/search/"
+    context_object_name = "gym"
+    messages.success = "Your climbing gym has been deleted."
 
     def test_func(self):
-        return self.request.user == self.get_objects().user
+        return self.request.user == self.get_object().user
 
     def handle_no_permission(self):
         # Handle what happens if the user does not pass the test
@@ -300,3 +302,30 @@ class EditCommentsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         return self.request.user == self.get_object().user
+    
+class DeleteCommentsView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    """Delete comment view"""
+    model = Comments
+    template_name = "climb_gyms/delete-comment.html"
+    context_object_name = "comment"
+    success_url = "/"
+    messages.success = "Your comment has been deleted."
+
+    def test_func(self):
+        return self.request.user == self.get_object().user
+
+    def handle_no_permission(self):
+        # Handle what happens if the user does not pass the test
+        if self.request.user.is_authenticated:
+            messages.error(
+                self.request, 
+                "You are not authorized to delete this comment."
+            )
+            return redirect(
+                "home"
+            ) 
+        else:
+            messages.error(
+                self.request, "You must be logged in to delete a comment."
+            )
+            return redirect("login")
