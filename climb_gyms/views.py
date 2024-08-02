@@ -1,124 +1,182 @@
-from django.views.generic import ListView, DetailView, UpdateView
+from django.views.generic import ListView, DetailView, UpdateView, CreateView
+from django.views.generic.edit import FormView
 from django.views import View
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 
 from django.db.models import Q
 from django.contrib import messages
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib.auth.decorators import user_passes_test
 
 from .models import ClimbingGyms, Comments
 
+from .forms import ClimbingGymsForm, SocialmediaForm, ImagesForm
 
+
+def is_staff(user):
+    return user.is_staff
+
+def not_authorized_view(request):
+    return render(request, 'climb_gyms/not-authorized.html')
 
 
 class ClimbingGymsView(ListView):
-    """" Search view for the Climbing gyms """
-    template_name = 'climb_gyms/climb-gyms.html'
+    """ " Search view for the Climbing gyms"""
+
+    template_name = "climb_gyms/climb-gyms.html"
     model = ClimbingGyms
-    context_object_name = 'climbing_gyms'
+    context_object_name = "climbing_gyms"
     paginate_by = 5
 
     def get_queryset(self, **kwargs):
-        """ Get queryset """
-        query = self.request.GET.get('q')
-        button_query = self.request.GET.get('button_query')
-        reset_filter = self.request.GET.get('reset')
-        filter_query = self.request.GET.get('filter')
+        """Get queryset"""
+        query = self.request.GET.get("q")
+        button_query = self.request.GET.get("button_query")
+        reset_filter = self.request.GET.get("reset")
+        filter_query = self.request.GET.get("filter")
 
         if query:
             climbing_gyms = self.model.objects.filter(
-                Q(description__icontains=query) |
-                Q(city__icontains=query)
+                Q(description__icontains=query) | Q(city__icontains=query)
             )
 
         elif button_query:
-            climbing_gyms = self.model.objects.filter(
-                Q(city__icontains=button_query)
-            )
+            climbing_gyms = self.model.objects.filter(Q(city__icontains=button_query))
 
         elif reset_filter:
             climbing_gyms = self.model.objects.all()
-        
+
         elif filter_query:
-            if filter_query == 'rating':
-                climbing_gyms = self.model.objects.all().order_by('-rating')
-            elif filter_query == 'az':
-                climbing_gyms = self.model.objects.all().order_by('title')
-            elif filter_query == 'za':
-                climbing_gyms = self.model.objects.all().order_by('-title')
+            if filter_query == "rating":
+                climbing_gyms = self.model.objects.all().order_by("-rating")
+            elif filter_query == "az":
+                climbing_gyms = self.model.objects.all().order_by("title")
+            elif filter_query == "za":
+                climbing_gyms = self.model.objects.all().order_by("-title")
 
         else:
             climbing_gyms = self.model.objects.all()
 
         return climbing_gyms
-    
+
+
 class ClimbGymView(DetailView):
-    """"  gym view """
-    template_name = 'climb_gyms/gym.html'
+    """ "  gym view"""
+
+    template_name = "climb_gyms/gym.html"
     model = ClimbingGyms
     context_object_name = "gym"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['comments'] = Comments.objects.filter(climbing_gym=self.get_object())
-        context['comment_count'] = context['comments'].count()
+        context["comments"] = Comments.objects.filter(climbing_gym=self.get_object())
+        context["comment_count"] = context["comments"].count()
         return context
+
+@user_passes_test(is_staff, login_url='not_authorized')
+def create_climbing_gym(request):
+    
+    if request.method == 'POST':
+        climbing_gym_form = ClimbingGymsForm(request.POST)
+        socialmedia_form = SocialmediaForm(request.POST)
+        images_form = ImagesForm(request.POST, request.FILES)
+
+        if climbing_gym_form.is_valid() and socialmedia_form.is_valid() and images_form.is_valid():
+            climbing_gym = climbing_gym_form.save(commit=False)
+            climbing_gym.user = request.user  # Set the active user
+
+            socialmedia = socialmedia_form.save(commit=False)
+            socialmedia.gym = climbing_gym
+            socialmedia.save()
+
+            images = images_form.save(commit=False)
+            images.gym = climbing_gym
+            images.save()
+
+            climbing_gym.socialmedia = socialmedia
+            climbing_gym.images = images
+            climbing_gym.save()
+
+            messages.success(request, "Your climbing gym has been added.")
+            return redirect('gyms', slug=climbing_gym.slug)
+
+    else:
+        climbing_gym_form = ClimbingGymsForm()
+        socialmedia_form = SocialmediaForm()
+        images_form = ImagesForm()
+
+    context = {
+        'climbing_gym_form': climbing_gym_form,
+        'socialmedia_form': socialmedia_form,
+        'images_form': images_form,
+    }
+
+    return render(request, 'climb_gyms/create_climbinggym.html', context)
 
 
 class CreateCommentsView(UserPassesTestMixin, LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
-        """ POST request to create a new comment """
+        """POST request to create a new comment"""
         # Check if the user is authenticated
         if not request.user.is_authenticated:
-            messages.error(request, 'You must be logged in to add a comment.')
-            return redirect('login')  # Redirect to login page if not authenticated
+            messages.error(request, "You must be logged in to add a comment.")
+            return redirect("login")  # Redirect to login page if not authenticated
 
         # Retrieve the climbing gym instance
-        climbing_gym = get_object_or_404(ClimbingGyms, pk=kwargs['pk'])
-        
+        climbing_gym = get_object_or_404(ClimbingGyms, pk=kwargs["pk"])
+
         # Check if the user has already commented on the gym
-        existing_comments = Comments.objects.filter(climbing_gym=climbing_gym, user=request.user)
+        existing_comments = Comments.objects.filter(
+            climbing_gym=climbing_gym, user=request.user
+        )
         if existing_comments.exists():
-            messages.info(request, 'You have already commented on this gym./n If you want to change your comment, please delete/edit the previous one.')
-            return redirect('gyms', slug=climbing_gym.slug)  # Adjust the URL pattern accordingly
-        
+            messages.info(
+                request,
+                f"You have already commented on this gym.\n If you want to change your comment, please delete/edit the previous one.",
+            )
+            return redirect(
+                "gyms", slug=climbing_gym.slug
+            )  # Adjust the URL pattern accordingly
+
         # Create a new comment instance
         try:
-            new_rating= int(request.POST.get('rating'))
+            new_rating = int(request.POST.get("rating"))
             comment = Comments(
                 user=request.user,
                 climbing_gym=climbing_gym,
                 rating=new_rating,
-                body=request.POST.get('body') or 'None'
+                body=request.POST.get("body") or "None",
             )
             comment.save()
-            climbing_gym.average_rating() # Update the average rating of the gym
-            messages.success(request, 'Your comment has been added.')
+            climbing_gym.average_rating()  # Update the average rating of the gym
+            messages.success(request, "Your comment has been added.")
 
         except Exception as e:
-            messages.error(request, f'An error occurred while adding your comment: {e}')
-            return redirect('gyms', slug=climbing_gym.slug)
-        
-        
-        return redirect('gyms', slug=climbing_gym.slug)
-    
-    def test_func(self):    
+            messages.error(request, f"An error occurred while adding your comment: {e}")
+            return redirect("gyms", slug=climbing_gym.slug)
+
+        return redirect("gyms", slug=climbing_gym.slug)
+
+    def test_func(self):
         return self.request.user.is_authenticated
-    
+
 
 class EditCommentsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    """ Edit comment view """
+    """Edit comment view"""
+
     model = Comments
-    fields = ['rating', 'body']
-    template_name = 'climb_gyms/edit_comment.html'
-    success_url = '/'
-    context_object_name = 'comment'
+    fields = ["rating", "body"]
+    template_name = "climb_gyms/edit_comment.html"
+    success_url = "/"
+    context_object_name = "comment"
 
     def get_object(self, queryset=None):
-        comment = get_object_or_404(Comments, pk=self.kwargs['pk'])
+        comment = get_object_or_404(Comments, pk=self.kwargs["pk"])
         comment.climbing_gym.average_rating()
         return comment
 
-    
     def test_func(self):
         return self.request.user == self.get_object().user
+    
+
+
