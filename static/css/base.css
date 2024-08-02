@@ -65,6 +65,9 @@ a:hover {
     max-width: 100% !important;
 }
 
+#second {
+    height: auto;
+}
 /* Messages */
 .success {
     background-color: var(--grey-green);
@@ -101,6 +104,10 @@ a:hover {
     position: relative;
     width: 50%;
     border: 1px solid var(--off-white);
+}
+
+.offcanvas-backdrop {
+    background-color: var(--off-white);
 }
 
     /* Up to medium screens */
@@ -145,8 +152,7 @@ a:hover {
 /* Footer */
 
 .the-footer {
-    position: relative;
-    bottom: 0;
+    width: 100%;
     background-color: var(--black);
     color: var(--off-white);
     font-family: var(--h1-font);
@@ -164,6 +170,15 @@ a:hover {
 
 #intro-header {
     font-size: 9.5vw;
+}
+
+.card-homepage {
+    max-height: 400px;
+}
+
+.card-homepage > .card-img-top {
+    height: 150px;
+    object-fit: cover;
 }
 
 /* Profile page */
@@ -271,6 +286,16 @@ a:hover {
     object-fit: cover;
 }
 
+.btn-create-gym {
+    background-color: var(--yellow);
+    border: var(--border);
+}
+
+.btn-create-gym:hover {
+    background-color: none;
+    border:2px solid var(--yellow);
+}
+
 /* Edit profile model */
 .modal {
     display: none;
@@ -313,7 +338,6 @@ a:hover {
     background-color: none;
     border:2px solid var(--grey-green);
 }
-
 
 /* Search climbing gyms page */
 .btn-search {

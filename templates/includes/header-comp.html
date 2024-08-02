@@ -1,7 +1,7 @@
 {% load static %}
 
 {% with request.resolver_match.url_name as url_name %}
-<div class="col-2 nav-bar d-none d-md-block navbar-expand-md">
+<div class="col-2 nav-bar d-none d-md-block navbar-expand-md" id="height-not-fixed">
     <div class="collapse navbar-collapse mt-3" id="navbarNav">
       <ul class="nav navbar-nav flex-column text-clr-white px-3">
         <li class="nav-item">
@@ -10,9 +10,9 @@
         <li class="nav-item">
           <a class="nav-link {% if url_name == 'search_gyms'%}active{% endif %}" href="{% url 'search_gyms' %}">Gyms</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link {% if url_name == 'articels'%}active{% endif %}" href="#">Articels</a>
-        </li>
+        {% comment %} <li class="nav-item">
+          <a class="nav-link {% if url_name == 'articels'%}active{% endif %}" href="#">Articles</a>
+        </li> {% endcomment %}
         <li class="nav-item">
           <a class="nav-link {% if url_name == 'contact'%}active{% endif %}" href="#">Contact</a>
         </li>
