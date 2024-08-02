@@ -5,6 +5,9 @@ from .views import (
     ClimbingGymsView,
     ClimbGymView,
     EditClimbingGymView,
+    EditGymTextView,
+    EditGymImagesView,
+    EditSocialmediaView,
     CreateCommentsView,
     EditCommentsView,
     create_climbing_gym,
@@ -20,6 +23,10 @@ urlpatterns = [
     
     # Edit climbing gym
     path("edit-gym/<int:pk>", EditClimbingGymView.as_view(), name="edit_climbing_gym"),
+    path("edit-gym-text/<int:pk>", EditGymTextView.as_view(), name="edit_gym_text"),
+    path("edit-gym-images/<int:pk>", EditGymImagesView.as_view(), name="edit_gym_images"),
+    path("edit-gym-socialmedia/<int:pk>", EditSocialmediaView.as_view(), name="edit_gym_socialmedia"),
+
     
     # Comments
     path("comment/<int:pk>", CreateCommentsView.as_view(), name="create_comment"),

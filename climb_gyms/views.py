@@ -7,7 +7,8 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import user_passes_test
 
-from .models import ClimbingGyms, Comments
+from .models import ClimbingGyms, Images, Socialmedia, Comments
+from django.contrib.auth.models import User
 
 from .forms import ClimbingGymsForm, SocialmediaForm, ImagesForm
 
@@ -135,7 +136,57 @@ class EditClimbingGymView(LoginRequiredMixin, UserPassesTestMixin, TemplateView)
     def test_func(self):
         return self.request.user == ClimbingGyms.objects.get(id=self.kwargs["pk"]).user
     
+
+class EditGymTextView(LoginRequiredMixin, UpdateView):
+    """Edit the text information of the climbing gym"""
+    model = ClimbingGyms
+    form_class = ClimbingGymsForm
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(ClimbingGyms, pk=self.kwargs["pk"])
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        self.success_url = f'/climb_gyms/{form.instance.slug}'
+
+        messages.success(self.request, "The text in Your climbing gym has been updated.")
+        return super().form_valid(form)
+
+
+class EditGymImagesView(LoginRequiredMixin, UpdateView):
+    """Edit the images of the climbing gym"""
+    model = Images
+    form_class = ImagesForm
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(Images, pk=self.kwargs["pk"])
+
+    def form_valid(self, form):
+        images = Images.objects.get(pk=self.kwargs["pk"])
+        form.instance.gym = images.images
+        self.success_url = f'/climb_gyms/{images.images.slug}'
+
+        messages.success(self.request, "The images in Your climbing gym has been updated.")
+        return super().form_valid(form)
     
+
+class EditSocialmediaView(LoginRequiredMixin, UpdateView):
+    """Edit the social media links of the climbing gym"""
+    model = Socialmedia
+    form_class = SocialmediaForm
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(Socialmedia, pk=self.kwargs["pk"])
+
+    def form_valid(self, form):
+        socialmedia = Socialmedia.objects.get(pk=self.kwargs["pk"])
+        form.instance.gym = socialmedia.socialmedia
+        self.success_url = f'/climb_gyms/{socialmedia.socialmedia.slug}'
+
+        messages.success(self.request, "The social media links in Your climbing gym has been updated.")
+        return super().form_valid(form)
+
+
 class CreateCommentsView(UserPassesTestMixin, LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         """POST request to create a new comment"""
