@@ -14,6 +14,7 @@ class Images(models.Model):
         quality=75, 
         upload_to='climbing-gyms/',
         force_format="WEBP", 
+        help_text="This will be the front image of the climbing gym",
         blank=False, null=False
     )
     headimage_alt = models.CharField(
@@ -55,10 +56,10 @@ class Images(models.Model):
     
 class Socialmedia(models.Model):
     """ Model for social media links """
-    website = models.URLField(max_length=200, blank=True, null=True)
-    facebook = models.URLField(max_length=200, blank=True, null=True)
-    instagram = models.URLField(max_length=200, blank=True, null=True)
-    other = models.URLField(max_length=200, blank=True, null=True)
+    website = models.URLField(max_length=200, help_text='example: https://www.your-website.com', blank=True, null=True)
+    facebook = models.URLField(max_length=200, help_text='example: https://www.facebook.com/your-page', blank=True, null=True)
+    instagram = models.URLField(max_length=200, help_text='example: https://www.instagram.com/your-page', blank=True, null=True)
+    other = models.URLField(max_length=200, help_text='Other links where people can find more information', blank=True, null=True)
 
     def __str__(self):
         return self.website
@@ -68,10 +69,10 @@ class ClimbingGyms(models.Model):
     """ Modle for climbing gyms """
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=False, null=False)
     title = models.CharField(max_length=100, blank=False, null=False)
-    slug = models.SlugField(max_length=100, blank=False, null=False)
+    slug = models.SlugField(max_length=100, help_text="Slug (example: name-of-the-gym)", blank=False, null=False)
     description = models.TextField(max_length=2000, blank=False, null=False)
     city = models.CharField(max_length=100, blank=False, null=False)
-    maps = models.CharField(max_length=100, blank=False, null=False)
+    maps = models.CharField(max_length=100, help_text="ex. 59°25'15.7"+'"N 17°54'+"'58.3"+'"E"', blank=False, null=False)
     images = models.OneToOneField(Images, related_name="images", on_delete=models.CASCADE)
     rating = models.FloatField(blank=True, null=True, default=0)
     socialmedia = models.OneToOneField(Socialmedia, related_name='socialmedia', on_delete=models.CASCADE)
