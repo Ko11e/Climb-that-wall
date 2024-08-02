@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Not Authorized{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row m-4 justify-content-center">
+        <div class="col-12 col-md-8">
+            <h1 class="text-center">Not Authorized</h1>
+            <p class="text-center">You are not authorized to Create a Climbing Gym.</p>
+        </div>
+        <div class="col-12 col-md-8 text-center">
+            <a href="{% url 'search_gyms' %}" class="btn btn-search">Back to Climbing Gyms</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
