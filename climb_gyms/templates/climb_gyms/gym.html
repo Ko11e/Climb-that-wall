@@ -221,7 +221,7 @@
                                 {% if user.is_authenticated and comment.user == user %}
                                 <div class="edit-btn mt-2">
                                     <a class="btn btn-edit" href="{% url 'edit_comment' comment.id %}"><i class="fa-regular fa-pen-to-square"></i></a>
-                                    <a class="btn btn-delete" href="#"><i class="fa-regular fa-trash-can"></i></a>
+                                    <a class="btn btn-delete" href="{% url 'delete_comment' comment.id %}"><i class="fa-regular fa-trash-can"></i></a>
                                 </div>
                                 {% endif %}
                             </div>
