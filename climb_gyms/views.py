@@ -1,5 +1,4 @@
-from django.views.generic import ListView, DetailView, UpdateView, CreateView
-from django.views.generic.edit import FormView
+from django.views.generic import ListView, TemplateView ,DetailView, UpdateView
 from django.views import View
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 
@@ -114,21 +113,27 @@ def create_climbing_gym(request):
     return render(request, 'climb_gyms/create_climbinggym.html', context)
 
 
-class EditClimbingGymView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
-    """Edit climbing gym view"""
-
-    model = ClimbingGyms
+class EditClimbingGymView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
+    """Veiw the Edit sections climbing gym view"""
     template_name = "climb_gyms/edit_climbinggym.html"
-    context_object_name = "gym"
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["socialmedia"] = self.get_object().socialmedia
-        context["images"] = self.get_object().images
+        climbing_gym = ClimbingGyms.objects.get(id=self.kwargs["pk"])
+        social_media = climbing_gym.socialmedia
+        images = climbing_gym.images
+        context = {
+            "gym": climbing_gym,
+            "social_media": social_media,
+            "images": images,
+            "climbing_gym_form": ClimbingGymsForm(instance=climbing_gym),
+            "socialmedia_form": SocialmediaForm(instance=social_media),
+            "images_form": ImagesForm(instance=images),
+        }
+        
         return context
 
     def test_func(self):
-        return self.request.user == self.get_object().user
+        return self.request.user == ClimbingGyms.objects.get(id=self.kwargs["pk"]).user
     
     
 class CreateCommentsView(UserPassesTestMixin, LoginRequiredMixin, View):
