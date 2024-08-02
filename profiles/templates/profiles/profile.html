@@ -45,6 +45,11 @@
             </div>
         </div>
     </div>
+
+    {% if request.user.is_staff %}
+    <a href="{% url 'create_climbing_gym' %}" class="btn btn-primary btn-create-gym">Create Climbing Gym</a>
+    {% endif %}
+
     <div class="container">
         {% if request.user == profile.user %}
             <div class="accordion" id="accordionPanelsStayOpenExample">
@@ -72,7 +77,9 @@
                                         <div class="col-9">
                                             <div class="d-flex justify-content-between">
                                                 <div class="col">
-                                                    <h3>{{ comment.climbing_gym.title }}</h3>
+                                                    <a href="{% url 'gyms' comment.climbing_gym.slug %}" aria-lable="Click to view {{ gym.title }}">
+                                                        <h3>{{ comment.climbing_gym.title }}</h3>
+                                                    </a>
                                                 </div>
                                                 <div class="col text-end">
                                                     <i class="{% if comment.rating > 0 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
@@ -93,9 +100,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {% if commments|length != 1 %}
                                     <hr>
-                                    {% endif %}
                                 </div>
                                 {% endfor %}
                             {% else %}

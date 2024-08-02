@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Create Climbing Gym{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8">
+            <h1 class="text-center">Create Climbing Gym</h1>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.media }}
+                {{ climbing_gym_form|crispy }}
+                {{ images_form|crispy }}
+                {{ socialmedia_form|crispy }}
+                <button type="submit" class="btn btn-search">Create</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
