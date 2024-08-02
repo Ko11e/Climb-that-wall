@@ -72,9 +72,9 @@ class ClimbingGyms(models.Model):
     description = models.TextField(max_length=2000, blank=False, null=False)
     city = models.CharField(max_length=100, blank=False, null=False)
     maps = models.CharField(max_length=100, blank=False, null=False)
-    images = models.ForeignKey(Images, on_delete=models.CASCADE)
+    images = models.OneToOneField(Images, related_name="images", on_delete=models.CASCADE)
     rating = models.FloatField(blank=True, null=True, default=0)
-    socialmedia = models.ForeignKey(Socialmedia, on_delete=models.CASCADE)
+    socialmedia = models.OneToOneField(Socialmedia, related_name='socialmedia', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
