@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}{{ gym.title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="text-center">
+        <h1 class="text-center">Edit {{ gym.title }}</h1>
+        <h2 class="text-center visually-hidden">Below are the different sections you can edit</h2>
+        <h3 class="text-center">The section that you will be able to edit is the About section, the images and the social media links.</h3>
+        <h4 class="text-center">Please click on the section you would like to edit</h4>
+    </div>
+    <div class="row">
+        <div class="col-10 col-md-3 card">
+            <h5 class="card-header">About</h5>
+            <div class="card-body">
+              <h5 class="card-title d-none">Edit the text-boxes</h5>
+              <p class="card-text">Here you can edit the text in the about section and the city and the co </p>
+              <a href="#" class="btn btn-search">Click to Edit texts</a>
+            </div>
+        </div>
+        <div class="col-10 col-md-3 card">
+            <h5 class="card-header">Images</h5>
+            <div class="card-body">
+              <h5 class="card-title d-none">Edit your images</h5>
+              <p class="card-text">Edit your images and their alt text</p>
+              <a href="#" class="btn btn-search">Click to Edit images</a>
+            </div>
+        </div>
+        <div class="col-10 col-md-3 card">
+            <h5 class="card-header">Social Media</h5>
+            <div class="card-body">
+              <h5 class="card-title d-none">Edit the liks to the socialmedia liks</h5>
+              <p class="card-text">Here you can change the liks to the website and the Social Media links</p>
+              <a href="#" class="btn btn-search">Click to Social Media Links</a>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <a href="{% url 'gyms' gym.slug %}" class="btn btn-primary btn-go-back">Go Back to {{ gym.title }}s page </a>
+        </div>
+    </div>        
+
+
+{% endblock %}
