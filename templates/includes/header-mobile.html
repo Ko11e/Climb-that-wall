@@ -15,10 +15,10 @@
             <a class="nav-link {% if url_name == 'home'%}active{% endif %}" href="{% url 'home' %}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {% if url_name == 'search_gyms'%}active{% endif %}" href="#">Gyms</a>
+            <a class="nav-link {% if url_name == 'search_gyms'%}active{% endif %}" href="{% url 'search_gyms' %}">Gyms</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {% if url_name == 'articels'%}active{% endif %}" href="#">Articels</a>
+            <a class="nav-link {% if url_name == 'articels'%}active{% endif %}" href="#">Articles</a>
           </li>
           <li class="nav-item">
             <a class="nav-link {% if url_name == 'contact'%}active{% endif %}" href="#">Contact</a>
