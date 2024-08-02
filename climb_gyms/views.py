@@ -1,4 +1,10 @@
-from django.views.generic import ListView, TemplateView ,DetailView, UpdateView
+from django.views.generic import (
+    ListView,
+    TemplateView,
+    DetailView,
+    UpdateView,
+    DeleteView,
+)
 from django.views import View
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 
@@ -16,8 +22,9 @@ from .forms import ClimbingGymsForm, SocialmediaForm, ImagesForm
 def is_staff(user):
     return user.is_staff
 
+
 def not_authorized_view(request):
-    return render(request, 'climb_gyms/not-authorized.html')
+    return render(request, "climb_gyms/not-authorized.html")
 
 
 class ClimbingGymsView(ListView):
@@ -73,15 +80,20 @@ class ClimbGymView(DetailView):
         context["comment_count"] = context["comments"].count()
         return context
 
-@user_passes_test(is_staff, login_url='not_authorized')
+
+@user_passes_test(is_staff, login_url="not_authorized")
 def create_climbing_gym(request):
-    
-    if request.method == 'POST':
+
+    if request.method == "POST":
         climbing_gym_form = ClimbingGymsForm(request.POST)
         socialmedia_form = SocialmediaForm(request.POST)
         images_form = ImagesForm(request.POST, request.FILES)
 
-        if climbing_gym_form.is_valid() and socialmedia_form.is_valid() and images_form.is_valid():
+        if (
+            climbing_gym_form.is_valid()
+            and socialmedia_form.is_valid()
+            and images_form.is_valid()
+        ):
             climbing_gym = climbing_gym_form.save(commit=False)
             climbing_gym.user = request.user  # Set the active user
 
@@ -98,7 +110,7 @@ def create_climbing_gym(request):
             climbing_gym.save()
 
             messages.success(request, "Your climbing gym has been added.")
-            return redirect('gyms', slug=climbing_gym.slug)
+            return redirect("gyms", slug=climbing_gym.slug)
 
     else:
         climbing_gym_form = ClimbingGymsForm()
@@ -106,16 +118,17 @@ def create_climbing_gym(request):
         images_form = ImagesForm()
 
     context = {
-        'climbing_gym_form': climbing_gym_form,
-        'socialmedia_form': socialmedia_form,
-        'images_form': images_form,
+        "climbing_gym_form": climbing_gym_form,
+        "socialmedia_form": socialmedia_form,
+        "images_form": images_form,
     }
 
-    return render(request, 'climb_gyms/create_climbinggym.html', context)
+    return render(request, "climb_gyms/create_climbinggym.html", context)
 
 
 class EditClimbingGymView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
     """Veiw the Edit sections climbing gym view"""
+
     template_name = "climb_gyms/edit_climbinggym.html"
 
     def get_context_data(self, **kwargs):
@@ -130,15 +143,16 @@ class EditClimbingGymView(LoginRequiredMixin, UserPassesTestMixin, TemplateView)
             "socialmedia_form": SocialmediaForm(instance=social_media),
             "images_form": ImagesForm(instance=images),
         }
-        
+
         return context
 
     def test_func(self):
         return self.request.user == ClimbingGyms.objects.get(id=self.kwargs["pk"]).user
-    
+
 
 class EditGymTextView(LoginRequiredMixin, UpdateView):
     """Edit the text information of the climbing gym"""
+
     model = ClimbingGyms
     form_class = ClimbingGymsForm
 
@@ -147,14 +161,17 @@ class EditGymTextView(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        self.success_url = f'/climb_gyms/{form.instance.slug}'
+        self.success_url = f"/climb_gyms/{form.instance.slug}"
 
-        messages.success(self.request, "The text in Your climbing gym has been updated.")
+        messages.success(
+            self.request, "The text in Your climbing gym has been updated."
+        )
         return super().form_valid(form)
 
 
 class EditGymImagesView(LoginRequiredMixin, UpdateView):
     """Edit the images of the climbing gym"""
+
     model = Images
     form_class = ImagesForm
 
@@ -164,14 +181,17 @@ class EditGymImagesView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         images = Images.objects.get(pk=self.kwargs["pk"])
         form.instance.gym = images.images
-        self.success_url = f'/climb_gyms/{images.images.slug}'
+        self.success_url = f"/climb_gyms/{images.images.slug}"
 
-        messages.success(self.request, "The images in Your climbing gym has been updated.")
+        messages.success(
+            self.request, "The images in Your climbing gym has been updated."
+        )
         return super().form_valid(form)
-    
+
 
 class EditSocialmediaView(LoginRequiredMixin, UpdateView):
     """Edit the social media links of the climbing gym"""
+
     model = Socialmedia
     form_class = SocialmediaForm
 
@@ -181,10 +201,40 @@ class EditSocialmediaView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         socialmedia = Socialmedia.objects.get(pk=self.kwargs["pk"])
         form.instance.gym = socialmedia.socialmedia
-        self.success_url = f'/climb_gyms/{socialmedia.socialmedia.slug}'
+        self.success_url = f"/climb_gyms/{socialmedia.socialmedia.slug}"
 
-        messages.success(self.request, "The social media links in Your climbing gym has been updated.")
+        messages.success(
+            self.request,
+            "The social media links in Your climbing gym has been updated.",
+        )
         return super().form_valid(form)
+
+
+class DeleteClimbingGymView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    """Delete climbing gym view"""
+
+    model = ClimbingGyms
+    template_name = "climb_gyms/delete_climbinggym.html"
+    success_url = "climb_gyms/search/"
+
+    def test_func(self):
+        return self.request.user == self.get_objects().user
+
+    def handle_no_permission(self):
+        # Handle what happens if the user does not pass the test
+        if self.request.user.is_authenticated:
+            messages.error(
+                self.request, 
+                "You are not authorized to delete this climbing gym."
+            )
+            return redirect(
+                "search"
+            )  # Redirect to item list if authenticated but does not pass test
+        else:
+            messages.error(
+                self.request, "You must be logged in to delete a climbing gym."
+            )
+            return redirect("login")
 
 
 class CreateCommentsView(UserPassesTestMixin, LoginRequiredMixin, View):
@@ -250,6 +300,3 @@ class EditCommentsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         return self.request.user == self.get_object().user
-    
-
-
