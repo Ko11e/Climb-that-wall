@@ -69,6 +69,16 @@
                 {% endif %}
             </div> {% endcomment %}
         </div>
+        {% if request.user == gym.user %}
+        <div class="row d-flex justify-content-end">
+            <div class="col">
+                <a href="{% url 'edit_gym' gym.id %}" class="btn btn-edit">Edit</a>
+            </div>
+            <div class="col">
+                <a href="{% url 'delete_gym' gym.id %}" class="btn btn-delete">Delete</a>
+            </div>
+        </div>
+        {% endif %}
         <div class="row mx-4 justify-content-center">
             <div class="row ">
                 <div class="col p-2 px-4">
@@ -110,7 +120,7 @@
                         <div>{{gym.city}}</div>
                     </div>
                     <div class="row">
-                        <a href="{{gym.website}}" class="btn btn-website">
+                        <a href="{{ gym.socialmedia.website }}" target="_blank" class="btn btn-website">
                             Visit website
                         </a>
                     </div>
@@ -185,19 +195,31 @@
                                         <img src="{% static 'images/default_profile_pic.webp' %}" class="me-3 rounded-circle img-thumbnail" alt="Default Profile Photo">
                                         {% endif %}
                                     </div>
-                                    <div class="col ms-3">
-                                        <h5 class="mt-0"><small>Username: </small>{{ comment.user.username }}</h5>
+                                    <div class="col ms-3">                            
+                                            <h5><small>Username: </small>{{ comment.user.username }}</h5>
+                                            <div class="col mb-1 text-start">
+                                                <i class="{% if comment.rating > 0 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                <i class="{% if comment.rating > 1 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                <i class="{% if comment.rating > 2 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                <i class="{% if comment.rating > 3 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                <i class="{% if comment.rating > 4 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                <span class="d-none">
+                                                    {{ comment.rating }}
+                                                </span>
+                                            </div>
                                         <small class="text-muted">Posted on  {{ comment.created_at|date:'H:i - d M Y' }}</small>
                                     </div>
                                 </div>
                                 <!-- Media body -->
+                                {% if comment.body == None %}
                                 <div class="body-comment my-3">
                                     <div class="comment-text">{{ comment.body }}</div>
                                 </div>
+                                {% endif %}
                                
                                 <!--End Media body -->
                                 {% if user.is_authenticated and comment.user == user %}
-                                <div class="edit-btn ms-auto">
+                                <div class="edit-btn mt-2">
                                     <a class="btn btn-edit" href="{% url 'edit_comment' comment.id %}"><i class="fa-regular fa-pen-to-square"></i></a>
                                     <a class="btn btn-delete" href="#"><i class="fa-regular fa-trash-can"></i></a>
                                     {% comment %} {% url 'delete_comment' comment.id %} {% endcomment %}
