@@ -1,17 +1,19 @@
 from django.contrib import admin
+from django_summernote.admin import SummernoteModelAdmin
 from .models import ClimbingGyms, Comments, Ratings, Images, Socialmedia
 
 
-class ClimbingGymsAdmin(admin.ModelAdmin):
+class ClimbingGymsAdmin(SummernoteModelAdmin):
     list_display = (
         'title',
         'city',
         'created_at'
     )
     search_fields = ('name', 'city', 'country')
+    summernote_fields = ('description',)
 
 
-class CommentsAdmin(admin.ModelAdmin):
+class CommentsAdmin(SummernoteModelAdmin):
     list_display = (
         'user',
         'body',
@@ -19,6 +21,7 @@ class CommentsAdmin(admin.ModelAdmin):
         'created_at'
     )
     search_fields = ('user', 'climbing_gym', 'rating')
+    summernote_fields = ('body',)
 
 
 class RatingsAdmin(admin.ModelAdmin):
