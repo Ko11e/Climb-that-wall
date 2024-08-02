@@ -52,7 +52,7 @@
                     <h2 class="accordion-header fw-bolder" id="panelsStayOpen-headingOne">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
                             <div>
-                                My Comments <span class="badge bg-secondary">  {{ climbing_gyms|length }}</span>
+                                My Comments <span class="badge bg-secondary">  {{ comments|length }}</span>
                             </div>
                         </button>
                     </h2>
@@ -140,7 +140,7 @@
                                         </div>
                                     </div>
                                     <div class="col edit-btn m-3">
-                                        <a class="btn btn-edit" href="#">Edit</a>
+                                        <a class="btn btn-edit" href="{% url "edit_climbing_gym" climbing_gym.id %} %}">Edit</a>
                                         <a class="btn btn-delete" href="#">Delete</a>
                                     </div>
                                 </div>

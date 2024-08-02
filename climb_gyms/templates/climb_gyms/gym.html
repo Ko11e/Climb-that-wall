@@ -72,7 +72,7 @@
         {% if request.user == gym.user %}
         <div class="row d-flex justify-content-center text-center">
             <div class="col">
-                <a href="#" class="btn btn-edit">Edit</a>
+                <a href="{% url "edit_climbing_gym" gym.id %}" class="btn btn-edit">Edit</a>
             </div>
             {% comment %} {% url 'edit_gym' gym.id %} {% endcomment %}
             <div class="col">
@@ -132,12 +132,12 @@
                         </div>
                         <div class="col icons-socialmedia">
                             {% if gym.socialmedia.facebook %}
-                            <a href="{{gym.socialmedia.facebook}}">
+                            <a href="{{gym.socialmedia.facebook}}" target="_blank">
                                 <i class="fab fa-facebook"></i>
                             </a>
                             {% endif %}
                             {% if gym.socialmedia.instagram %}
-                            <a href="{{gym.socialmedia.instagram}}">
+                            <a href="{{gym.socialmedia.instagram}}" target="_blank">
                                 <i class="fab fa-instagram"></i>
                             </a>
                             {% endif %}
