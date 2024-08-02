@@ -70,20 +70,18 @@
             </div> {% endcomment %}
         </div>
         {% if request.user == gym.user %}
-        <div class="row d-flex justify-content-center text-center">
+        <div class="row mt-3 d-flex justify-content-center text-center">
             <div class="col">
                 <a href="{% url "edit_climbing_gym" gym.id %}" class="btn btn-edit">Edit</a>
             </div>
-            {% comment %} {% url 'edit_gym' gym.id %} {% endcomment %}
             <div class="col">
-                <a href="#" class="btn btn-delete">Delete</a>
+                <a href="{% url 'delete_climbing_gym' gym.id %}" class="btn btn-delete">Delete</a>
             </div>
-            {% comment %} {% url 'delete_gym' gym.id %} {% endcomment %}
         </div>
         {% endif %}
-        <div class="row mx-4 justify-content-center">
+        <div class="row mx-md-4 justify-content-center">
             <div class="row ">
-                <div class="col p-2 px-4">
+                <div class="col pt-2 p-md-2 px-md-4">
                     <h2 class="p-1">About</h2>
                     <p>{{gym.description}}</p>
                 </div>
@@ -153,7 +151,7 @@
             <!--Comments -->
             {% if request.user.is_authenticated %}
             <div class="row make-a-review my-3">
-                <div class="col">
+                <div class="col-12 col-md-6">
                     <form method="POST" action="{% url 'create_comment' gym.id %}" class="comment-form">
                         {% csrf_token %}
                         <h3>Leave a Review</h3>
@@ -213,7 +211,7 @@
                                     </div>
                                 </div>
                                 <!-- Media body -->
-                                {% if comment.body == None %}
+                                {% if comment.body != 'None' %}
                                 <div class="body-comment my-3">
                                     <div class="comment-text">{{ comment.body }}</div>
                                 </div>
@@ -224,7 +222,6 @@
                                 <div class="edit-btn mt-2">
                                     <a class="btn btn-edit" href="{% url 'edit_comment' comment.id %}"><i class="fa-regular fa-pen-to-square"></i></a>
                                     <a class="btn btn-delete" href="#"><i class="fa-regular fa-trash-can"></i></a>
-                                    {% comment %} {% url 'delete_comment' comment.id %} {% endcomment %}
                                 </div>
                                 {% endif %}
                             </div>
@@ -252,8 +249,6 @@
 
         </div>
     </div>
-
-
 {% endblock %}  
 
 {% block extra_js %}

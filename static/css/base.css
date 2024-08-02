@@ -2,7 +2,7 @@
 
 :root {
     /* Colours */
-    --off-white: #dde0d9 ;
+    --off-white: #dde0d9;
     --grey-green: #8ea496;
     --black: #000;
     --light-blue: #accacc;
@@ -29,7 +29,7 @@ body {
     color: var(--black);
     width: 100%;
     margin: 0;
-    padding: 0;    
+    padding: 0;
 }
 
 h1 {
@@ -38,9 +38,17 @@ h1 {
     font-size: calc(1.375rem + 3vw);
 }
 
-h2, h3, h4, h5, h6 {
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--header-font);
 
+}
+
+p {
+    font-size: clamp(0.7rem, 1vw + 0.25rem, 1rem);
 }
 
 h2 small {
@@ -68,6 +76,12 @@ a:hover {
 #second {
     height: auto;
 }
+
+.wrap {
+    flex-wrap: wrap;
+    justify-content: center !important;
+}
+
 /* Messages */
 .success {
     background-color: var(--grey-green);
@@ -110,9 +124,9 @@ a:hover {
     background-color: var(--off-white);
 }
 
-    /* Up to medium screens */
+/* Up to medium screens */
 #offcanvasNavbar {
-    background: linear-gradient(90deg, rgba(0,0,0,1) 35%, rgba(255,255,255,0) 35%), url(../images/navbar-image.webp) no-repeat center top;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 1) 35%, rgba(255, 255, 255, 0) 35%), url(../images/navbar-image.webp) no-repeat center top;
     font-family: var(--heading-font);
     background-size: contain;
     color: var(--off-white);
@@ -124,7 +138,7 @@ a:hover {
 }
 
 .offcanvas-header {
-    color: var(--off-white);   
+    color: var(--off-white);
     padding-bottom: 0;
 }
 
@@ -132,9 +146,10 @@ a:hover {
     color: var(--off-white);
     padding: 2px;
 }
-    /* Medium screens and up */
+
+/* Medium screens and up */
 .nav-bar {
-    background: url(../images/navbar-image.webp) no-repeat top left/cover;
+    background: url(../images/navbar-image.webp) no-repeat top center/cover;
     font-family: var(--heading-font);
     font-size: 25px;
     margin: 0;
@@ -142,7 +157,7 @@ a:hover {
     padding: 0;
 }
 
-    /* Sign in links */
+/* Sign in links */
 #signin {
     font-size: large;
     font-family: var(--heading-font);
@@ -172,11 +187,7 @@ a:hover {
     font-size: 9.5vw;
 }
 
-.card-homepage {
-    max-height: 400px;
-}
-
-.card-homepage > .card-img-top {
+.card-homepage>.card-img-top {
     height: 150px;
     object-fit: cover;
 }
@@ -234,7 +245,7 @@ a:hover {
 
 .btn-edit:hover {
     background-color: none;
-    border:2px solid var(--light-blue);
+    border: 2px solid var(--light-blue);
 }
 
 .btn-delete {
@@ -246,7 +257,7 @@ a:hover {
 
 .btn-delete:hover {
     background-color: none;
-    border:2px solid var(--red);
+    border: 2px solid var(--red);
 }
 
 .image-container-my-comments {
@@ -255,7 +266,8 @@ a:hover {
     max-width: 130px;
     min-width: 100px;
     max-height: 130px;
-    min-height: 100px; /* 1:1 Aspect Ratio */
+    min-height: 100px;
+    /* 1:1 Aspect Ratio */
 }
 
 .image-container-my-comments img {
@@ -266,6 +278,7 @@ a:hover {
     height: 100%;
     object-fit: cover;
 }
+
 /* Veiw My Comments/gyms/tips */
 
 .accordion {
@@ -279,7 +292,12 @@ a:hover {
     color: var(--black);
 }
 
-.gym-img > img {
+.gym-img {
+    min-width: 150px;
+    min-height: 150px;
+}
+
+.gym-img>img {
     border-radius: 17px;
     width: 100%;
     height: 100%;
@@ -293,7 +311,7 @@ a:hover {
 
 .btn-create-gym:hover {
     background-color: none;
-    border:2px solid var(--yellow);
+    border: 2px solid var(--yellow);
 }
 
 /* Edit profile model */
@@ -306,11 +324,20 @@ a:hover {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .modal-content {
+    background-color: var(--off-white);
+    margin: 2% auto;
+    padding: 20px;
+    border: 1px solid var(--off-white);
+    width: 80%;
+}
+
+.modal-content-gym {
+    display: none;
     background-color: var(--off-white);
     margin: 2% auto;
     padding: 20px;
@@ -336,7 +363,7 @@ a:hover {
 
 .btn-save:hover {
     background-color: none;
-    border:2px solid var(--grey-green);
+    border: 2px solid var(--grey-green);
 }
 
 /* Search climbing gyms page */
@@ -348,11 +375,11 @@ a:hover {
 
 .btn-search:hover {
     background-color: none;
-    border:2px solid var(--light-blue);
+    border: 2px solid var(--light-blue);
 }
 
 .btn-search-reverse {
-    border:2px solid var(--light-blue);
+    border: 2px solid var(--light-blue);
     font-weight: 400;
     margin: 0 1rem;
 }
@@ -365,6 +392,7 @@ a:hover {
     background-color: var(--light-blue);
     opacity: 0.90;
 }
+
 .card {
     background-color: var(--off-white);
     opacity: 0.85;
@@ -383,6 +411,7 @@ a:hover {
 .info-header {
     flex-wrap: wrap !important;
 }
+
 .gym-listing {
     margin: 0 auto;
     padding: 1.2rem 4rem;
@@ -403,7 +432,7 @@ a:hover {
     height: 100%;
 }
 
-.city-name{
+.city-name {
     font-weight: bold;
     margin-bottom: .5rem;
 }
@@ -432,7 +461,7 @@ a:hover {
 
 .btn-website {
     background-color: var(--grey-green);
-    width: 20vw;
+    width: 100%;
     margin: 1rem 0.5rem;
 }
 
@@ -446,7 +475,7 @@ a:hover {
     margin-bottom: 10px;
 }
 
-    /* Star function and styling */
+/* Star function and styling */
 .rating-box {
     background-color: var(--grey-green);
     border-radius: 10px;
@@ -461,7 +490,7 @@ a:hover {
 
 .rating-box input {
     display: none;
-} 
+}
 
 .rating-box label {
     position: relative;
@@ -520,11 +549,13 @@ a:hover {
         opacity: 0.9;
         transform: translate(-50%, -50%) scale(0);
     }
+
     50% {
         background: var(--yellow);
         opacity: 0.8;
         transform: translate(-50%, -50%) scale(1.2);
     }
+
     100% {
         background: var(--yellow);
         opacity: 0.7;
@@ -543,7 +574,7 @@ a:hover {
 
 
 .headercomments {
-    display:flex;
+    display: flex;
     flex-direction: row;
     align-items: center;
     width: 100%;
@@ -555,7 +586,8 @@ a:hover {
     max-width: 90px;
     min-width: 80px;
     max-height: 90px;
-    min-height: 80px; /* 1:1 Aspect Ratio */
+    min-height: 80px;
+    /* 1:1 Aspect Ratio */
 }
 
 .image-container img {
@@ -589,9 +621,17 @@ a:hover {
 }
 
 @media (max-width: 900px) {
+
     /* Style navbar */
     .navbar-expand-md .navbar-nav {
         font-size: 20px;
     }
-    
+
+}
+
+@media (max-width: 500px) {
+
+    h3 {
+        font-size: clamp(0.882rem, 5vw, 1.471rem);
+    }
 }
