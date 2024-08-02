@@ -8,6 +8,9 @@
     --light-blue: #accacc;
     --red: #aa2610;
     --light-red: #b57887;
+    --yellow: #D1C66C;
+    --off-white-80: rgb(221, 224, 217, .8);
+    --grey-green-60: rgb(142, 164, 150, .6);
 
     /* Fonts */
     --h1-font: 'Amatic SC', sans-serif;
@@ -32,10 +35,16 @@ body {
 h1 {
     font-family: var(--h1-font);
     font-weight: 700;
+    font-size: calc(1.375rem + 3vw);
 }
 
 h2, h3, h4, h5, h6 {
     font-family: var(--header-font);
+
+}
+
+h2 small {
+    color: #636363;
 }
 
 a {
@@ -56,6 +65,27 @@ a:hover {
     max-width: 100% !important;
 }
 
+#second {
+    height: auto;
+}
+/* Messages */
+.success {
+    background-color: var(--grey-green);
+    border: 1px solid #69a57f;
+    border-radius: 15px;
+}
+
+.info {
+    background-color: var(--light-blue);
+    border: 1px solid #6cb8d1;
+    border-radius: 15px;
+}
+
+.error {
+    background-color: var(--light-red);
+    border: 1px solide var(--red);
+    border-radius: 15px;
+}
 
 /* Navbars */
 
@@ -74,6 +104,10 @@ a:hover {
     position: relative;
     width: 50%;
     border: 1px solid var(--off-white);
+}
+
+.offcanvas-backdrop {
+    background-color: var(--off-white);
 }
 
     /* Up to medium screens */
@@ -100,11 +134,11 @@ a:hover {
 }
     /* Medium screens and up */
 .nav-bar {
-    background: url(../images/navbar-image.webp) no-repeat top center/cover;
+    background: url(../images/navbar-image.webp) no-repeat top left/cover;
     font-family: var(--heading-font);
     font-size: 25px;
     margin: 0;
-    min-height: 150vh;
+    min-height: 100svh;
     padding: 0;
 }
 
@@ -115,10 +149,36 @@ a:hover {
     font-weight: bold;
 }
 
+/* Footer */
+
+.the-footer {
+    width: 100%;
+    background-color: var(--black);
+    color: var(--off-white);
+    font-family: var(--h1-font);
+    font-size: 1rem;
+    padding: 1rem 0;
+}
+
+.the-footer a {
+    color: var(--off-white);
+    font-size: 150%;
+    padding: 0 15px;
+}
+
 /* Home page */
 
 #intro-header {
-    font-size: 5vw;
+    font-size: 9.5vw;
+}
+
+.card-homepage {
+    max-height: 400px;
+}
+
+.card-homepage > .card-img-top {
+    height: 150px;
+    object-fit: cover;
 }
 
 /* Profile page */
@@ -162,6 +222,121 @@ a:hover {
     display: flex;
     align-items: flex-end;
     justify-content: space-evenly;
+    width: 100%;
+}
+
+.btn-edit {
+    background-color: var(--light-blue);
+    color: var(--black);
+    font-weight: 600;
+    margin: 0 1rem;
+}
+
+.btn-edit:hover {
+    background-color: none;
+    border:2px solid var(--light-blue);
+}
+
+.btn-delete {
+    background-color: var(--red);
+    color: var(--off-white);
+    font-weight: 600;
+    margin: 0 1rem;
+}
+
+.btn-delete:hover {
+    background-color: none;
+    border:2px solid var(--red);
+}
+
+.image-container-my-comments {
+    position: relative;
+    width: 25%;
+    max-width: 130px;
+    min-width: 100px;
+    max-height: 130px;
+    min-height: 100px; /* 1:1 Aspect Ratio */
+}
+
+.image-container-my-comments img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* Veiw My Comments/gyms/tips */
+
+.accordion {
+    margin: 0 5% 10%;
+    background-color: var(--off-white);
+    opacity: 0.8;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--grey-green);
+    color: var(--black);
+}
+
+.gym-img > img {
+    border-radius: 17px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.btn-create-gym {
+    background-color: var(--yellow);
+    border: var(--border);
+}
+
+.btn-create-gym:hover {
+    background-color: none;
+    border:2px solid var(--yellow);
+}
+
+/* Edit profile model */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.2);
+}
+
+.modal-content {
+    background-color: var(--off-white);
+    margin: 2% auto;
+    padding: 20px;
+    border: 1px solid var(--off-white);
+    width: 80%;
+}
+
+/* Edit comment */
+
+.box-comment-edit {
+    background-color: var(--off-white-80);
+    border: var(--border);
+    border-radius: 20px;
+    margin: 1rem 5vw;
+    width: 72%;
+}
+
+.btn-save {
+    background-color: var(--grey-green);
+    font-weight: 600;
+    margin: 0 1rem;
+}
+
+.btn-save:hover {
+    background-color: none;
+    border:2px solid var(--grey-green);
 }
 
 /* Search climbing gyms page */
@@ -176,6 +351,20 @@ a:hover {
     border:2px solid var(--light-blue);
 }
 
+.btn-search-reverse {
+    border:2px solid var(--light-blue);
+    font-weight: 400;
+    margin: 0 1rem;
+}
+
+.btn-search-reverse:hover {
+    background-color: var(--light-blue);
+}
+
+.dropdown-menu {
+    background-color: var(--light-blue);
+    opacity: 0.90;
+}
 .card {
     background-color: var(--off-white);
     opacity: 0.85;
@@ -191,6 +380,9 @@ a:hover {
     height: 100%;
 }
 
+.info-header {
+    flex-wrap: wrap !important;
+}
 .gym-listing {
     margin: 0 auto;
     padding: 1.2rem 4rem;
@@ -242,4 +434,164 @@ a:hover {
     background-color: var(--grey-green);
     width: 20vw;
     margin: 1rem 0.5rem;
+}
+
+/* Review/Comment */
+
+.make-a-review {
+    flex-direction: row-reverse;
+}
+
+.text-box {
+    margin-bottom: 10px;
+}
+
+    /* Star function and styling */
+.rating-box {
+    background-color: var(--grey-green);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    width: max-content;
+    align-items: center;
+    gap: 10px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.rating-box input {
+    display: none;
+} 
+
+.rating-box label {
+    position: relative;
+    display: inline-block;
+    color: var(--off-white);
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.rating-box label:before {
+    content: '★';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.rating-box label:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    border-radius: 50%;
+    z-index: 1;
+    font-size: 1.5rem;
+}
+
+.rating-input .active {
+    font-size: 2rem;
+    font-weight: none;
+    border-bottom: none;
+}
+
+.rating-box label.active:after {
+    animation: pluse 500ms ease-in-out;
+}
+
+.clr-yellow {
+    color: 'yellow';
+}
+
+.clr-grey {
+    color: #888;
+}
+
+@keyframes pluse {
+    0% {
+        background: var(--yellow);
+        opacity: 0.9;
+        transform: translate(-50%, -50%) scale(0);
+    }
+    50% {
+        background: var(--yellow);
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+    100% {
+        background: var(--yellow);
+        opacity: 0.7;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Style comments */
+.view-comments {
+    background-color: var(--off-white-80);
+    opacity: 0.7;
+    border: var(--border);
+    border-radius: 10px;
+    margin: 1rem 0;
+}
+
+
+.headercomments {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.image-container {
+    position: relative;
+    width: 30%;
+    max-width: 90px;
+    min-width: 80px;
+    max-height: 90px;
+    min-height: 80px; /* 1:1 Aspect Ratio */
+}
+
+.image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.body-comment {
+    background-color: var(--grey-green-60);
+    width: 100%;
+    padding: 0 1rem;
+    border: var(--border);
+    border-radius: 10px;
+}
+
+.comment-text {
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+
+
+/* Sign out */
+
+#logout-div {
+    margin-top: 15%;
+}
+
+@media (max-width: 900px) {
+    /* Style navbar */
+    .navbar-expand-md .navbar-nav {
+        font-size: 20px;
+    }
+    
 }

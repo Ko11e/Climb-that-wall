@@ -70,13 +70,15 @@
             </div> {% endcomment %}
         </div>
         {% if request.user == gym.user %}
-        <div class="row d-flex justify-content-end">
+        <div class="row d-flex justify-content-center text-center">
             <div class="col">
-                <a href="{% url 'edit_gym' gym.id %}" class="btn btn-edit">Edit</a>
+                <a href="#" class="btn btn-edit">Edit</a>
             </div>
+            {% comment %} {% url 'edit_gym' gym.id %} {% endcomment %}
             <div class="col">
-                <a href="{% url 'delete_gym' gym.id %}" class="btn btn-delete">Delete</a>
+                <a href="#" class="btn btn-delete">Delete</a>
             </div>
+            {% comment %} {% url 'delete_gym' gym.id %} {% endcomment %}
         </div>
         {% endif %}
         <div class="row mx-4 justify-content-center">
@@ -87,7 +89,7 @@
                 </div>
             </div>
             <div class="row d-flex">
-                <div class="col">
+                <div class="col d-none">
                     <div class="mapsgoogle">
                         <h3 class="d-none">Location Googlemaps</h3>
                     </div> 

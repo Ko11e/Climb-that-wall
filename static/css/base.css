@@ -134,7 +134,7 @@ a:hover {
 }
     /* Medium screens and up */
 .nav-bar {
-    background: url(../images/navbar-image.webp) no-repeat top center/cover;
+    background: url(../images/navbar-image.webp) no-repeat top left/cover;
     font-family: var(--heading-font);
     font-size: 25px;
     margin: 0;
