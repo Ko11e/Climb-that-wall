@@ -114,6 +114,23 @@ def create_climbing_gym(request):
     return render(request, 'climb_gyms/create_climbinggym.html', context)
 
 
+class EditClimbingGymView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
+    """Edit climbing gym view"""
+
+    model = ClimbingGyms
+    template_name = "climb_gyms/edit_climbinggym.html"
+    context_object_name = "gym"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["socialmedia"] = self.get_object().socialmedia
+        context["images"] = self.get_object().images
+        return context
+
+    def test_func(self):
+        return self.request.user == self.get_object().user
+    
+    
 class CreateCommentsView(UserPassesTestMixin, LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         """POST request to create a new comment"""
