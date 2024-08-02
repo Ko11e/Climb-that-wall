@@ -5,42 +5,133 @@
 {% block title %}{{ gym.title }}{% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="text-center">
-        <h1 class="text-center">Edit {{ gym.title }}</h1>
-        <h2 class="text-center visually-hidden">Below are the different sections you can edit</h2>
-        <h3 class="text-center">The section that you will be able to edit is the About section, the images and the social media links.</h3>
-        <h4 class="text-center">Please click on the section you would like to edit</h4>
+<div class="container text-center">
+    <div class="row m-3 px-0 px-lg-4">
+        <h1>Edit {{ gym.title }}</h1>
+        <h2 class="visually-hidden">Below are the different sections you can edit</h2>
+        <h3 class="d-none d-sm-block px-3">The section that you will be able to edit is the About section, the images and the social media links.</h3>
+        <h4>Please click on the section you would like to edit</h4>
     </div>
-    <div class="row">
-        <div class="col-10 col-md-3 card">
-            <h5 class="card-header">About</h5>
-            <div class="card-body">
+    <div class="row edit-cards">
+        <div class="col-10 col-md-8 col-lg-3 card mb-4">
+            <h5 class="card-header fw-bold">About</h5>
+            <div class="card-body justify-content-between px-0">
               <h5 class="card-title d-none">Edit the text-boxes</h5>
-              <p class="card-text">Here you can edit the text in the about section and the city and the co </p>
-              <a href="#" class="btn btn-search">Click to Edit texts</a>
+              <p class="card-text">Here you can edit the text in the about section and the city and the co</p>
+              <button id="About-boxes" class="btn btn-save">Click to Edit texts</button>
             </div>
         </div>
-        <div class="col-10 col-md-3 card">
-            <h5 class="card-header">Images</h5>
-            <div class="card-body">
-              <h5 class="card-title d-none">Edit your images</h5>
-              <p class="card-text">Edit your images and their alt text</p>
-              <a href="#" class="btn btn-search">Click to Edit images</a>
+        <div class="col-10 col-md-8 col-lg-3 card mb-4">
+            <h5 class="card-header fw-bold">Images</h5>
+            <div class="card-body justify-content-between px-0">
+                <h5 class="card-title d-none">Edit your images</h5>
+                <p class="card-text">Edit your images and their alt text</p>
+                <button id="Images-boxes" class="btn btn-save">Click to Edit images</button>
             </div>
         </div>
-        <div class="col-10 col-md-3 card">
-            <h5 class="card-header">Social Media</h5>
-            <div class="card-body">
-              <h5 class="card-title d-none">Edit the liks to the socialmedia liks</h5>
-              <p class="card-text">Here you can change the liks to the website and the Social Media links</p>
-              <a href="#" class="btn btn-search">Click to Social Media Links</a>
+        <div class="col-10 col-md-8 col-lg-3 card mb-4">
+            <h5 class="card-header fw-bold">Social Media</h5>
+            <div class="card-body justify-content-between px-0">
+                <h5 class="card-title d-none">Edit the liks to the socialmedia liks</h5>
+                <p class="card-text">Here you can change the liks to the website and the Social Media links</p>
+                <button id="Socialmedia-boxes" class="btn btn-save">Click to Edit Links</button>
             </div>
         </div>
-        <div class="d-flex justify-content-center">
-            <a href="{% url 'gyms' gym.slug %}" class="btn btn-primary btn-go-back">Go Back to {{ gym.title }}s page </a>
+        <div class="d-flex justify-content-center my-4">
+            <a href="{% url 'gyms' gym.slug %}" class="btn btn-delete">Go Back to {{ gym.title }}s page </a>
         </div>
     </div>        
 
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content-gym">
+      <span class="close">&times;</span>
+      <form method="POST" action="#" enctype="multipart/form-data">
+            <h3 class="text-center">Edit Texts</h3>
+            {% csrf_token %}
+            {{ climbing_gym_form|crispy }}
+            {{ form.media }}
+            <div class="d-flex justify-content-center">
+          <button type="submit" class="btn btn-edit">Save Edit</button>
+        </div>
+      </form>
+    </div>
+    <div class="modal-content-gym">
+        <span class="close">&times;</span>
+        <form method="POST" action="#" enctype="multipart/form-data">
+            <h3 class="text-center">Edit images</h3>
+            {% csrf_token %}
+            {{ images_form|crispy }}
+            {{ form.media }}
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="btn btn-edit">Save Edit</button>
+            </div>
+    
+        </form>
+    </div>
+    <div class="modal-content-gym">
+        <span class="close">&times;</span>
+        <form method="POST" action="#" enctype="multipart/form-data">
+            <h3 class="text-center">Edit Links</h3>
+            {% csrf_token %}
+            {{ socialmedia_form|crispy }}
+            {{ form.media }}
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="btn btn-edit">Save Edit</button>
+            </div>
+    
+          </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+
+<script>
+    // Get the modal
+    const modal = document.getElementById("myModal");
+    const modal_content = document.querySelectorAll(".modal-content-gym");
+    
+    // Get the button that opens the modal
+    const btn = document.querySelectorAll(".btn-save");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    
+    // When the user clicks the button, open the modal and the right form
+    btn.forEach(function(element) {
+        element.addEventListener("click", function() {
+            modal.style.display = "block";
+            if (element.id === "About-boxes") {
+                modal_content[0].style.display = "block";
+            } else if (element.id === "Images-boxes") {
+                modal_content[1].style.display = "block";
+            } else if (element.id === "Socialmedia-boxes") {
+                modal_content[2].style.display = "block";
+            }
+        });
+     });
+    
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+        for (let i = 0; i < modal_content.length; i++) {
+            modal_content[i].style.display = "none";
+        }
+    }
+    
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+        modal.style.display = "none";
+        for (let i = 0; i < modal_content.length; i++) {
+            modal_content[i].style.display = "none";
+        }}
+        
+    }
+</script>
 
 {% endblock %}
