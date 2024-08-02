@@ -48,7 +48,7 @@
     <!-- Modal content -->
     <div class="modal-content-gym">
       <span class="close">&times;</span>
-      <form method="POST" action="#" enctype="multipart/form-data">
+      <form method="POST" action="{% url 'edit_gym_text' gym.id %}" enctype="multipart/form-data">
             <h3 class="text-center">Edit Texts</h3>
             {% csrf_token %}
             {{ climbing_gym_form|crispy }}
@@ -60,7 +60,7 @@
     </div>
     <div class="modal-content-gym">
         <span class="close">&times;</span>
-        <form method="POST" action="#" enctype="multipart/form-data">
+        <form method="POST" action="{% url 'edit_gym_images' gym.images.id %}" enctype="multipart/form-data">
             <h3 class="text-center">Edit images</h3>
             {% csrf_token %}
             {{ images_form|crispy }}
@@ -73,7 +73,7 @@
     </div>
     <div class="modal-content-gym">
         <span class="close">&times;</span>
-        <form method="POST" action="#" enctype="multipart/form-data">
+        <form method="POST" action="{% url 'edit_gym_socialmedia' gym.socialmedia.id %}" enctype="multipart/form-data">
             <h3 class="text-center">Edit Links</h3>
             {% csrf_token %}
             {{ socialmedia_form|crispy }}
