@@ -25,6 +25,7 @@
 
 </head>
 <body>
+  <main>
     <div class="container">
       <div class="row align-items-start">
         {% include "includes/header-comp.html" %}
@@ -46,12 +47,13 @@
         </div>
       </div>
     </div>
-
-    {% include "includes/footer.html" %}
-
+  </main>
+  {% include "includes/footer.html" %}
+  
     {% block extra_js %}
     {{ block.super }}
     <script src="https://kit.fontawesome.com/61067b666c.js" crossorigin="anonymous"></script>
     <script src="{% static 'js/nav-bar-height.js' %}"></script>
     {% endblock %}
+  
 </body>
