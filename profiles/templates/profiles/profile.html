@@ -115,13 +115,13 @@
                         <div class="col">
                         My Climbing gyms  <span class="badge bg-secondary">  {{ climbing_gyms|length }}</span>
                         </div>
-                        <div class="col text-end pe-2">
-                            <a href="{% url 'create_climbing_gym' %}" class="btn btn-create-gym">Create Climbing Gym</a>
-                        </div>
                     </button>
                 </h2>
                 <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
                     <div class="accordion-body">
+                        <div class="col text-center pe-2">
+                            <a href="{% url 'create_climbing_gym' %}" class="btn btn-create-gym">Create Climbing Gym</a>
+                        </div>
                         {% if climbing_gyms != 0 %}
                             {% for climbing_gym in climbing_gyms %}
                             <a href="{% url 'gyms' climbing_gym.slug %}" class="climbing_gyms" aria-lable="Click to view {{ gym.title }}">
@@ -145,7 +145,7 @@
                                         </div>
                                     </div>
                                     <div class="col edit-btn m-3 wrap">
-                                        <a class="btn btn-edit" href="{% url "edit_climbing_gym" climbing_gym.id %} %}">Edit</a>
+                                        <a class="btn btn-edit" href="{% url "edit_climbing_gym" climbing_gym.id %}">Edit</a>
                                         <a class="btn btn-delete" href="{% url 'delete_climbing_gym' climbing_gym.id %}">Delete</a>
                                     </div>
                                 </div>
