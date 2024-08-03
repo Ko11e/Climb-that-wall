@@ -7,6 +7,7 @@ from django.views.generic import (
 )
 from django.views import View
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 
 from django.db.models import Q
 from django.contrib import messages
@@ -109,7 +110,7 @@ def create_climbing_gym(request):
             climbing_gym.images = images
             climbing_gym.save()
 
-            messages.success(request, "Your climbing gym has been added.")
+            messages.info(request, "Your climbing gym has been added.")
             return redirect("gyms", slug=climbing_gym.slug)
 
     else:
@@ -163,7 +164,7 @@ class EditGymTextView(LoginRequiredMixin, UpdateView):
         form.instance.user = self.request.user
         self.success_url = f"/climb_gyms/{form.instance.slug}"
 
-        messages.success(
+        messages.info(
             self.request, "The text in Your climbing gym has been updated."
         )
         return super().form_valid(form)
@@ -183,7 +184,7 @@ class EditGymImagesView(LoginRequiredMixin, UpdateView):
         form.instance.gym = images.images
         self.success_url = f"/climb_gyms/{images.images.slug}"
 
-        messages.success(
+        messages.info(
             self.request, "The images in Your climbing gym has been updated."
         )
         return super().form_valid(form)
@@ -203,7 +204,7 @@ class EditSocialmediaView(LoginRequiredMixin, UpdateView):
         form.instance.gym = socialmedia.socialmedia
         self.success_url = f"/climb_gyms/{socialmedia.socialmedia.slug}"
 
-        messages.success(
+        messages.info(
             self.request,
             "The social media links in Your climbing gym has been updated.",
         )
@@ -217,7 +218,7 @@ class DeleteClimbingGymView(LoginRequiredMixin, UserPassesTestMixin, DeleteView)
     template_name = "climb_gyms/delete_climbinggym.html"
     success_url = "climb_gyms/search/"
     context_object_name = "gym"
-    messages.success = "Your climbing gym has been deleted."
+    messages.info = "Your climbing gym has been deleted.\n We are sorry to see the climbing gym disappear."
 
     def test_func(self):
         return self.request.user == self.get_object().user
@@ -240,6 +241,7 @@ class DeleteClimbingGymView(LoginRequiredMixin, UserPassesTestMixin, DeleteView)
 
 
 class CreateCommentsView(UserPassesTestMixin, LoginRequiredMixin, View):
+    """Create comment view"""
     def post(self, request, *args, **kwargs):
         """POST request to create a new comment"""
         # Check if the user is authenticated
@@ -274,7 +276,7 @@ class CreateCommentsView(UserPassesTestMixin, LoginRequiredMixin, View):
             )
             comment.save()
             climbing_gym.average_rating()  # Update the average rating of the gym
-            messages.success(request, "Your comment has been added.")
+            messages.info(request, "Your comment has been added.")
 
         except Exception as e:
             messages.error(request, f"An error occurred while adding your comment: {e}")
@@ -299,11 +301,15 @@ class EditCommentsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         comment = get_object_or_404(Comments, pk=self.kwargs["pk"])
         comment.climbing_gym.average_rating()
         return comment
+    
+    def form_valid(self, form):
+        messages.info(self.request, f"Your comment has been updated.")
+        return super().form_valid(form)
 
     def test_func(self):
         return self.request.user == self.get_object().user
     
-class DeleteCommentsView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class DeleteCommentsView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
     """Delete comment view"""
     model = Comments
     template_name = "climb_gyms/delete-comment.html"

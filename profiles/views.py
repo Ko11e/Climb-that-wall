@@ -1,9 +1,8 @@
 from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth import logout
-from django.shortcuts import redirect
 from django.contrib import messages
 
 from django.contrib.auth.models import User
@@ -42,8 +41,9 @@ class EditProfileView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return get_object_or_404(Profile, user__id=self.kwargs["pk"])
 
     def form_valid(self, form):
+        success_message = "Your profile has been updated."
+        messages.info(self.request, success_message)
         self.success_url = f'/profiles/user/{self.kwargs["pk"]}/'
-        messages.success(self.request, "Your profile has been updated.")
         return super().form_valid(form)
 
     def test_func(self):
@@ -73,7 +73,7 @@ class DeleteProfileView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     success_url = "/"
 
     def get_object(self, queryset=None):
-        return get_object_or_404(User, user__id=self.kwargs["pk"])
+        return get_object_or_404(User, pk=self.kwargs["pk"])
 
     def form_valid(self, form):
         # Perform the deletion
@@ -81,11 +81,11 @@ class DeleteProfileView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         # Log the user out
         logout(self.request)
         # Redirect to the success URL
-        messages.info(self.request, "Your account has been deleted.")
+        messages.error(self.request, "Your account has been deleted.\n We're sorry to see you go.")
         return redirect(self.get_success_url())
 
     def test_func(self):
-        return self.request.user == self.get_object().user
+        return self.request.user == self.get_object()
 
 
 class CreateContactUsView(CreateView):
@@ -99,3 +99,7 @@ class CreateContactUsView(CreateView):
         if self.request.user:
             form.instance.user = self.request.user
         return super().form_valid(form)
+    
+    def form_invalid(self, form):
+        messages.error(self.request, "There was an error with your form. Please try again.")
+        return super().form_invalid(form)
