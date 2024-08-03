@@ -18,13 +18,19 @@
     {% element p %}
         {% blocktranslate %}Already have an account? Then please {{ link }}sign in{{ end_link }}.{% endblocktranslate %}
     {% endelement %}
+    {% element p %}
+        If you want to register your own climbing gym, please <a href="{% url 'contactus' %}" class="text-decoration-underline">click here</a> to contact us.
+    {% endelement %}
         {% url 'account_signup' as action_url %}
-        <form class="form" method="POST" action="{{ action_url }}">
+        <form class="form form-sign-up w-md-75" method="POST" action="{{ action_url }}">
             {% csrf_token %}
             {{ form|crispy }}
             {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
             {% endif %}
-            <button type="submit" class="btn btn-primary">Signup</button>
+            <button type="submit" class="btn btn-save">Signup</button>
+        </form>
+
+    
 </div>
 {% endblock content %}

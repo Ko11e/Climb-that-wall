@@ -157,11 +157,15 @@ a:hover {
     padding: 0;
 }
 
-/* Sign in links */
+/* Sign in/signup links */
 #signin {
     font-size: large;
     font-family: var(--heading-font);
     font-weight: bold;
+}
+
+.form-sign-up {
+    font-size: clamp(0.7rem, 1vw + 0.25rem, 1.3rem);
 }
 
 /* Footer */

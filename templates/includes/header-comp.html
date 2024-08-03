@@ -10,11 +10,8 @@
         <li class="nav-item">
           <a class="nav-link {% if url_name == 'search_gyms'%}active{% endif %}" href="{% url 'search_gyms' %}">Gyms</a>
         </li>
-        {% comment %} <li class="nav-item">
-          <a class="nav-link {% if url_name == 'articels'%}active{% endif %}" href="#">Articles</a>
-        </li> {% endcomment %}
         <li class="nav-item">
-          <a class="nav-link {% if url_name == 'contact'%}active{% endif %}" href="#">Contact</a>
+          <a class="nav-link {% if url_name == 'contact'%}active{% endif %}" href="{% url 'contactus' %}">Contact</a>
         </li>
       </ul>
     </div>
