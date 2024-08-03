@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import TemplateView, ListView
 
 from climb_gyms.models import ClimbingGyms
 
@@ -9,6 +9,10 @@ class Index(ListView):
     context_object_name = 'climbing_gyms'
     paginate_by = 3
 
+
+class ThankYou(TemplateView):
+    template_name = 'home/thankyou.html'
     
+
 
 
