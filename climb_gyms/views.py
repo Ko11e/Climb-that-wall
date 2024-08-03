@@ -11,6 +11,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 from django.db.models import Q
 from django.contrib import messages
+from django.urls import reverse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import user_passes_test
 
@@ -76,9 +77,12 @@ class ClimbGymView(DetailView):
     context_object_name = "gym"
 
     def get_context_data(self, **kwargs):
+        climbing_gym = ClimbingGyms.objects.get(slug=self.kwargs["slug"])
+        climbing_gym.average_rating()
         context = super().get_context_data(**kwargs)
         context["comments"] = Comments.objects.filter(climbing_gym=self.get_object())
         context["comment_count"] = context["comments"].count()
+
         return context
 
 
@@ -110,7 +114,7 @@ def create_climbing_gym(request):
             climbing_gym.images = images
             climbing_gym.save()
 
-            messages.info(request, "Your climbing gym has been added.")
+            messages.success(request, "Your climbing gym has been added.")
             return redirect("gyms", slug=climbing_gym.slug)
 
     else:
@@ -211,14 +215,14 @@ class EditSocialmediaView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
-class DeleteClimbingGymView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class DeleteClimbingGymView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
     """Delete climbing gym view"""
 
     model = ClimbingGyms
     template_name = "climb_gyms/delete_climbinggym.html"
     success_url = "climb_gyms/search/"
     context_object_name = "gym"
-    messages.info = "Your climbing gym has been deleted.\n We are sorry to see the climbing gym disappear."
+    success_message = "Your climbing gym has been deleted.\n We are sorry to see the climbing gym disappear."
 
     def test_func(self):
         return self.request.user == self.get_object().user
@@ -303,7 +307,9 @@ class EditCommentsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return comment
     
     def form_valid(self, form):
+        comment = get_object_or_404(Comments, pk=self.kwargs["pk"])
         messages.info(self.request, f"Your comment has been updated.")
+        comment.climbing_gym.average_rating()
         return super().form_valid(form)
 
     def test_func(self):
@@ -314,8 +320,11 @@ class DeleteCommentsView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessage
     model = Comments
     template_name = "climb_gyms/delete-comment.html"
     context_object_name = "comment"
-    success_url = "/"
-    messages.success = "Your comment has been deleted."
+    success_message = "Your comment has been deleted."
+
+    def get_success_url(self):
+        climbing_gym = get_object_or_404(Comments, pk=self.kwargs["pk"]).climbing_gym 
+        return reverse("gyms", kwargs={"slug": climbing_gym.slug})
 
     def test_func(self):
         return self.request.user == self.get_object().user
@@ -328,7 +337,7 @@ class DeleteCommentsView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessage
                 "You are not authorized to delete this comment."
             )
             return redirect(
-                "home"
+                "profile", pk=self.request.user.id
             ) 
         else:
             messages.error(
