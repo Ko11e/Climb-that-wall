@@ -43,3 +43,26 @@ def create_user_profile(instance, created, **kwargs):
     """Create a user profile when a new user is created"""
     if created:
         Profile.objects.create(user=instance)
+
+class ContactUs(models.Model):
+    """Model for user contact information
+    An instance of this model is created when 
+    a user sends a message to the site admin
+    """
+    QUESTION = [
+        ("General", "General"),
+        ("Bug", "Bug"),
+        ("Staff Request", "Staff Request"),
+        ("Other", "Other"),
+    ]
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=75, blank=True, null=True)
+    email = models.EmailField(max_length=254, blank=True, null=True)
+    question = models.CharField(choices=QUESTION, default="General")
+    message = models.CharField(max_length=400, blank=True, null=True)
+    answered = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        return self.user.username, self.email
