@@ -55,11 +55,11 @@ class ContactUs(models.Model):
         ("Staff Request", "Staff Request"),
         ("Other", "Other"),
     ]
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.CharField(max_length=75, blank=False, null=False)
     name = models.CharField(max_length=75, blank=True, null=True)
     email = models.EmailField(max_length=254, blank=True, null=True)
     question = models.CharField(choices=QUESTION, default="General")
-    message = models.CharField(max_length=400, blank=True, null=True)
+    message = models.TextField(max_length=500, blank=True, null=True)
     answered = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
