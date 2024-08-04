@@ -119,8 +119,16 @@ The color palette have been collected from the origal background image. However,
 
 ### Footer
 
-### Futuer Features
+### Future Features
 
+As I see it there's a lot of future features that could be added to this website. One of the features that was meant to be implemented was a tips app. In the tips app the user could create tips for training, climbing shoes, rope or harnesses, to be shared to other climbers. This tips could then also be liked and seen on your profile. Below is other features that could be implemented in the future.
+
+- A map section on the climbing gym detail page. This was mean to be implemented but i had a hard time making the API to googlemaps to work.
+- As a User i can like my favortie climbing gyms, so that i san find them easy.
+- As a staff and the owner of a climbing gym they can also respond to the review that have been made.
+- The climbing gym has a event section displaying upcoming events.
+
+- A app to see and get an uppdatet when the world cup starts or send the competion.
 
 
 ## Technologies Used
