@@ -23,16 +23,16 @@
             {% blocktranslate %}If you have not created an account yet, then please {{ link }}sign up{{ end_link }} first.{% endblocktranslate %}
         {% endelement %}
     </div>
+    <div class="col py-3 one-site-box text-start">
         <form class="form" method="POST" action= {% url 'account_login' %}>
             {% csrf_token %}
             {{ form|crispy }}
-            {% if redirect_field_value %}
+            {% comment %} {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
-            {% endif %}
+            {% endif %} {% endcomment %}
 
-            <button type="submit" class="btn btn-primary ">Log In</button>
-            <a class="btn secondaryAction d-block" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+            <button type="submit" class="btn btn-search ">Log In</button>
         </form>
-
+    </div>
 </div>
 {% endblock content %}
