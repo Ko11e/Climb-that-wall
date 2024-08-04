@@ -7,7 +7,6 @@
     {% trans "Sign In" %}
 {% endblock title %}
 {% block content %}
-<div class="row align-items-center">
     <div class="col text-center">
     <h1>Climb that wall</h1>
     {% element h2 %}
@@ -23,7 +22,7 @@
             {% blocktranslate %}If you have not created an account yet, then please {{ link }}sign up{{ end_link }} first.{% endblocktranslate %}
         {% endelement %}
     </div>
-    <div class="col py-3 one-site-box text-start">
+    <div class="col p-3 one-site-box text-start">
         <form class="form" method="POST" action= {% url 'account_login' %}>
             {% csrf_token %}
             {{ form|crispy }}
@@ -34,5 +33,4 @@
             <button type="submit" class="btn btn-search ">Log In</button>
         </form>
     </div>
-</div>
 {% endblock content %}

@@ -65,7 +65,7 @@
             </div>
         </div>
         <button type="submit" class="btn btn-save">Save</button>
-        <a class="btn btn-delete" href="#">Delete</a>
+        <a class="btn btn-delete" href="{% url 'delete_comment' comment.id %}">Delete</a>
         <a class="btn btn-search" href="{% url 'profile' comment.user.id %}">Cancel</a>
     </form>
 {% endblock %}
