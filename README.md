@@ -67,6 +67,36 @@ You can find all User Stories in the [Github Project Board](https://github.com/u
 
 ## Structure
 
+### Agile Development Process
+
+#### Agile Methodology
+
+The development of Climb That Wall is guided by Agile principles, which prioritize flexibility, continuous improvement, and rapid adaptation to change. While I do not strictly follow traditional Agile practices such as scheduled sprints or scrums, my process is inspired by Agile methodologies.
+
+Instead of scheduled sprints or scrums, I have set up iterations, but found them hard to follow. Therefore, I have chosen to structure the project around key milestones leading up to the overall deadline. This approach allows me to prioritize the development of core functionalities first, before expanding to more complex features.
+
+I actively seek and analyze user feedback to identify areas for improvement, ensuring that the product continuously evolves to effectively meet user needs and expectations.
+
+For more information, please visit the [GitHub Project Board](https://github.com/users/Ko11e/projects/3/views/1).
+
+### MoSCoW Prioritization
+
+I implemented the MoSCoW Prioritization method for Climb That Wall, systematically identifying and labeling project components to ensure a clear and effective development process:
+
+**Must Haves** \
+These are the essential, critical components that the project cannot succeed without. This provids early achievement a solid foundation, allowing me to further develop and enhance the project beyond the initial scope.
+
+**Should Haves** \
+These components are highly valuable and beneficial to the project but are not crucial at the MVP stage. While important, they are secondary to the 'Must Haves' and are prioritized accordingly. Addressing these features comes after the critical components are in place, ensuring the project remains on track and focused.
+
+**Could Haves** \
+These features are considered enhancements or 'nice-to-haves'. They are not essential for the project's core functionality but add value if included. These components are only addressed once the 'Must Haves' and 'Should Haves' are completed and if time permits.
+
+**Won't Haves** \
+These are features or components that either do not align with the current project goals or are of very low priority for the current release. By clearly identifying and setting aside these elements, the development process remains focused and efficient, avoiding unnecessary scope creep.
+
+Using the MoSCoW method provided a structured approach to prioritize tasks effectively, ensuring that the most critical components were developed first, leading to a successful and timely project completion.
+
 ### Database
 
 ### Wifeframe
@@ -147,5 +177,6 @@ As I see it there's a lot of future features that could be added to this website
 The testing documentation for this project is available in another document. To access information about the testing, please click on the following link: [TESTING.md](/TESTING.md)
 
 ## Deployment
+### 
 
 ## Credits
