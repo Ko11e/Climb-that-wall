@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="row text-end">
-        <a href="{% url 'search_gyms' %}" class="small links">View all Here</i></a>
+        <a href="{% url 'search_gyms' %}" class="small links">View all Here</a>
     </div>
     <div class="row align-items-center mb-2 text-center">
         <h2>Top Climbing gyms</h2>
@@ -42,10 +42,10 @@
                     <div class="card card-homepage">
                         <img src="{{ gym.images.headimage.url }}" class="card-img-top" alt="{{ gym.images.headimage_alt }}">
                         <div class="card-body">
-                        <h5 class="card-title">{{ gym.title }}</h5>
-                        <p class="card-text">{{ gym.description|truncatechars:100 }}</p>
-                        <a href="{% url 'gyms' gym.slug %}" class="btn btn-search">Read More Here</a>
-                    
+                            <h5 class="card-title">{{ gym.title }}</h5>
+                            <p class="card-text">{{ gym.description|truncatechars:100 }}</p>
+                            <a href="{% url 'gyms' gym.slug %}" class="btn btn-search">Read More Here</a>
+                        </div>
                     </div>
                 </div>
                 {% endfor %}

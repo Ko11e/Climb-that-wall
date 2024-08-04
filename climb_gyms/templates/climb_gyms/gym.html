@@ -132,11 +132,11 @@
                         {% for comment in comments %}
                         <div class="row view-comments py-2">
                         <!-- Media object -->
-                        {% if request.user.is_authenticated %}
-                        <a href="{% url 'profile' comment.user.id %}" aria-label="Click to view user profile {{comment.user.username}}">
-                        {% endif %}
                             <div class="col comment">
                                 <!-- Image and usernamne -->
+                                {% if request.user.is_authenticated %}
+                                <a href="{% url 'profile' comment.user.id %}" aria-label="Click to view user profile {{comment.user.username}}">
+                                {% endif %}
                                 <div class="headercomments">
                                     <div class="image-container">
                                         {% if comment.user.profile.profile_pic %}
@@ -166,6 +166,9 @@
                                     <div class="comment-text">{{ comment.body }}</div>
                                 </div>
                                 {% endif %}
+                                {% if request.user.is_authenticated %}
+                                </a>
+                                {% endif %}
                                
                                 <!--End Media body -->
                                 {% if user.is_authenticated and comment.user == user %}
@@ -175,9 +178,7 @@
                                 </div>
                                 {% endif %}
                             </div>
-                        {% if request.user.is_authenticated %}
-                        </a>
-                        {% endif %}
+                        
                         </div>
                         {% endfor %}
                     {% else %}

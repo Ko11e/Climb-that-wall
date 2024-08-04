@@ -12,7 +12,7 @@
     <div class="d-flex justify-content-center">    
         <div class="row box-comment-edit justify-content-evenly mt-2">
             <div class="image-container-my-comments">
-                <image src="{{ comment.climbing_gym.images.headimage.url }}" alt="{{ comment.climbing_gym.images.headimage_alt }}" class="img-fluid comment-img">
+                <img src="{{ comment.climbing_gym.images.headimage.url }}" alt="{{ comment.climbing_gym.images.headimage_alt }}" class="img-fluid comment-img">
             </div>
             <div class="col-9">
                 <div class="d-flex justify-content-between">
@@ -68,6 +68,7 @@
         <a class="btn btn-delete" href="{% url 'delete_comment' comment.id %}">Delete</a>
         <a class="btn btn-search" href="{% url 'profile' comment.user.id %}">Cancel</a>
     </form>
+</div>
 {% endblock %}
 
 {% block extra_js %}

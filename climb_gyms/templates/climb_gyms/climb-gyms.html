@@ -75,7 +75,7 @@
                     </div>
                     {% else %}
                     {% for gym in climbing_gyms %}
-                    <a href="{% url 'gyms' gym.slug %}" class="climbing_gyms" aria-lable="Click to view {{ gym.title }}">
+                    <a href="{% url 'gyms' gym.slug %}" class="climbing_gyms">
                         <div class="card mb-3">
                             <div class="row g-0">
                                 <div class="col-md-4">

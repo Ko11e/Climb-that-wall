@@ -52,9 +52,7 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header fw-bolder" id="panelsStayOpen-headingOne">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                            <div>
-                                My Reveiws <span class="badge bg-secondary">  {{ comments|length }}</span>
-                            </div>
+                            My Reveiws <span class="badge bg-secondary">  {{ comments|length }}</span>
                         </button>
                     </h2>
                     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
@@ -70,12 +68,12 @@
                                     </div>
                                     <div class="row justify-content-evenly mt-2">
                                         <div class="image-container-my-comments">
-                                            <image src="{{ comment.climbing_gym.images.headimage.url }}" alt="{{ comment.climbing_gym.images.headimage_alt }}" class="img-fluid comment-img">
+                                            <img src="{{ comment.climbing_gym.images.headimage.url }}" alt="{{ comment.climbing_gym.images.headimage_alt }}" class="img-fluid comment-img">
                                         </div>
                                         <div class="col-9">
                                             <div class="d-flex justify-content-between wrap">
                                                 <div class="col-10 col-sm-7">
-                                                    <a href="{% url 'gyms' comment.climbing_gym.slug %}" aria-lable="Click to view {{ gym.title }}">
+                                                    <a href="{% url 'gyms' comment.climbing_gym.slug %}">
                                                         <h3>{{ comment.climbing_gym.title }}</h3>
                                                     </a>
                                                 </div>
@@ -112,10 +110,7 @@
                 <div class="accordion-item">
                 <h2 class="accordion-header" id="panelsStayOpen-headingThree">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                    <div class="row justify-content-between align-items-center w-100">
-                        <div class="col">
                         My Climbing gyms  <span class="badge bg-secondary">  {{ climbing_gyms|length }}</span>
-                        </div>
                     </button>
                 </h2>
                 <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
@@ -125,31 +120,34 @@
                         </div>
                         {% if climbing_gyms != 0 %}
                             {% for climbing_gym in climbing_gyms %}
-                            <a href="{% url 'gyms' climbing_gym.slug %}" class="climbing_gyms" aria-lable="Click to view {{ gym.title }}">
+                            
                                 <div class="one-site-box">
                                     <div class="row align-items-center">
-                                        <div class="col gym-img">
-                                            <image src="{{ climbing_gym.images.headimage.url }}" alt="{{ climbing_gym.images.headimage_alt }}" class="img-fluid">
-                                        </div>
-                                        <div class="col">
-                                            <h3>{{ climbing_gym.title }}</h3>
-                                            <div class="col">
-                                                <div><strong>
-                                                    <i class="{% if climbing_gym.rating > 0 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
-                                                    <i class="{% if climbing_gym.rating > 1 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
-                                                    <i class="{% if climbing_gym.rating > 2 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
-                                                    <i class="{% if climbing_gym.rating > 3 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
-                                                    <i class="{% if climbing_gym.rating > 4 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
-                                                </strong></div>
-                                                <p>{{ climbing_gym.description|truncatechars:50 }}</p>
+                                        <a href="{% url 'gyms' climbing_gym.slug %}" class="climbing_gyms">
+                                            <div class="col gym-img">
+                                                <img src="{{ climbing_gym.images.headimage.url }}" alt="{{ climbing_gym.images.headimage_alt }}" class="img-fluid">
                                             </div>
-                                        </div>
+                                            <div class="col">
+                                                <h3>{{ climbing_gym.title }}</h3>
+                                                <div class="col">
+                                                    <div><strong>
+                                                        <i class="{% if climbing_gym.rating > 0 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                        <i class="{% if climbing_gym.rating > 1 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                        <i class="{% if climbing_gym.rating > 2 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                        <i class="{% if climbing_gym.rating > 3 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                        <i class="{% if climbing_gym.rating > 4 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                    </strong></div>
+                                                    <p>{{ climbing_gym.description|truncatechars:50 }}</p>
+                                                </div>
+                                            </div>
+                                        </a>
                                     </div>
                                     <div class="col edit-btn m-3 wrap">
                                         <a class="btn btn-edit" href="{% url "edit_climbing_gym" climbing_gym.id %}">Edit</a>
                                         <a class="btn btn-delete" href="{% url 'delete_climbing_gym' climbing_gym.id %}">Delete</a>
                                     </div>
                                 </div>
+                   
                             {% endfor %}
                         {% else %}
                         <div class="col text-center">
