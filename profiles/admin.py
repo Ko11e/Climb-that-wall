@@ -2,6 +2,7 @@ from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
 from .models import Profile, ContactUs
 
+
 @admin.register(Profile)
 class ProfileAdmin(SummernoteModelAdmin):
     list_display = (
@@ -24,7 +25,7 @@ class ContactFormAdmin(SummernoteModelAdmin):
         'answered',)
     search_fields = ('user', 'name', 'email', 'message')
     summer_note_fields = ('message',)
-    
+
 
 # Register your models here.
 # admin.site.register(Profile, ProfileAdmin)

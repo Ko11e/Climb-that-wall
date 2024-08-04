@@ -50,7 +50,9 @@ class ClimbingGymsView(ListView):
             )
 
         elif button_query:
-            climbing_gyms = self.model.objects.filter(Q(city__icontains=button_query))
+            climbing_gyms = self.model.objects.filter(
+                Q(city__icontains=button_query)
+            )
 
         elif reset_filter:
             climbing_gyms = self.model.objects.all()
@@ -80,7 +82,9 @@ class ClimbGymView(DetailView):
         climbing_gym = ClimbingGyms.objects.get(slug=self.kwargs["slug"])
         climbing_gym.average_rating()
         context = super().get_context_data(**kwargs)
-        context["comments"] = Comments.objects.filter(climbing_gym=self.get_object())
+        context["comments"] = Comments.objects.filter(
+            climbing_gym=self.get_object()
+        )
         context["comment_count"] = context["comments"].count()
 
         return context
@@ -131,7 +135,9 @@ def create_climbing_gym(request):
     return render(request, "climb_gyms/create_climbinggym.html", context)
 
 
-class EditClimbingGymView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
+class EditClimbingGymView(
+    LoginRequiredMixin, UserPassesTestMixin, TemplateView
+):
     """Veiw the Edit sections climbing gym view"""
 
     template_name = "climb_gyms/edit_climbinggym.html"
@@ -152,7 +158,9 @@ class EditClimbingGymView(LoginRequiredMixin, UserPassesTestMixin, TemplateView)
         return context
 
     def test_func(self):
-        return self.request.user == ClimbingGyms.objects.get(id=self.kwargs["pk"]).user
+        return self.request.user == ClimbingGyms.objects.get(
+            id=self.kwargs["pk"]
+        ).user
 
 
 class EditGymTextView(LoginRequiredMixin, UpdateView):
@@ -169,7 +177,8 @@ class EditGymTextView(LoginRequiredMixin, UpdateView):
         self.success_url = f"/climb_gyms/{form.instance.slug}"
 
         messages.info(
-            self.request, "The text in Your climbing gym has been updated."
+            self.request,
+            "The text in Your climbing gym has been updated."
         )
         return super().form_valid(form)
 
@@ -189,7 +198,8 @@ class EditGymImagesView(LoginRequiredMixin, UpdateView):
         self.success_url = f"/climb_gyms/{images.images.slug}"
 
         messages.info(
-            self.request, "The images in Your climbing gym has been updated."
+            self.request,
+            "The images in Your climbing gym has been updated."
         )
         return super().form_valid(form)
 
@@ -215,14 +225,16 @@ class EditSocialmediaView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
-class DeleteClimbingGymView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
+class DeleteClimbingGymView(
+    LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView
+):
     """Delete climbing gym view"""
 
     model = ClimbingGyms
     template_name = "climb_gyms/delete_climbinggym.html"
     success_url = "climb_gyms/search/"
     context_object_name = "gym"
-    success_message = "Your climbing gym has been deleted.\n We are sorry to see the climbing gym disappear."
+    success_message = "Your climbing gym has been deleted."
 
     def test_func(self):
         return self.request.user == self.get_object().user
@@ -231,7 +243,7 @@ class DeleteClimbingGymView(LoginRequiredMixin, UserPassesTestMixin, SuccessMess
         # Handle what happens if the user does not pass the test
         if self.request.user.is_authenticated:
             messages.error(
-                self.request, 
+                self.request,
                 "You are not authorized to delete this climbing gym."
             )
             return redirect(
@@ -239,19 +251,22 @@ class DeleteClimbingGymView(LoginRequiredMixin, UserPassesTestMixin, SuccessMess
             )  # Redirect to item list if authenticated but does not pass test
         else:
             messages.error(
-                self.request, "You must be logged in to delete a climbing gym."
+                self.request,
+                "You must be logged in to delete a climbing gym."
             )
             return redirect("login")
 
 
 class CreateCommentsView(UserPassesTestMixin, LoginRequiredMixin, View):
     """Create comment view"""
+
     def post(self, request, *args, **kwargs):
         """POST request to create a new comment"""
         # Check if the user is authenticated
         if not request.user.is_authenticated:
             messages.error(request, "You must be logged in to add a comment.")
-            return redirect("login")  # Redirect to login page if not authenticated
+            return redirect("login")
+        # Redirect to login page if not authenticated
 
         # Retrieve the climbing gym instance
         climbing_gym = get_object_or_404(ClimbingGyms, pk=kwargs["pk"])
@@ -263,7 +278,7 @@ class CreateCommentsView(UserPassesTestMixin, LoginRequiredMixin, View):
         if existing_comments.exists():
             messages.info(
                 request,
-                f"You have already commented on this gym.\n If you want to change your comment, please delete/edit the previous one.",
+                f"You have already commented on this gym."
             )
             return redirect(
                 "gyms", slug=climbing_gym.slug
@@ -279,11 +294,13 @@ class CreateCommentsView(UserPassesTestMixin, LoginRequiredMixin, View):
                 body=request.POST.get("body") or "None",
             )
             comment.save()
-            climbing_gym.average_rating()  # Update the average rating of the gym
+            climbing_gym.average_rating()  # Update the average rating
             messages.info(request, "Your comment has been added.")
 
         except Exception as e:
-            messages.error(request, f"An error occurred while adding your comment: {e}")
+            messages.error(request,
+                           f"An error occurred while adding your comment: {e}"
+                           )
             return redirect("gyms", slug=climbing_gym.slug)
 
         return redirect("gyms", slug=climbing_gym.slug)
@@ -305,7 +322,7 @@ class EditCommentsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         comment = get_object_or_404(Comments, pk=self.kwargs["pk"])
         comment.climbing_gym.average_rating()
         return comment
-    
+
     def form_valid(self, form):
         comment = get_object_or_404(Comments, pk=self.kwargs["pk"])
         messages.info(self.request, f"Your comment has been updated.")
@@ -314,16 +331,22 @@ class EditCommentsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         return self.request.user == self.get_object().user
-    
-class DeleteCommentsView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
+
+
+class DeleteCommentsView(
+    LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView
+):
     """Delete comment view"""
+
     model = Comments
     template_name = "climb_gyms/delete-comment.html"
     context_object_name = "comment"
     success_message = "Your comment has been deleted."
 
     def get_success_url(self):
-        climbing_gym = get_object_or_404(Comments, pk=self.kwargs["pk"]).climbing_gym 
+        climbing_gym = get_object_or_404(
+            Comments, pk=self.kwargs["pk"]
+        ).climbing_gym
         return reverse("gyms", kwargs={"slug": climbing_gym.slug})
 
     def test_func(self):
@@ -333,14 +356,11 @@ class DeleteCommentsView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessage
         # Handle what happens if the user does not pass the test
         if self.request.user.is_authenticated:
             messages.error(
-                self.request, 
+                self.request,
                 "You are not authorized to delete this comment."
             )
-            return redirect(
-                "profile", pk=self.request.user.id
-            ) 
+            return redirect("profile", pk=self.request.user.id)
         else:
-            messages.error(
-                self.request, "You must be logged in to delete a comment."
-            )
+            messages.error(self.request,
+                           "You must be logged in to delete a comment.")
             return redirect("login")

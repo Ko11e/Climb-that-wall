@@ -18,7 +18,9 @@ class Profile(models.Model):
         ("Speed", "speed"),
         ("Outdoors", "outdoors"),
     )
-    user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        User, related_name="profile", on_delete=models.CASCADE
+    )
     bio = RichTextField(max_length=2000, blank=True, null=True)
     profile_pic = ResizedImageField(
         size=[300, 300],
@@ -44,11 +46,13 @@ def create_user_profile(instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
 
+
 class ContactUs(models.Model):
     """Model for user contact information
-    An instance of this model is created when 
+    An instance of this model is created when
     a user sends a message to the site admin
     """
+
     QUESTION = [
         ("General", "General"),
         ("Bug", "Bug"),
@@ -62,7 +66,6 @@ class ContactUs(models.Model):
     message = models.TextField(max_length=500, blank=True, null=True)
     answered = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-
 
     def __str__(self):
         return self.user.username, self.email

@@ -25,32 +25,39 @@ class ClimbingGymsForm(forms.ModelForm):
 
 
 class SocialmediaForm(forms.ModelForm):
-    """ Form for social media links """
+    """Form for social media links"""
 
     class Meta:
         model = Socialmedia
-        fields = ['website', 'facebook', 'instagram', 'other']
+        fields = ["website", "facebook", "instagram", "other"]
 
         labels = {
-            'website': 'Website Link',
-            'facebook': 'Facebook Page',
-            'instagram': 'Instagram Page',
-            'other': 'Other',
+            "website": "Website Link",
+            "facebook": "Facebook Page",
+            "instagram": "Instagram Page",
+            "other": "Other",
         }
 
 
 class ImagesForm(forms.ModelForm):
-    """ Form for images """
+    """Form for images"""
 
     class Meta:
         model = Images
-        fields = ['headimage', 'headimage_alt', 'image1', 'image2', 'image3', 'image_alt']
+        fields = [
+            "headimage",
+            "headimage_alt",
+            "image1",
+            "image2",
+            "image3",
+            "image_alt",
+        ]
 
         labels = {
-            'headimage': 'Main Image',
-            'headimage_alt': 'Main Image Alt',
-            'image1': 'Image 1 (Optional)',
-            'image2': 'Image 2 (Optional)',
-            'image3': 'Image 3 (Optional)',
-            'image_alt': 'Small description for the extra three images',
+            "headimage": "Main Image",
+            "headimage_alt": "Main Image Alt",
+            "image1": "Image 1 (Optional)",
+            "image2": "Image 2 (Optional)",
+            "image3": "Image 3 (Optional)",
+            "image_alt": "Small description for the extra three images",
         }

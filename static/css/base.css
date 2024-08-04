@@ -95,7 +95,7 @@ a:hover {
 
 .error {
     background-color: var(--light-red);
-    border: 1px solide var(--red);
+    border: 1px solid var(--red);
     border-radius: 15px;
 }
 
@@ -250,7 +250,7 @@ a:hover {
 }
 
 .btn-edit:hover {
-    background-color: none;
+    background-color: transparent;
     border: 2px solid var(--light-blue);
 }
 
@@ -262,7 +262,7 @@ a:hover {
 }
 
 .btn-delete:hover {
-    background-color: none;
+    background-color: transparent;
     border: 2px solid var(--red);
 }
 
@@ -316,7 +316,7 @@ a:hover {
 }
 
 .btn-create-gym:hover {
-    background-color: none;
+    background-color: transparent;
     border: 2px solid var(--yellow);
 }
 
@@ -368,7 +368,7 @@ a:hover {
 }
 
 .btn-save:hover {
-    background-color: none;
+    background-color: transparent;
     border: 2px solid var(--grey-green);
 }
 
@@ -380,7 +380,7 @@ a:hover {
 }
 
 .btn-search:hover {
-    background-color: none;
+    background-color: transparent;
     border: 2px solid var(--light-blue);
 }
 
@@ -539,7 +539,7 @@ a:hover {
 
 .rating-input .active {
     font-size: 2rem;
-    font-weight: none;
+    font-weight: normal;
     border-bottom: none;
 }
 
@@ -548,7 +548,7 @@ a:hover {
 }
 
 .clr-yellow {
-    color: 'yellow';
+    color: var(--yellow);
 }
 
 .clr-grey {

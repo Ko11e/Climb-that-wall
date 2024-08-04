@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView, ListView
-
 from climb_gyms.models import ClimbingGyms
+
 
 class Index(ListView):
     """ Home view """
@@ -13,6 +13,7 @@ class Index(ListView):
 
 class ThankYou(TemplateView):
     template_name = 'home/thankyou.html'
+
     
 
 

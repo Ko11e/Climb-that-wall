@@ -1,4 +1,9 @@
-from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView
+from django.views.generic import (
+    TemplateView,
+    CreateView,
+    UpdateView,
+    DeleteView
+)
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 
 from django.shortcuts import get_object_or_404, redirect
@@ -81,7 +86,9 @@ class DeleteProfileView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         # Log the user out
         logout(self.request)
         # Redirect to the success URL
-        messages.error(self.request, "Your account has been deleted.\n We're sorry to see you go.")
+        messages.error(
+            self.request, "Your account has been deleted.\n We're sorry to see you go."
+        )
         return redirect(self.get_success_url())
 
     def test_func(self):
@@ -90,16 +97,19 @@ class DeleteProfileView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 class CreateContactUsView(CreateView):
     """Create contact us view"""
+
     template_name = "home/contact_us.html"
     model = ContactUs
     form_class = ContactUsForm
     success_url = "thank-you/"
-    
+
     def form_valid(self, form):
         if self.request.user:
             form.instance.user = self.request.user.username
         return super().form_valid(form)
-    
+
     def form_invalid(self, form):
-        messages.error(self.request, "There was an error with your form. Please try again.")
+        messages.error(
+            self.request, "There was an error with your form. Please try again."
+        )
         return super().form_invalid(form)
