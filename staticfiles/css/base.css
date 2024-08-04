@@ -194,6 +194,11 @@ a:hover {
     object-fit: cover;
 }
 
+.arrow-home-page {
+    min-height: 100%;
+    font-size: 20px;
+}
+
 /* Profile page */
 .one-site-box {
     background-color: var(--off-white-80);
