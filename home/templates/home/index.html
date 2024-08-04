@@ -36,20 +36,20 @@
             {% endif %}
         </div>
         <div class="col-11">
-        <div class="row mb-4 align-items-center justify-content-around">
-            {% for gym in climbing_gyms %}
-            <div class="col-12 col-sm-10 col-lg-3 mt-2">
-                <div class="card card-homepage">
-                    <img src="{{ gym.images.headimage.url }}" class="card-img-top" alt="{{ gym.images.headimage_alt }}">
-                    <div class="card-body">
-                    <h5 class="card-title">{{ gym.title }}</h5>
-                    <p class="card-text">{{ gym.description|truncatechars:100 }}</p>
-                    <a href="{% url 'gyms' gym.slug %}" class="btn btn-search">Read More Here</a>
+            <div class="row mb-4 align-items-center justify-content-around">
+                {% for gym in climbing_gyms %}
+                <div class="col-12 col-sm-10 col-lg-3 mt-2">
+                    <div class="card card-homepage">
+                        <img src="{{ gym.images.headimage.url }}" class="card-img-top" alt="{{ gym.images.headimage_alt }}">
+                        <div class="card-body">
+                        <h5 class="card-title">{{ gym.title }}</h5>
+                        <p class="card-text">{{ gym.description|truncatechars:100 }}</p>
+                        <a href="{% url 'gyms' gym.slug %}" class="btn btn-search">Read More Here</a>
+                    
                     </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-        </div>
         </div>
         <div class="col text-center arrow-home-page">
             {% if page_obj.has_next %}
