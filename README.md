@@ -172,8 +172,6 @@ As I see it there's a lot of future features that could be added to this website
 
 ## Technologies Used
 
-## Packages and Libraries
-
 ### Languages Used
 
 - [HTML5](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5)
@@ -207,6 +205,8 @@ GitPod & [Visual Studio Code](https://code.visualstudio.com/) was used was used 
 - [TinyPNG](https://tinypng.com/) was used to compress images.
 - [Coolors](https://coolors.co/) was used to create the site color palette.
 
+## Packages and Libraries
+
 ### Packages
 
 | Name                | Purpose                  |
@@ -229,6 +229,109 @@ The testing documentation for this project is available in another document. To 
 
 ## Deployment
 
-### 
+### Pre-deloyment
+
+<details>
+    <summary>Instruction</summary>
+Ensure that Python and pip (Python's package installer) are installed on your system. These tools are necessary for setting up the local development environment. The process works as follows:
+
+- Ensure [Python](https://www.python.org/) is installed on your system.
+- Verify that Python is installed on your system by checking its version. This can be done through a command in the terminal `python --version` or by running a small piece of Python code that outputs the version information.
+- For installing libraries and modules, use `pip` or `pip3` depending on your Python version.
+
+Important points for before deployment:
+
+- The requirements for the project were added to a requirements.txt file using the command 'pip3 freeze > requirements.txt' in the terminal.
+- In .gitignore, include env.py to ensure sensitive information is not pushed to GitHub. 
+- In settings.py, link SECRET_KEY to the env.py file where the secret key variable is defined.
+- In settings.py, set 'DEBUG = False' to prevent verbose error pages and to prevent Django serving static files itself instead of relying on Cloudinary.
+- It is necessary to make migrations and migrate the models to the database before deployment.
+
+</details>
+
+### Heruko
+
+<details>
+<summary>Instructions</summary>
+
+1. **Heroku Account:** \
+Make sure you have a Heroku account. If not, sign up on the Heroku website.
+2. **GitHub Repository:** \
+Ensure your project is hosted on GitHub
+3. **Heroku Dashboard:** \
+Log in to your Heroku account and go to the Heroku Dashboard.
+4. **Create a New App:** \
+Click `New` to create a new app. Placed on the upper right side and then select `Create new app`.
+5. **App Name:** \
+Choose a unique name for your app, (it cannot be the same as this app) and region region, then click `Create app`.
+6. **Heroku Postgres** \
+Go to Resources Tab, Add-ons, search and add Heroku Postgres
+7. **New App** \
+From the new app choose **Settings**, navigate to "Config Vars" and click **Reveal Config Vars**, \
+Config Vars for development of this project:
+    | VALUE |
+    |:------------------|
+    | CLOUDINARY_URL |
+    | DISABLE_COLLECTSTATIC |
+    | DATABASE_URL |
+    | SECRET_KEY |
+    | HOST |
+
+
+    Config Vars for production remove VALUE = DISABLE_COLLECTSTATIC
+
+    **=> Go back to your code**
+
+8. **Procfile** \
+   Add the Procfile to your application's root directory ```echo web: node index.js > Procfile```. Heroku relies on this file to determine how to run your application, ensuring the correct setup of your web server. Use commands like `web: gunicorn PROJ_NAME.wsgi` in the Procfile to instruct Heroku on starting your web server with Gunicorn
+9. In settings in your app add Heroku to **ALLOWED_HOSTS**
+10. Add and commit the changes in your code and push to github
+11. **Add Buildpack** \
+    Scroll further down on the page, select **Add Buildpack**. The buildpacks will install further dependencies that are not included in the 'requirements.txt'. \
+    It's crucial to arrange the build packs correctly! First, choose Python and then Node.js. If they're not in this sequence, you can reorder them by dragging.
+12. **Deploy** \
+    From the tab above select the 'deploy section'.
+
+13. **GitHub** \
+    For deploying this project, we're using GitHub as our method. After choosing GitHub, make sure to confirm the connection. Then, search for your repository name and once Heroku finds your repository - click "connect"
+
+14. **Choose deploy method**
+    1. Scroll down to the section "Automatic Deploys".
+    2. Click "Enable automatic deploys" or choose "Deploy branch" and manually deploy.
+    3. Click "Deploy branch" wait for the app to be built. Once this is done, a message should appear letting us know that the app was successfully deployed.
+    4. Click the button "View" to see the app.
+
+</details>
+
+
+--------------------
+
+### Forking the GitHub Repository
+<details>
+    <summary>Instructions</summary>
+By forking the GitHub Repository we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original repository by using the following steps...
+
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/Ko11e/Climb-that-wall.git)
+2. At the top-right corner of the Repository, locate the "**Fork**" Button. Click on the button to make a fork of this repository
+3. You should now have a copy of the original repository in your GitHub account.
+
+</details>
+
+------------
+
+### Clone this GitHub Repository
+<details>
+    <summary>Instructions</summary>
+A local clone of this repository can be made on GitHub. Please follow the below steps:
+
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/Ko11e/Climb-that-wall.git)
+2. Above the repository file section, locate the '**Code**' button.
+3. Click on this button and choose your clone method from HTTPS, SSH, or GitHub CLI, copy the URL to your clipboard by clicking the '**Copy**' button.
+4. Open your Git Bash Terminal.
+5. Change the current working directory to the location where you want the cloned directory.
+6. Type `git clone`, and then paste the URL you copied earlier.<br>
+7. Press **Enter** to create your local clone.
+</details>
+
 
 ## Credits
