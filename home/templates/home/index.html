@@ -21,34 +21,42 @@
             </p>
         </div>
     </div>
-    <div class="row align-items-center">
-        <div class="col mb-2 text-center">
-        <h2>Climbing gyms</h2>
-        </div>
-        <div class="col-1">
-            <a href="{% url 'search_gyms' %}" class="small links">View all <i class="fa-solid fa-angles-right"></i></a>
-        </div>
+    <div class="row text-end">
+        <a href="{% url 'search_gyms' %}" class="small links">View all Here</i></a>
     </div>
-    <div class="row mb-4 align-items-center justify-content-between">
-        <div class="col text-center">
+    <div class="row align-items-center mb-2 text-center">
+        <h2>Top Climbing gyms</h2>
+    </div>
+    <div class="row align-items-center">
+        <div class="col text-center arrow-home-page">
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">
             <i class="fa-solid fa-angles-left"></i>
+            </a>
+            {% endif %}
         </div>
-
-        {% for gym in climbing_gyms %}
-        <div class="col-3">
-            <div class="card card-homepage">
-                <img src="{{ gym.images.headimage.url }}" class="card-img-top" alt="{{ gym.images.headimage_alt }}">
-                <div class="card-body">
-                <h5 class="card-title">{{ gym.title }}</h5>
-                <p class="card-text">{{ gym.description|truncatechars:100 }}</p>
-                <a href="{% url 'gyms' gym.slug %}" class="btn btn-search">Read More Here</a>
+        <div class="col-11">
+        <div class="row mb-4 align-items-center justify-content-around">
+            {% for gym in climbing_gyms %}
+            <div class="col-12 col-sm-10 col-lg-3 mt-2">
+                <div class="card card-homepage">
+                    <img src="{{ gym.images.headimage.url }}" class="card-img-top" alt="{{ gym.images.headimage_alt }}">
+                    <div class="card-body">
+                    <h5 class="card-title">{{ gym.title }}</h5>
+                    <p class="card-text">{{ gym.description|truncatechars:100 }}</p>
+                    <a href="{% url 'gyms' gym.slug %}" class="btn btn-search">Read More Here</a>
+                    </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-
-        <div class="col text-center">
-            <i class="fa-solid fa-angles-right"></i>    
+        </div>
+        <div class="col text-center arrow-home-page">
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">
+                <i class="fa-solid fa-angles-right"></i>    
+                </a>
+            {% endif %}
         </div>
     </div>
 </div>

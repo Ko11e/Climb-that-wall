@@ -7,6 +7,7 @@ class Index(ListView):
     template_name = 'home/index.html'
     model = ClimbingGyms
     context_object_name = 'climbing_gyms'
+    sort_by = 'rating'
     paginate_by = 3
 
 

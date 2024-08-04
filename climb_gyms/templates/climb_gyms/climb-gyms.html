@@ -51,6 +51,22 @@
             </div>
         </div>
         <div class="container">
+            <ul class="pagination justify-content-between">
+                {% if page_obj.has_previous %}
+                <li>
+                    <a href="?page={{ page_obj.previous_page_number }}"
+                      class="btn btn-search">&laquo; PREV</a>
+                </li>
+                {% endif %}
+                {% if page_obj.has_next %}
+                <li>
+                    <a href="?page={{ page_obj.next_page_number }}"
+                      class="btn btn-search">NEXT &raquo;</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="container">
             <div class="row d-flex align-items-start">
                 <div class="col py-md-2 px-md-4 px-1 gym-listing">
                     {% if climbing_gyms|length == 0 %}
