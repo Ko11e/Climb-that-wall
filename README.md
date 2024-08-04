@@ -63,13 +63,11 @@ All the user stories are added as issues on GitHub.
 Each user story details the value it provides, the acceptance criteria required for completion, and the tasks needed to complete it. \
 You can find all User Stories in the [Github Project Board](https://github.com/users/Ko11e/projects/3/views/1)
 
-## Planing
+# Structure
 
-## Structure
+## Agile Development Process
 
-### Agile Development Process
-
-#### Agile Methodology
+### Agile Methodology
 
 The development of Climb That Wall is guided by Agile principles, which prioritize flexibility, continuous improvement, and rapid adaptation to change. While I do not strictly follow traditional Agile practices such as scheduled sprints or scrums, my process is inspired by Agile methodologies.
 
@@ -83,42 +81,46 @@ For more information, please visit the [GitHub Project Board](https://github.com
 
 I implemented the MoSCoW Prioritization method for Climb That Wall, systematically identifying and labeling project components to ensure a clear and effective development process:
 
-**Must Haves** \
+**_Must Haves_** \
 These are the essential, critical components that the project cannot succeed without. This provids early achievement a solid foundation, allowing me to further develop and enhance the project beyond the initial scope.
 
-**Should Haves** \
+**_Should Haves_** \
 These components are highly valuable and beneficial to the project but are not crucial at the MVP stage. While important, they are secondary to the 'Must Haves' and are prioritized accordingly. Addressing these features comes after the critical components are in place, ensuring the project remains on track and focused.
 
-**Could Haves** \
+**_Could Haves_** \
 These features are considered enhancements or 'nice-to-haves'. They are not essential for the project's core functionality but add value if included. These components are only addressed once the 'Must Haves' and 'Should Haves' are completed and if time permits.
 
-**Won't Haves** \
+**_Won't Haves_** \
 These are features or components that either do not align with the current project goals or are of very low priority for the current release. By clearly identifying and setting aside these elements, the development process remains focused and efficient, avoiding unnecessary scope creep.
 
 Using the MoSCoW method provided a structured approach to prioritize tasks effectively, ensuring that the most critical components were developed first, leading to a successful and timely project completion.
 
-### Database
+## Database
 
-### Wifeframe
+The Database schemas were drawn using [dbdiagram.io](https://dbdiagram.io/home). The schemas were used to plan the database models and the apps. The schema was very helpful to get a bigger picture of the structures to create the 6 different models later. 
+
+![Database schemas](docs/images/database.png)
+
+## Wifeframe
 
 I used [Balsamiq](https://balsamiq.com/) to create wireframes for 'Climb That Wall' in order to plan the content flow and styling. Although there are some differences between the original wireframes and the final product, these variances are the result of design decisions made during the creative process.
 
-#### Home page
+### Home page
 
 ![Wireframe for the Desktop Home page](docs/wireframe/Home-page-Desktop.png)
 ![Wireframe for the Mobile Home page](docs/wireframe/Home-page-Mobile.png)
 
-#### Profile
+### Profile
 
 ![Wireframe for the Desktop Profile page](docs/wireframe/Profile-Desktop.png)
 ![Wireframe for the Mobile Profile page](docs/wireframe/Profile-Mobile.png)
 
-#### Search for climbing gym
+### Search for climbing gym
 
 ![Wireframe for the Desktop Search page](docs/wireframe/Search-page-Desktop.png)
 ![Wireframe for the Mobile Search page](docs/wireframe/Search-page-Mobile.png)
 
-#### Detail information about a climbing gym
+### Detail information about a climbing gym
 
 ![Wireframe for the Desktop Climbing gym page](docs/wireframe/Climbing_gym-details-Desktop.png)
 ![Wireframe for the Mobile Climbing gym page](docs/wireframe/Climbing_gym-details-mobile.png)
@@ -172,11 +174,61 @@ As I see it there's a lot of future features that could be added to this website
 
 ## Packages and Libraries
 
+### Languages Used
+
+- [HTML5](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5)
+- [CSS3](https://developer.mozilla.org/en-US/docs/Archive/CSS3#:~:text=CSS3%20is%20the%20latest%20evolution,flexible%20box%20or%20grid%20layouts.)
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [Python](https://www.python.org/) _This project uses Python 3.12.3._
+
+### Workspace
+
+GitPod & [Visual Studio Code](https://code.visualstudio.com/) was used was used as a local IDE workspace to build the site.
+
+### Version Control
+
+- [Git](https://git-scm.com/) was used for version control. The Gitpod and VS Code terminals were utilized to add, commit to Git and pushed to GitHub.
+- [GitHub](https://github.com/) is used to store the code for this project.
+
+### Wireframing
+
+[Balsamiq](https://balsamiq.com/) was used for creating wireframes to plan the layout and structure of the site
+
+### Responsive Design
+
+- [Am I Responsive Design](http://ami.responsivedesign.is/#) was used to check the site's responsive design and create the final site image.
+- [Responsinator](http://www.responsinator.com/) was used to improve the site's responsive design on a variety of devices.
+
+### Site Design
+
+- [Font Awesome](https://fontawesome.com/) was used on all pages to add icons
+- [Google Fonts](https://fonts.google.com/) was used to select the fonts for the site.
+- [favicon.io](https://favicon.io/) was used to create the site favicon.
+- [TinyPNG](https://tinypng.com/) was used to compress images.
+- [Coolors](https://coolors.co/) was used to create the site color palette.
+
+### Packages
+
+| Name                | Purpose                  |
+| ------------------- | ------------------------ |
+| Django              | Framework                |
+| django-allauth      | Authentication           |
+| django-crispy-forms | Front End Form Rendering |
+| dj-database-url     | Database Configuration   |
+| gunicorn            | WSGI HTTP Server         |
+| Cloudinairy         | Cloud storage for media files |
+| django-cloudinary-storage | Cloud storage for Django|
+| psycopg2            | PostgreSQL database adapter |
+| whitenoise          | Static file serving for WSGI applications |
+
+[View the complete package list for the project here](./requirements.txt)
+
 ## Testing
 
 The testing documentation for this project is available in another document. To access information about the testing, please click on the following link: [TESTING.md](/TESTING.md)
 
 ## Deployment
+
 ### 
 
 ## Credits
