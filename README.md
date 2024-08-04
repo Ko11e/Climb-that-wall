@@ -63,7 +63,6 @@ All the user stories are added as issues on GitHub.
 Each user story details the value it provides, the acceptance criteria required for completion, and the tasks needed to complete it. \
 You can find all User Stories in the [Github Project Board](https://github.com/users/Ko11e/projects/3/views/1)
 
-
 ## Planing
 
 ## Structure
@@ -102,8 +101,17 @@ The color palette have been collected from the origal background image. However,
 
 ![Color palette](docs/images/color_palette.png)
 
-### Fonts
+### Typography
 
+The selected fonts for the website are Amatic SC and Arsenal SC. These fonts is selected to stand out and are only used as headers and in the navbar text.
+Amatic SC is seleced because it structure remineds on the structure of the climbing wall or a mountain. The font is also have a unique, eye-catching appearance that draws attention. However, Amatic SC is only use in a first header(h1). Seens Amatic SC is a font with only capitaleze the font for the navbar is also is caitalized to have a cohesive feeling for the website. Making the font for the navbar tp be Arsenal SC.
+
+![Font Amatic SC ](docs/images/font-Amatic_SC.png)
+![Font Arsenal SC](docs/images/font-Arsenal_SC.png)
+
+The rest of the text is decided to be the default from Bootstrap5 as it is easy to read and have a characteristics need for neordivigents to find is easy to read as well.
+The mix of fonts creates a clear visual hierarchy. Amatic SC draws attention to primary headings and Arsenal SC ensures functional elements like the navbar are easy to use
+By combining decorative and functional fonts, the design achieves a balance between visual interest and usability. This combination helps to convey the desired tone while ensuring readability and navigation efficiency.
 
 ## Features
 
@@ -129,7 +137,6 @@ As I see it there's a lot of future features that could be added to this website
 - The climbing gym has a event section displaying upcoming events.
 
 - A app to see and get an uppdatet when the world cup starts or send the competion.
-
 
 ## Technologies Used
 
