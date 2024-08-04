@@ -97,7 +97,7 @@ class CreateContactUsView(CreateView):
     
     def form_valid(self, form):
         if self.request.user:
-            form.instance.user = self.request.user
+            form.instance.user = self.request.user.username
         return super().form_valid(form)
     
     def form_invalid(self, form):

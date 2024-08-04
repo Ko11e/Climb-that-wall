@@ -149,8 +149,8 @@
                 <h2 class="p-1">Comments <small>({{ comment_count }})</small></h2>
             </div>
             <!--Comments -->
-            {% if request.user.is_authenticated %}
             <div class="row make-a-review my-3">
+                {% if request.user.is_authenticated %}
                 <div class="col-12 col-md-6">
                     <form method="POST" action="{% url 'create_comment' gym.id %}" class="comment-form">
                         {% csrf_token %}
@@ -173,18 +173,21 @@
                                 </div>
                             </div>
                             <div class="text-box">
-                                <label for="comment">Comment</label>
+                                <label for="comment">Text:</label>
                                 <textarea class="form-control" id="comment" name="body" rows="3"></textarea>
                             </div>
                         <button type="submit" class="btn btn-search">Submit</button>
                     </form>
                 </div>
+            {% endif %}
                 <div class="col">
                     {% if comments %}
                         {% for comment in comments %}
                         <div class="row view-comments py-2">
                         <!-- Media object -->
+                        {% if request.user.is_authenticated %}
                         <a href="{% url 'profile' comment.user.id %}" aria-label="Click to view user profile {{comment.user.username}}">
+                        {% endif %}
                             <div class="col comment">
                                 <!-- Image and usernamne -->
                                 <div class="headercomments">
@@ -225,7 +228,9 @@
                                 </div>
                                 {% endif %}
                             </div>
+                        {% if request.user.is_authenticated %}
                         </a>
+                        {% endif %}
                         </div>
                         {% endfor %}
                     {% else %}
@@ -236,16 +241,17 @@
                     {% endif %}
                 
                     </div>
-                    {% else %}
+                    {% if not request.user.is_authenticated %}
                     <div class="col text-center">
+                        <h3 class="text-center"><a href="{% url 'account_login' %}">Log in</a> to leave a review</h3>
                         <div>Did you Try this Climbing Gym?</div>
                         <div>Share your Experience with us</div>
-                        <h3 class="text-center"><a chref="{% url 'account_login' %}">Log in</a> to leave a comment</h3>
                     </div>
+                    {% endif %}
                     
                 </div>
             </div>
-            {% endif %}
+            
 
         </div>
     </div>
