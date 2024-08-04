@@ -35,7 +35,7 @@
                     <div class="text-info-profile">
                     {% if profile.bio != " " %}
                     {{ profile.bio|safe }}
-                    {% enfif%}
+                    {% endif %}
                     </div>
                     <div>
                         <p><strong>Joined: </strong> {{ profile.user.date_joined|date:'d M Y' }}</p>
