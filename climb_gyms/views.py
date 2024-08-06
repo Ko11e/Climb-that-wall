@@ -16,8 +16,6 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import user_passes_test
 
 from .models import ClimbingGyms, Images, Socialmedia, Comments
-from django.contrib.auth.models import User
-
 from .forms import ClimbingGymsForm, SocialmediaForm, ImagesForm
 
 
@@ -315,7 +313,6 @@ class EditCommentsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Comments
     fields = ["rating", "body"]
     template_name = "climb_gyms/edit_comment.html"
-    success_url = "/"
     context_object_name = "comment"
 
     def get_object(self, queryset=None):
@@ -328,6 +325,12 @@ class EditCommentsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         messages.info(self.request, f"Your comment has been updated.")
         comment.climbing_gym.average_rating()
         return super().form_valid(form)
+    
+    def get_success_url(self):
+        climbing_gym = get_object_or_404(
+            Comments, pk=self.kwargs["pk"]
+        ).climbing_gym
+        return reverse("gyms", kwargs={"slug": climbing_gym.slug})
 
     def test_func(self):
         return self.request.user == self.get_object().user
