@@ -5,12 +5,16 @@
 
 {% block content %}
 <div class="container">
-    <h1>Delete Profile</h1>
-    <p>Are you sure you want to delete your profile?</p>
-    <form method="POST" action="{% url 'delete_profile' profile.user.id %}">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-delete">Delete</button>
-        <a href="{% url 'profile' request.user.id %}" class="btn btn-secondary">Cancel</a>
-    </form>
+    <div class="row justify-content-center">
+        <div class="col-md-12 text-center">
+            <h1>Delete Profile</h1>
+            <p>Are you sure you want to delete your profile?</p>
+            <form method="POST" action="{% url 'delete_profile' profile.user.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-delete">Yes, delete</button>
+                <a href="{% url 'profile' request.user.id %}" class="btn btn-search">Cancel</a>
+            </form>
+        </div>
+    <div>    
 </div>
 {% endblock %}
