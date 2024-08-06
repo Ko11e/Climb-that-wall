@@ -40,7 +40,7 @@
                     <div>
                         <p><strong>Joined: </strong> {{ profile.user.date_joined|date:'d M Y' }}</p>
                         <p><strong>Favotie Type of Climbing: </strong> {{ profile.fav_climb }}</p>
-                        <p><strong>Mailadress: </strong> {{ profile.user.email }}</p>
+                        <p><strong>Emailadress: </strong> {{ profile.user.email }}</p>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header fw-bolder" id="panelsStayOpen-headingOne">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                            My Reveiws <span class="badge bg-secondary">  {{ comments|length }}</span>
+                            My Reveiws <span class="badge bg-secondary ms-2">  {{ comments|length }}</span>
                         </button>
                     </h2>
                     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
@@ -60,12 +60,6 @@
                             {% if comments %}
                                 {% for comment in comments %}
                                 <div class="container">
-                                    <div class="row justify-content-between">
-                                        <div> <p><strong>Posted on:</strong> {{ comment.created_at|date:'H:i - d M Y' }} </p></div>
-                                        {% if comment.updated_at != comment.created_at %}
-                                        <div> <p>Updated on: {{ comment.updated_at|date:'H:i - d M Y' }} </p></div>
-                                        {% endif %}
-                                    </div>
                                     <div class="row justify-content-evenly mt-2">
                                         <div class="image-container-my-comments">
                                             <img src="{{ comment.climbing_gym.images.headimage.url }}" alt="{{ comment.climbing_gym.images.headimage_alt }}" class="img-fluid comment-img">
@@ -95,6 +89,12 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row mt-4 justify-content-between wrap">
+                                        <div class="col-12 col-sm-6 pe-0"> <p class="mb-1"><strong>Posted:</strong> {{ comment.created_at|date:'H:i - d M Y' }} </p></div>
+                                        {% if comment.updated_at != comment.created_at %}
+                                        <div class="col-12 col-sm-6 pe-0 text-sm-end"> <p class="mb-1"><strong>Updated:</strong> {{ comment.updated_at|date:'H:i - d M Y' }} </p></div>
+                                        {% endif %}
+                                    </div>
                                     <hr>
                                 </div>
                                 {% endfor %}
@@ -110,7 +110,7 @@
                 <div class="accordion-item">
                 <h2 class="accordion-header" id="panelsStayOpen-headingThree">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                        My Climbing gyms  <span class="badge bg-secondary">  {{ climbing_gyms|length }}</span>
+                        My Climbing gyms  <span class="badge ms-2 bg-secondary">  {{ climbing_gyms|length }}</span>
                     </button>
                 </h2>
                 <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
