@@ -46,7 +46,7 @@ h1 {
 }
 
 p {
-    font-size: clamp(0.7rem, 1vw + 0.25rem, 1rem);
+    font-size: clamp(0.8rem, 1vw + 0.25rem, 1rem);
 }
 
 h2 small {
@@ -77,7 +77,6 @@ a:hover {
 
 .wrap {
     flex-wrap: wrap;
-    justify-content: center !important;
 }
 
 /* Messages */
@@ -480,7 +479,7 @@ a:hover {
 /* Review/Comment */
 
 .make-a-review {
-    flex-direction: row-reverse;
+    flex-direction: column;
 }
 
 .text-box {
@@ -489,7 +488,7 @@ a:hover {
 
 /* Star function and styling */
 .rating-box {
-    background-color: var(--grey-green);
+    background-color: var(--grey-green-60);
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -630,6 +629,15 @@ a:hover {
     margin-top: 15%;
 }
 
+
+
+@media (max-width: 500px) {
+
+    h3 {
+        font-size: clamp(0.882rem, 5vw, 1.471rem);
+    }
+}
+
 @media (max-width: 900px) {
 
     /* Style navbar */
@@ -639,9 +647,3 @@ a:hover {
 
 }
 
-@media (max-width: 500px) {
-
-    h3 {
-        font-size: clamp(0.882rem, 5vw, 1.471rem);
-    }
-}

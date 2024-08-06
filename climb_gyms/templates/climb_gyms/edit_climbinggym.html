@@ -14,7 +14,10 @@
     </div>
     <div class="row edit-cards">
         <div class="col-10 col-md-8 col-lg-3 card mb-4">
-            <h5 class="card-header fw-bold">About</h5>
+            <div class="card-header fw-bold fs-5">
+                <div>About</div>
+                <i class="fa-solid fa-pen-clip"></i>
+            </div>
             <div class="card-body justify-content-between px-0">
               <h5 class="card-title d-none">Edit the text-boxes</h5>
               <p class="card-text">Here you can edit the text in the about section and the city and the co</p>
@@ -22,15 +25,21 @@
             </div>
         </div>
         <div class="col-10 col-md-8 col-lg-3 card mb-4">
-            <h5 class="card-header fw-bold">Images</h5>
+            <div class="card-header fw-bold fs-5">
+                <div>Images</div>
+                <i class="fa-solid fa-images"></i>
+            </div>
             <div class="card-body justify-content-between px-0">
-                <h5 class="card-title d-none">Edit your images</h5>
+                <h5 class="card-title d-none ">Edit your images</h5>
                 <p class="card-text">Edit your images and their alt text</p>
                 <button id="Images-boxes" class="btn btn-save">Click to Edit images</button>
             </div>
         </div>
         <div class="col-10 col-md-8 col-lg-3 card mb-4">
-            <h5 class="card-header fw-bold">Social Media</h5>
+            <div class="card-header fw-bold fs-5">
+                <div>Social Media</div>
+                <i class="fa-solid fa-share-nodes"></i>
+            </div>
             <div class="card-body justify-content-between px-0">
                 <h5 class="card-title d-none">Edit the liks to the socialmedia liks</h5>
                 <p class="card-text">Here you can change the liks to the website and the Social Media links</p>
@@ -41,7 +50,7 @@
             <a href="{% url 'gyms' gym.slug %}" class="btn btn-delete">Go Back to {{ gym.title }}s page </a>
         </div>
     </div>        
-
+</div>
 <!-- The Modal -->
 <div id="myModal" class="modal">
 
