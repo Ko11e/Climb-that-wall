@@ -8,7 +8,7 @@ class Images(models.Model):
     """Model for user images"""
 
     headimage = ResizedImageField(
-        size=[300, 300],
+        size=[600, 300],
         quality=75,
         upload_to="climbing-gyms/",
         force_format="WEBP",
@@ -23,7 +23,7 @@ class Images(models.Model):
         null=False,
     )
     image1 = ResizedImageField(
-        size=[300, 300],
+        size=[600, 300],
         quality=75,
         upload_to="climbing-gyms/",
         force_format="WEBP",
@@ -31,7 +31,7 @@ class Images(models.Model):
         null=True,
     )
     image2 = ResizedImageField(
-        size=[300, 300],
+        size=[600, 300],
         quality=75,
         upload_to="climbing-gyms/",
         force_format="WEBP",
@@ -39,7 +39,7 @@ class Images(models.Model):
         null=True,
     )
     image3 = ResizedImageField(
-        size=[300, 300],
+        size=[600, 300],
         quality=75,
         upload_to="climbing-gyms/",
         force_format="WEBP",

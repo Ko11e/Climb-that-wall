@@ -11,11 +11,41 @@
                 <h1 class="gymtitle">{{gym.title}}</h1>
             </div>
         </div>
-        <div class="row">
-            <div class="col image-box-details">
-                <img src="{{ gym.images.headimage.url }}" class="img-fluid" alt="{{ gym.images.headimage_alt }}">
+        <div id="carouselExampleFade" class="carousel slide carousel-fade">
+            <div class="carousel-inner">
+              <div class="carousel-item image-box-details active">
+                <img src="{{ gym.images.headimage.url }}" class="d-block w-100" alt="{{ gym.images.headimage_alt }}">
+              </div>
+              {% if gym.images.image1 %}
+              <div class="carousel-item image-box-details">
+                <img src=" {{ gym.images.image1.url }}" class="d-block w-100" alt="{{ gym.images.image_alt }}">
+              </div>
+              {% endif %}
+              {% if gym.images.image2 %}
+              <div class="carousel-item image-box-details">
+                <img src=" {{ gym.images.image2.url }}" class="d-block w-100" alt="{{ gym.images.image_alt }}">
+              </div>
+              {% endif %}
+              {% if gym.images.image3 %}
+              <div class="carousel-item image-box-details">
+                <img src=" {{ gym.images.image3.url }}" class="d-block w-100" alt="{{ gym.images.image_alt }}">
+              </div>
+              {% endif %}
             </div>
-        </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        {% comment %} <div class="row">
+            <div class="col image-box-details">
+                <img src="{{ gym.images.headimage.url }}" class="img-fluid" alt="gym.images.headimage.url">
+            </div>
+        </div> {% endcomment %}
         {% if request.user == gym.user %}
         <div class="row mt-3 d-flex justify-content-center text-center">
             <div class="col">
