@@ -25,7 +25,3 @@ class ContactFormAdmin(SummernoteModelAdmin):
         'answered',)
     search_fields = ('user', 'name', 'email', 'message')
     summer_note_fields = ('message',)
-
-
-# Register your models here.
-# admin.site.register(Profile, ProfileAdmin)

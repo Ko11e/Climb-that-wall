@@ -1,5 +1,4 @@
 from django.db import models
-from djrichtextfield.models import RichTextField
 
 from django.contrib.auth.models import User
 from climb_gyms.models import Comments
@@ -21,7 +20,7 @@ class Profile(models.Model):
     user = models.OneToOneField(
         User, related_name="profile", on_delete=models.CASCADE
     )
-    bio = RichTextField(max_length=2000, blank=True, null=True)
+    bio = models.TextField(max_length=2000, blank=True, null=True)
     profile_pic = ResizedImageField(
         size=[300, 300],
         quality=75,

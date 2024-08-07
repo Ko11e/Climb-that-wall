@@ -3,6 +3,7 @@ from django_summernote.admin import SummernoteModelAdmin
 from .models import ClimbingGyms, Comments, Ratings, Images, Socialmedia
 
 
+@admin.register(ClimbingGyms)
 class ClimbingGymsAdmin(SummernoteModelAdmin):
     list_display = (
         'title',
@@ -13,6 +14,7 @@ class ClimbingGymsAdmin(SummernoteModelAdmin):
     summernote_fields = ('description',)
 
 
+@admin.register(Comments)
 class CommentsAdmin(SummernoteModelAdmin):
     list_display = (
         'user',
@@ -24,6 +26,7 @@ class CommentsAdmin(SummernoteModelAdmin):
     summernote_fields = ('body',)
 
 
+@admin.register(Ratings)
 class RatingsAdmin(admin.ModelAdmin):
     list_display = (
         'user',
@@ -33,6 +36,7 @@ class RatingsAdmin(admin.ModelAdmin):
     search_fields = ('user', 'climbing_gym', 'rating')
 
 
+@admin.register(Images)
 class ImagesAdmin(admin.ModelAdmin):
     list_display = (
         'headimage',
@@ -41,6 +45,7 @@ class ImagesAdmin(admin.ModelAdmin):
     search_fields = ('headimage', 'headimage_alt')
 
 
+@admin.register(Socialmedia)
 class SocialmediaAdmin(admin.ModelAdmin):
     list_display = (
         'website',
@@ -49,11 +54,3 @@ class SocialmediaAdmin(admin.ModelAdmin):
         'other'
     )
     search_fields = ('website', 'facebook', 'instagram', 'other')
-
-
-
-admin.site.register(ClimbingGyms)
-admin.site.register(Comments)
-admin.site.register(Ratings)
-admin.site.register(Images)
-admin.site.register(Socialmedia)

@@ -262,7 +262,7 @@ class CreateCommentsView(UserPassesTestMixin, LoginRequiredMixin, View):
         """POST request to create a new comment"""
         # Check if the user is authenticated
         if not request.user.is_authenticated:
-            messages.error(request, "You must be logged in to add a comment.")
+            messages.error(request, "You must be logged in to add a review.")
             return redirect("login")
         # Redirect to login page if not authenticated
 
@@ -293,11 +293,11 @@ class CreateCommentsView(UserPassesTestMixin, LoginRequiredMixin, View):
             )
             comment.save()
             climbing_gym.average_rating()  # Update the average rating
-            messages.info(request, "Your comment has been added.")
+            messages.success(request, "Your comment has been added.")
 
         except Exception as e:
             messages.error(request,
-                           f"An error occurred while adding your comment: {e}"
+                           f"An error occurred while adding your review.\n Did you forgot to enter your ranking"
                            )
             return redirect("gyms", slug=climbing_gym.slug)
 
