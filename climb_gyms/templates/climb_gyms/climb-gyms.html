@@ -17,14 +17,14 @@
                             <input type="text" class="form-control" placeholder="Search for climbing gyms" aria-label="Search for climbing gyms" aria-describedby="button-addon2" name="q">
                             <button class="btn btn-search-reverse" type="submit" id="button-addon2">Search</button>
                         </div>
-                        <div class="d-flex justify-content-between">
-                            <div class="col-10 d-none d-sm-block mx-2">
-                                <button class="btn btn-search" type="submit" name="button_query" value="Stockholm">Stockholm</button>
-                                <button class="btn btn-search" type="submit" name="button_query" value="Gothenburg">Gothenburg</button>
-                                <button class="btn btn-search" type="submit" name="button_query" value="Malmö">Malmö</button>
-                                <button class="btn btn-search" type="submit" name="reset_list" value="Reset">Reset</button>
+                        <div class="d-flex">
+                            <div class="col-12 col-sm-10 d-none d-sm-block my-2 d-flex text-start text-lg-center">
+                                <button class="btn btn-search mx-1" type="submit" name="button_query" value="Stockholm">Stockholm</button>
+                                <button class="btn btn-search mx-1" type="submit" name="button_query" value="Gothenburg">Gothenburg</button>
+                                <button class="btn btn-search mx-1" type="submit" name="button_query" value="Malmö">Malmo</button>
+                                <button class="btn btn-search mx-1" type="submit" name="reset_list" value="Reset">Reset</button>
                             </div>
-                            <div class="d-flex justify-content-end mx-2">
+                            <div class="col-12 col-sm-2 d-flex justify-content-end mx-0 my-2">
                                 <div class="btn-group dropstart">
                                     <button type="button" class="btn btn-search-reverse dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                         Filter
@@ -41,7 +41,12 @@
                                         </li>
                                         <li>
                                             <button class="dropdown-item" type="submit" name="filter" value='za'>
-                                                <i class="fa-solid fa-arrow-down-z-a"></i> Z-A</button></li>
+                                                <i class="fa-solid fa-arrow-down-z-a"></i> Z-A</button>
+                                        </li>
+                                        <li>
+                                            <button class="dropdown-item" type="submit" name="reset_list" value='Reset'>
+                                                <i class="fa-solid fa-reply"></i></i> Reset</button>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -50,22 +55,35 @@
                 </div>
             </div>
         </div>
+        {% if page_obj.has_previous or page_obj.has_next %}
         <div class="container">
             <ul class="pagination justify-content-between">
                 {% if page_obj.has_previous %}
                 <li>
                     <a href="?page={{ page_obj.previous_page_number }}"
-                      class="btn btn-search">&laquo; PREV</a>
+                      class="btn btn-search">&laquo;</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="#"
+                      class="btn disabled btn-search-reverse">&laquo;</a>
                 </li>
                 {% endif %}
                 {% if page_obj.has_next %}
                 <li>
                     <a href="?page={{ page_obj.next_page_number }}"
-                      class="btn btn-search">NEXT &raquo;</a>
+                      class="btn btn-search">&raquo;</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="#"
+                      class="btn disabled btn-search-reverse">&raquo;</a>
                 </li>
                 {% endif %}
             </ul>
         </div>
+        {% else %}
+        {% endif %}
         <div class="container">
             <div class="row d-flex align-items-start">
                 <div class="col py-md-2 px-md-4 px-1 gym-listing">
@@ -118,12 +136,18 @@
                 </div>
             </div>
         </div>
+        {% if page_obj.has_previous or page_obj.has_next %}
         <div class="container">
-            <ul class="pagination justify-content-center">
+            <ul class="pagination justify-content-between">
                 {% if page_obj.has_previous %}
                 <li>
                     <a href="?page={{ page_obj.previous_page_number }}"
                       class="btn btn-search">&laquo; PREV</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="#"
+                      class="btn disabled btn-search-reverse">&laquo; PREV</a>
                 </li>
                 {% endif %}
                 {% if page_obj.has_next %}
@@ -131,9 +155,16 @@
                     <a href="?page={{ page_obj.next_page_number }}"
                       class="btn btn-search">NEXT &raquo;</a>
                 </li>
+                {% else %}
+                <li>
+                    <a href="#"
+                      class="btn disabled btn-search-reverse">NEXT &raquo;</a>
+                </li>
                 {% endif %}
             </ul>
         </div>
+        {% else %}
+        {% endif %}
     </div>
 {% endblock %}
 
