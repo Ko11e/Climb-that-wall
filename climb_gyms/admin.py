@@ -39,6 +39,7 @@ class RatingsAdmin(admin.ModelAdmin):
 @admin.register(Images)
 class ImagesAdmin(admin.ModelAdmin):
     list_display = (
+        'id',
         'headimage',
         'headimage_alt'
     )

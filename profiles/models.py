@@ -58,7 +58,7 @@ class ContactUs(models.Model):
         ("Staff Request", "Staff Request"),
         ("Other", "Other"),
     ]
-    user = models.CharField(max_length=75, blank=False, null=False)
+    user = models.CharField(max_length=75, blank=False, null=False, default="Nonregistered User")
     name = models.CharField(max_length=75, blank=True, null=True)
     email = models.EmailField(max_length=254, blank=True, null=True)
     question = models.CharField(choices=QUESTION, default="General")
@@ -67,4 +67,4 @@ class ContactUs(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.user.username, self.email
+        return f'{self.name} has a {self.question} question.'
