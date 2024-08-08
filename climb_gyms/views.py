@@ -33,7 +33,7 @@ class ClimbingGymsView(ListView):
     template_name = "climb_gyms/climb-gyms.html"
     model = ClimbingGyms
     context_object_name = "climbing_gyms"
-    paginate_by = 3
+    paginate_by = 5
 
     def get_queryset(self, **kwargs):
         """Get queryset"""
