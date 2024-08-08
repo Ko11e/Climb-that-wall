@@ -24,7 +24,7 @@
                     </div>
 
                     {% if request.user == profile.user %}
-                    <div class="edit-btn m-3 wrap">
+                    <div class="edit-btn my-3 wrap">
                         <button id="myBtn" class="btn btn-edit mb-2" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile</button>
                         <a class="btn btn-delete mb-2" href="{% url 'delete_profile_confirm' request.user.id %}">Delete Profile</a>
                     </div>
@@ -82,10 +82,10 @@
                                                 </div>
                                             </div>
                                             <div><strong>Comment: </strong></div>
-                                            <div>{{ comment.body|truncatechars:50 }}</div>
+                                            <div class="mb-2">{{ comment.body|truncatechars:50 }}</div>
                                             <div class="col-1 edit-btn">
-                                                <a class="btn btn-edit" href="{% url 'edit_comment' comment.id %}"><i class="fa-regular fa-pen-to-square"></i></a>
-                                                <a class="btn btn-delete" href="{% url 'delete_comment' comment.id %}"><i class="fa-regular fa-trash-can"></i></a>
+                                                <a class="btn btn-edit m-1" href="{% url 'edit_comment' comment.id %}"><i class="fa-regular fa-pen-to-square"></i></a>
+                                                <a class="btn btn-delete m-1" href="{% url 'delete_comment' comment.id %}"><i class="fa-regular fa-trash-can"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -124,25 +124,27 @@
                                 <div class="one-site-box">
                                     <div class="row align-items-center">
                                         <a href="{% url 'gyms' climbing_gym.slug %}" class="climbing_gyms">
-                                            <div class="col gym-img">
-                                                <img src="{{ climbing_gym.images.headimage.url }}" alt="{{ climbing_gym.images.headimage_alt }}" class="img-fluid">
-                                            </div>
-                                            <div class="col">
-                                                <h3>{{ climbing_gym.title }}</h3>
+                                            <div class="row wrap">
+                                                <div class="col gym-img">
+                                                    <img src="{{ climbing_gym.images.headimage.url }}" alt="{{ climbing_gym.images.headimage_alt }}" class="img-fluid">
+                                                </div>
                                                 <div class="col">
-                                                    <div><strong>
-                                                        <i class="{% if climbing_gym.rating > 0 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
-                                                        <i class="{% if climbing_gym.rating > 1 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
-                                                        <i class="{% if climbing_gym.rating > 2 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
-                                                        <i class="{% if climbing_gym.rating > 3 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
-                                                        <i class="{% if climbing_gym.rating > 4 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
-                                                    </strong></div>
-                                                    <p>{{ climbing_gym.description|truncatechars:50 }}</p>
+                                                    <h3>{{ climbing_gym.title }}</h3>
+                                                    <div class="col">
+                                                        <div><strong>
+                                                            <i class="{% if climbing_gym.rating > 0 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                            <i class="{% if climbing_gym.rating > 1 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                            <i class="{% if climbing_gym.rating > 2 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                            <i class="{% if climbing_gym.rating > 3 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                            <i class="{% if climbing_gym.rating > 4 %} fa-solid {% else %} fa-regular {% endif %} fa-star"></i>
+                                                        </strong></div>
+                                                        <p class="py-4">{{ climbing_gym.description|truncatechars:75 }}</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </a>
                                     </div>
-                                    <div class="col edit-btn m-3 wrap">
+                                    <div class="col edit-btn my-3 wrap">
                                         <a class="btn btn-edit" href="{% url "edit_climbing_gym" climbing_gym.id %}">Edit</a>
                                         <a class="btn btn-delete" href="{% url 'delete_climbing_gym' climbing_gym.id %}">Delete</a>
                                     </div>

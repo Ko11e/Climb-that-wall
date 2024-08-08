@@ -163,12 +163,12 @@
                         </div>
                     </form>
                 </div>
-            {% endif %}
+                {% endif %}
                 <div class="col">
                     {% if comments %}
                         {% for comment in comments %}
                         <div class="row view-comments py-2">
-                        <!-- Media object -->
+                            <!-- Media object -->
                             <div class="col comment">
                                 <!-- Image and usernamne -->
                                 {% if request.user.is_authenticated %}
@@ -225,7 +225,6 @@
                     <p class="text-center">Share your Experience with us</p>
                     {% endif %}
                 
-                    </div>
                     {% if not request.user.is_authenticated %}
                     <div class="col text-center">
                         <h3 class="text-center"><a href="{% url 'account_login' %}">Log in</a> to leave a review</h3>

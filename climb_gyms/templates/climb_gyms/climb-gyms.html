@@ -45,7 +45,7 @@
                                         </li>
                                         <li>
                                             <button class="dropdown-item" type="submit" name="reset_list" value='Reset'>
-                                                <i class="fa-solid fa-reply"></i></i> Reset</button>
+                                                <i class="fa-solid fa-reply"></i> Reset</button>
                                         </li>
                                     </ul>
                                 </div>
@@ -105,16 +105,16 @@
                                             <h4 class="card-title">{{ gym.title }}</h4>
                                                 <h5 class="card-title"><strong>Rating:</strong><br>
                                                     <i class="{% if gym.rating > 0.5 and gym.rating < 1 %} fa-solid fa-star-half-stroke 
-                                                    {% elif gym.rating > 1 %} fa-solid fa-star 
+                                                    {% elif gym.rating >= 1 %} fa-solid fa-star 
                                                     {% else %} fa-regular fa-star {% endif %}"></i>
                                                     <i class="{% if gym.rating > 1.5 and gym.rating < 2 %} fa-solid fa-star-half-stroke 
-                                                    {% elif gym.rating > 2 %} fa-solid fa-star 
+                                                    {% elif gym.rating >= 2 %} fa-solid fa-star 
                                                     {% else %} fa-regular fa-star {% endif %}"></i>
                                                     <i class="{% if gym.rating > 2.5 and gym.rating < 3 %} fa-solid fa-star-half-stroke 
-                                                    {% elif gym.rating > 3 %} fa-solid fa-star 
+                                                    {% elif gym.rating >= 3 %} fa-solid fa-star 
                                                     {% else %} fa-regular fa-star {% endif %}"></i>
                                                     <i class="{% if gym.rating > 3.5 and gym.rating < 4 %} fa-solid fa-star-half-stroke 
-                                                    {% elif gym.rating > 4 %} fa-solid fa-star 
+                                                    {% elif gym.rating >= 4 %} fa-solid fa-star 
                                                     {% else %} fa-regular fa-star {% endif %}"></i>
                                                     <i class="{% if gym.rating > 4.5 and gym.rating < 5 %} fa-solid fa-star-half-stroke 
                                                     {% elif gym.rating == 5 %} fa-solid fa-star 
