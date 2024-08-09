@@ -99,6 +99,10 @@ a:hover {
 }
 
 /* Navbars */
+.active_login {
+    font-weight: bold;
+    border-bottom: 1px solid var(--black);
+}
 
 .active {
     font-weight: bold;

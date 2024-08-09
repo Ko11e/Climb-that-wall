@@ -19,33 +19,38 @@
             <a class="nav-link {% if url_name == 'search_gyms'%}active{% endif %}" href="{% url 'search_gyms' %}">Gyms</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {% if url_name == 'contact'%}active{% endif %}" href="{% url 'contactus' %}">Contact</a>
+            <a class="nav-link {% if url_name == 'contactus'%}active{% endif %}" href="{% url 'contactus' %}">Contact</a>
           </li>
         </ul>
       </div>
-    </div>    
+    </div>
+    {% with request.resolver_match.url_name as url_name %}    
     <div class="d-flex">
       {% if request.user.is_authenticated %}
-        <div class="p-2">
-          <a class='nav-link' href="{% url 'profile' request.user.id %}">Profile</a>
+        <div class="p-2 pe-4">
+          <a class='nav-link fw-bold' href="{% url 'profile' request.user.id %}">Welcome {{ user.username }}</a>
         </div>
         <div class="p-2">
-            <a class='nav-link' href="{% url 'account_logout' %}">Log out</a>
+          <a class="nav-link fw-light {% if url_name == 'profile' %}active_login{% endif %}" href="{% url 'profile' request.user.id %}">Profile</a>
+        </div>
+        <div class="p-2">
+            <a class="nav-link fw-light {% if url_name == 'account_logout' %}active_login{% endif %}" href="{% url 'account_logout' %}">Log out</a>
         </div>
         <div class="p-2">
             <i class="fa-solid fa-lock-open"></i>
         </div>
       {% else %}
         <div class="p-2">
-            <a class='nav-link' href="{% url 'account_signup' %}">Sign up</a>
+            <a class="nav-link {% if url_name == 'account_signup' %}active_login{% endif %}" href="{% url 'account_signup' %}">Sign up</a>
         </div>
         <div class="p-2">
-            <a class='nav-link' href="{% url 'account_login' %}">Log in</a>
+            <a class="nav-link {% if url_name == 'account_login' %}active_login{% endif %}" href="{% url 'account_login' %}">Log in</a>
         </div>
         <div class="p-2">
           <i class="fa-solid fa-lock"></i>
         </div>
       {% endif %}
     </div>
+    {% endwith %}
 </div>
 {% endwith %}
