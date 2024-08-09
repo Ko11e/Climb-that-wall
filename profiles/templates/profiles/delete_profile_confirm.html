@@ -9,6 +9,7 @@
         <div class="col-md-12 text-center">
             <h1>Delete Profile</h1>
             <p>Are you sure you want to delete your profile?</p>
+            <p class="fw-bold">This action cannot be undone.</p>
             <form method="POST" action="{% url 'delete_profile' profile.user.id %}">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-delete">Yes, delete</button>

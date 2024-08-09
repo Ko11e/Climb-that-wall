@@ -44,7 +44,9 @@ class ClimbingGymsView(ListView):
 
         if query:
             climbing_gyms = self.model.objects.filter(
-                Q(description__icontains=query) | Q(city__icontains=query)
+                Q(description__icontains=query) | 
+                Q(city__icontains=query) |
+                Q(title__icontains=query) 
             )
 
         elif button_query:
@@ -82,7 +84,7 @@ class ClimbGymView(DetailView):
         context = super().get_context_data(**kwargs)
         context["comments"] = Comments.objects.filter(
             climbing_gym=self.get_object()
-        )
+        ).order_by("-created_at")
         context["comment_count"] = context["comments"].count()
 
         return context

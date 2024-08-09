@@ -1,7 +1,7 @@
 {% load static %}
 
 {% with request.resolver_match.url_name as url_name %}
-<div class="col d-flex justify-content-end my-md-2" id="signin">
+<div class="col d-flex justify-content-md-end justify-content-between my-md-2" id="signin">
     <button class="navbar-toggler mt-2 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
       <i class="fa-solid fa-bars"></i>
     </button>
@@ -27,16 +27,16 @@
     {% with request.resolver_match.url_name as url_name %}    
     <div class="d-flex">
       {% if request.user.is_authenticated %}
-        <div class="p-2 pe-4">
+        <div class="p-2">
           <a class='nav-link fw-bold' href="{% url 'profile' request.user.id %}">Welcome {{ user.username }}</a>
         </div>
         <div class="p-2">
           <a class="nav-link fw-light {% if url_name == 'profile' %}active_login{% endif %}" href="{% url 'profile' request.user.id %}">Profile</a>
         </div>
         <div class="p-2">
-            <a class="nav-link fw-light {% if url_name == 'account_logout' %}active_login{% endif %}" href="{% url 'account_logout' %}">Log out</a>
+            <a class="nav-link fw-light {% if url_name == 'account_logout' %}active_login{% endif %}" href="{% url 'account_logout' %}">Logout</a>
         </div>
-        <div class="p-2">
+        <div class="p-2 pe-1">
             <i class="fa-solid fa-lock-open"></i>
         </div>
       {% else %}

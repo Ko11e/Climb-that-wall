@@ -9,7 +9,7 @@
         <div class="row mt-2 text-center">
             <h1 class="d-none">Profile page</h1>
             <div class="col">
-                <h2>Profile - {{ profile.user.username }}</h2>
+                <h2>Profile of {{ profile.user.username }}</h2>
             </div>
         </div>
         <div class="container">
@@ -100,7 +100,7 @@
                                 {% endfor %}
                             {% else %}
                             <div class="col text-center">
-                                <div><strong>You have yet not made any comments</strong></div>
+                                <div><strong>You haven't made any reveiws yet.</strong></div>
                             </div>
                             {% endif %}
                         </div>
@@ -153,7 +153,7 @@
                             {% endfor %}
                         {% else %}
                         <div class="col text-center">
-                            <div>You have yet not created any Climbing gyms</div>
+                            <div>You haven't created any Climbing gyms yet.</div>
                         </div>
                         {% endif %}
                     </div>
