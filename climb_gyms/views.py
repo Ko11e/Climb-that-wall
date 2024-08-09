@@ -299,7 +299,8 @@ class CreateCommentsView(UserPassesTestMixin, LoginRequiredMixin, View):
 
         except Exception as e:
             messages.error(request,
-                           f"An error occurred while adding your review.\n Did you forgot to enter your ranking"
+                           f"The review couldn't be submited.\n"+
+                            "Did you forget to add the star rating?"
                            )
             return redirect("gyms", slug=climbing_gym.slug)
 

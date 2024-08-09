@@ -1,6 +1,6 @@
 # Climb that Wall
 
-![Climb That Wall  responsive screenshot](docs/images/Multi-screen-mockup.png)
+![Climb That Wall  responsive screenshot](docs/images/Multi-screen-mockup.png)
 
 ## Introduction
 
@@ -10,9 +10,9 @@ The website is fully responsive, ensuring a seamless experience on all modern sc
 
 The site is built using HTML, CSS, Bootstrap, JavaScript, Python, and Django, Climb That Wall uses a PostgreSQL database through Code Institute to bring you the best climbing gym discovery experience.
 
-Veiw the live site here: [Climb That Wall](https://climb-that-wall-e398d1e902cb.herokuapp.com/)
+View the live site here: [Climb That Wall](https://climb-that-wall-e398d1e902cb.herokuapp.com/)
 
-For Admin access with relevant sign-in information: [Climb That Wall Admin](https://climb-that-wall-e398d1e902cb.herokuapp.com/admin)  
+For Admin access with relevant sign-in information: [Climb That Wall Admin](https://climb-that-wall-e398d1e902cb.herokuapp.com/admin)  
 
 ## Table of Contents
 
@@ -21,21 +21,21 @@ For Admin access with relevant sign-in information: [Climb That Wall Admin](http
 3. [User Experience](#user-experience)
 4. [User Stories](#user-stories)
 5. [Structure](#structure)
-   - [Agile Development Process](#agile-development-process)
-   - [Database](#database)
-   - [Wireframe](#wireframe)
+   - [Agile Development Process](#agile-development-process)
+   - [Database](#database)
+   - [Wireframe](#wireframe)
 6. [Design Choices](#design-choices)
-   - [Color Scheme](#color-scheme)
-   - [Typography](#typography)
+   - [Color Scheme](#color-scheme)
+   - [Typography](#typography)
 7. [Features](#features)
-   - [Existing Features](#existing-features)
-   - [Future Features](#future-features)
+   - [Existing Features](#existing-features)
+   - [Future Features](#future-features)
 8. [Technologies Used](#technologies-used)
 9. [Packages and Libraries](#packages-and-libraries)
 10. [Testing](#testing)
 11. [Deployment](#deployment)
-    - [Workspace and application platfrom](#workspace-and-application-platfrom)
-    - [Github](#github)
+    - [Workspace and application platfrom](#workspace-and-application-platfrom)
+    - [Github](#github)
 12. [Credits](#credits)
 
 ## Overview
@@ -43,18 +43,18 @@ For Admin access with relevant sign-in information: [Climb That Wall Admin](http
 Climb That Wall is a Website for discovering climbing gyms in new cities. Users are invited to:
 
 - Join the Climb That Wall Website
-- Create their own profiles
+- Create a profiles
 - Update their Profiles
 - Interact with Website Climbing gyms
-- Share their experiece at the Climbing gym by leaving a review
+- Share their experience at the Climbing gym by leaving a review
 - Create a staff account
-- Update thier own climbing gyms
+- Update their climbing gyms
 
 # User experience
 
 ## User Goals
 
-I am passionate about climbing and find it challenging to locate climbing centers while traveling or in a new city. This website, Climb That Wall, will help you easily find a Climbing Gym without extensive searching. Whether you are a passionate climber exploring a new place or a local looking for the best climbing spots, Climb That Wall is here to simplify your search for a climbing gym. The website is designed to help you locate the best climbing gyms wherever you are.
+I am passionate about climbing and find it challenging to locate climbing centers while traveling or in a new city. This website, Climb That Wall will help you easily find a Climbing Gym without extensive searching. Whether you are a passionate climber exploring a new place or a local looking for the best climbing spots, Climb That Wall is here to simplify your search for a climbing gym. The website is designed to help you locate the best climbing gyms wherever you are.
 
 ### Features for Users
 
@@ -92,7 +92,7 @@ You can find all User Stories in the [Github Project Board](https://github.com/u
 
 The development of Climb That Wall is guided by Agile principles, which prioritize flexibility, continuous improvement, and rapid adaptation to change. While I do not strictly follow traditional Agile practices such as scheduled sprints or scrums, my process is inspired by Agile methodologies.
 
-Instead of scheduled sprints or scrums, I have set up iterations, but found them hard to follow. Therefore, I have chosen to structure the project around key milestones leading up to the overall deadline. This approach allows me to prioritize the development of core functionalities first, before expanding to more complex features.
+Instead of scheduled sprints or scrums, I have set up iterations but found them hard to follow. Therefore, I have chosen to structure the project around key milestones leading up to the overall deadline. This approach allows me to prioritize the development of core functionalities first, before expanding to more complex features.
 
 I actively seek and analyze user feedback to identify areas for improvement, ensuring that the product continuously evolves to effectively meet user needs and expectations.
 
@@ -103,7 +103,7 @@ For more information, please visit the [GitHub Project Board](https://github.com
 I implemented the MoSCoW Prioritization method for Climb That Wall, systematically identifying and labeling project components to ensure a clear and effective development process:
 
 **_Must Haves_** \
-These are the essential, critical components that the project cannot succeed without. This provids early achievement a solid foundation, allowing me to further develop and enhance the project beyond the initial scope.
+These are the essential, critical components that the project cannot succeed without. This provides early achievement a solid foundation, allowing me to further develop and enhance the project beyond the initial scope.
 
 **_Should Haves_** \
 These components are highly valuable and beneficial to the project but are not crucial at the MVP stage. While important, they are secondary to the 'Must Haves' and are prioritized accordingly. Addressing these features comes after the critical components are in place, ensuring the project remains on track and focused.
@@ -150,19 +150,19 @@ I used [Balsamiq](https://balsamiq.com/) to create wireframes for 'Climb That Wa
 
 ## Color Scheme
 
-The color palette have been collected from the origal background image. However, the background on the website has a filter with a soft Off-White pick from the image in this [link](docs/images/Background-before-after.png) can the before and after be seen. For the background image is this color palette carefully chosen to create a harmonious balance between tranquility and energy. The combination of soft neutrals and muted tones, punctuated by vibrant and warm hues, ensures a versatile and visually engaging design. Each color has been selected to complement and enhance the others, resulting in a cohesive and aesthetically pleasing ensemble.
+The color palette has been collected from the original background image. However, the background on the website has a filter with a soft Off-White pick from the image in this [link](docs/images/Background-before-after.png) can the before and after be seen. For the background image is this color palette carefully chosen to create a harmonious balance between tranquility and energy. The combination of soft neutrals and muted tones, punctuated by vibrant and warm hues, ensures a versatile and visually engaging design. Each color has been selected to complement and enhance the others, resulting in a cohesive and aesthetically pleasing ensemble.
 
 ![Color palette](docs/images/color_palette.png)
 
 ## Typography
 
-The selected fonts for the website are Amatic SC and Arsenal SC. These fonts is selected to stand out and are only used as headers and in the navbar text.
-Amatic SC is seleced because it structure remineds on the structure of the climbing wall or a mountain. The font is also have a unique, eye-catching appearance that draws attention. However, Amatic SC is only use in a first header(h1). Seens Amatic SC is a font with only capitaleze the font for the navbar is also is caitalized to have a cohesive feeling for the website. Making the font for the navbar tp be Arsenal SC.
+The selected fonts for the website are Amatic SC and Arsenal SC. These fonts are selected to stand out and are only used as headers and in the navbar text.
+Amatic SC is selected because its structure reminds of the structure of a climbing wall or a mountain. The font also has a unique, eye-catching appearance that draws attention. However, Amatic SC is only used in the first header(h1). Since Amatic SC is a font with only capitalized the font for the navbar is also capitalized to have a cohesive feeling for the website. Making the font for the navbar to be Arsenal SC.
 
 ![Font Amatic SC ](docs/images/font-Amatic_SC.png)
 ![Font Arsenal SC](docs/images/font-Arsenal_SC.png)
 
-The rest of the text is decided to be the default from Bootstrap5 as it is easy to read and have a characteristics need for neordivigents to find is easy to read as well.
+The rest of the text is decided to be the default font from Bootstrap5 as it is easy to read and has characteristics needed for neurodivergent to find is easy to read as well.
 The mix of fonts creates a clear visual hierarchy. Amatic SC draws attention to primary headings and Arsenal SC ensures functional elements like the navbar are easy to use
 By combining decorative and functional fonts, the design achieves a balance between visual interest and usability. This combination helps to convey the desired tone while ensuring readability and navigation efficiency.
 
@@ -227,13 +227,13 @@ The profile page on the Climb that Wall website serves as a personalized hub for
 - **Profile Picture and Username:**\
 The top section of the profile page prominently displays the user's username, making it easy for others to identify whose profile they are viewing. Below the username, a profile picture, and about text provide additional context, helping other users connect with the profile owner.
 
- - *Bio:*\
+ - *Bio:*\
  In addition to the profile picture and username, users can add a bio to share more about themselves with the community. This section provides an opportunity to express interests, preferences, and any other details they wish to share.
 
- - *Favorite Type of Climbing:*\
+ - *Favorite Type of Climbing:*\
  Here, the user can select their favorite type of climbing from the available options: Boulder, Lead, Speed, or Outdoors.
 
- - *Edit/Delete Profile:*\
+ - *Edit/Delete Profile:*\
  Users can easily edit their profile information directly from the profile page, including updating their profile picture, editing their bio, and selecting their favorite type of climbing.\
 Additionally, they have the option to delete their account if desired.
 
@@ -304,13 +304,13 @@ The error page is automatically triggered when a user navigates to a site URL th
 
 ## Future Features
 
-As I see it there's a lot of future features that could be added to this website. One of the features that was meant to be implemented was a tips app. In the tips app the user could create tips for training, climbing shoes, rope or harnesses, to be shared to other climbers. This tips could then also be liked and seen on your profile. Below is other features that could be implemented in the future.
+As I see it there's a lot of future features that could be added to this website. One of the features that was meant to be implemented was a tips app. In the tips app, the user could create tips for training, climbing shoes, rope, or harnesses, to be shared with other climbers. These tips could then also be liked and seen on your profile. Below are other features that could be implemented in the future.
 
-- A map section on the climbing gym detail page. This was mean to be implemented but i had a hard time making the API to googlemaps to work.
+- A map section on the climbing gym detail page. This was meant to be implemented but I had a hard time making the API to Googlemaps to work.
 - Be able to reset password or change password
-- As a User i can like my favortie climbing gyms, so that i san find them easy.
-- As a staff and the owner of a climbing gym they can also respond to the review that have been made.
-- The climbing gym has a event section displaying upcoming events.
+- As a User, I can like my favorite climbing gyms, so that I can find them easily.
+- As a staff user and the owner of a climbing gym they can also respond to the reviews that have been made.
+- The climbing gym has an event section displaying upcoming events.
 
 # Technologies Used
 
@@ -323,11 +323,11 @@ As I see it there's a lot of future features that could be added to this website
 
 ## Workspace
 
-GitPod & [Visual Studio Code](https://code.visualstudio.com/) was used was used as a local IDE workspace to build the site.
+GitPod & [Visual Studio Code](https://code.visualstudio.com/) was used as a local IDE workspace to build the site.
 
 ## Version Control
 
-- [Git](https://git-scm.com/) was used for version control. The Gitpod and VS Code terminals were utilized to add, commit to Git and pushed to GitHub.
+- [Git](https://git-scm.com/) was used for version control. The Gitpod and VS Code terminals were utilized to add, commit to Git, and pushed to GitHub.
 - [GitHub](https://github.com/) is used to store the code for this project.
 
 ## Wireframe and database
@@ -355,17 +355,17 @@ The structure of the database was created using [dbdiagram.io](https://dbdiagram
 
 ## Packages
 
-| Name                | Purpose                  |
+| Name                | Purpose                  |
 | ------------------- | ------------------------ |
-| Django              | Framework                |
-| django-allauth      | Authentication           |
+| Django              | Framework                |
+| django-allauth      | Authentication           |
 | django-crispy-forms | Front End Form Rendering |
-| dj-database-url     | Database Configuration   |
-| gunicorn            | WSGI HTTP Server         |
-| Cloudinairy         | Cloud storage for media files |
+| dj-database-url     | Database Configuration   |
+| gunicorn            | WSGI HTTP Server         |
+| Cloudinairy         | Cloud storage for media files |
 | django-cloudinary-storage | Cloud storage for Django|
-| psycopg2            | PostgreSQL database adapter |
-| whitenoise          | Static file serving for WSGI applications |
+| psycopg2            | PostgreSQL database adapter |
+| whitenoise          | Static file serving for WSGI applications |
 
 [View the complete package list for the project here](./requirements.txt)
 
@@ -375,9 +375,9 @@ The testing documentation for this project is available in another document. To 
 
 # Deployment
 
-## Workspace and Application Platfrom
+## Workspace and Application Platform
 
-### Pre-deloyment
+### Pre-deployment
 
 <details><summary>Instruction</summary>
 Ensure that Python and pip (Python's package installer) are installed on your system. These tools are necessary for setting up the local development environment. The process works as follows:
@@ -411,40 +411,40 @@ Click `New` to create a new app. Placed on the upper right side and then select 
 5. **App Name:** \
 Choose a unique name for your app, (it cannot be the same as this app) and region region, then click `Create app`.
 6. **Heroku Postgres** \
-Go to Resources Tab, Add-ons, search and add Heroku Postgres
+Go to the Resources Tab, Add-ons, search, and add Heroku Postgres
 7. **New App** \
 From the new app choose **Settings**, navigate to "Config Vars" and click **Reveal Config Vars**, \
-Config Vars for development of this project:
-    | VALUE |
-    |:------------------|
-    | CLOUDINARY_URL |
-    | DISABLE_COLLECTSTATIC |
-    | DATABASE_URL |
-    | SECRET_KEY |
-    | HOST |
+Config Vars for the development of this project:
+ | VALUE |
+ |:------------------|
+ | CLOUDINARY_URL |
+ | DISABLE_COLLECTSTATIC |
+ | DATABASE_URL |
+ | SECRET_KEY |
+ | HOST |
 
-    Config Vars for production remove VALUE = DISABLE_COLLECTSTATIC
+ Config Vars for production remove VALUE = DISABLE_COLLECTSTATIC
 
-    **=> Go back to your code**
+ **=> Go back to your code**
 
 8. **Procfile** \
-   Add the Procfile to your application's root directory ```echo web: node index.js > Procfile```. Heroku relies on this file to determine how to run your application, ensuring the correct setup of your web server. Use commands like `web: gunicorn PROJ_NAME.wsgi` in the Procfile to instruct Heroku on starting your web server with Gunicorn
+ Add the Procfile to your application's root directory ```echo web: node index.js > Procfile```. Heroku relies on this file to determine how to run your application, ensuring the correct setup of your web server. Use commands like `web: gunicorn PROJ_NAME.wsgi` in the Procfile to instruct Heroku on starting your web server with Gunicorn
 9. In settings in your app add Heroku to **ALLOWED_HOSTS**
-10. Add and commit the changes in your code and push to github
+10. Add and commit the changes in your code and push to GitHub
 11. **Add Buildpack** \
-    Scroll further down on the page, select **Add Buildpack**. The buildpacks will install further dependencies that are not included in the 'requirements.txt'. \
-    It's crucial to arrange the build packs correctly! First, choose Python and then Node.js. If they're not in this sequence, you can reorder them by dragging.
+ Scroll further down on the page, and select **Add Buildpack**. The buildpacks will install further dependencies that are not included in the 'requirements.txt'. \
+ It's crucial to arrange the build packs correctly! First, choose Python and then Node.js. If they're not in this sequence, you can reorder them by dragging.
 12. **Deploy** \
-    From the tab above select the 'deploy section'.
+ From the tab above select the 'deploy section'.
 
 13. **GitHub** \
-    For deploying this project, we're using GitHub as our method. After choosing GitHub, make sure to confirm the connection. Then, search for your repository name and once Heroku finds your repository - click "connect"
+ For deploying this project, we're using GitHub as our method. After choosing GitHub, make sure to confirm the connection. Then, search for your repository name and once Heroku finds your repository - click "connect"
 
 14. **Choose deploy method**
-    1. Scroll down to the section "Automatic Deploys".
-    2. Click "Enable automatic deploys" or choose "Deploy branch" and manually deploy.
-    3. Click "Deploy branch" wait for the app to be built. Once this is done, a message should appear letting us know that the app was successfully deployed.
-    4. Click the button "View" to see the app.
+    1. Scroll down to the section "Automatic Deploys".
+    2. Click "Enable automatic deploys" or choose "Deploy branch" and manually deploy.
+    3. Click "Deploy branch" and wait for the app to be built. Once this is done, a message should appear letting us know that the app was successfully deployed.
+    4. Click the button "View" to see the app.
 
 </details>
 
@@ -453,7 +453,7 @@ Config Vars for development of this project:
 ### Forking the GitHub Repository
 
 <details>
-    <summary>Instructions</summary>
+    <summary>Instructions</summary>
 By forking the GitHub Repository we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original repository by using the following steps...
 
 1. Log in to GitHub and locate the [GitHub Repository](https://github.com/Ko11e/Climb-that-wall.git)
@@ -465,7 +465,7 @@ By forking the GitHub Repository we make a copy of the original repository on ou
 ### Clone this GitHub Repository
 
 <details>
-    <summary>Instructions</summary>
+    <summary>Instructions</summary>
 A local clone of this repository can be made on GitHub. Please follow the below steps:
 
 1. Log in to GitHub and locate the [GitHub Repository](https://github.com/Ko11e/Climb-that-wall.git)
@@ -496,34 +496,34 @@ The setup guidance was followed from both the documentation and tutorials given 
 **Sources of inspiration and guidance in general**\
 The Django Recipe Sharing Tutorial series by Dee Mc - [Django Recipe Sharing Tutorial series](https://www.youtube.com/@IonaFrisbee).
 
-**Source for the star rating functionn**\
+**Source for the star rating function**\
 Create Star Rating Input Box using HTML, CSS & JavaScript by [Codingflag](https://www.youtube.com/watch?v=rMR9PsvLFXw)
 
 **Stockoverflow, W3schools, and Geeks for Geeks**\
 Code and solutions to bugs that appear under the project were found using Stockoverflow, W3schools, and Geeks for Geeks.
 
 **Code Institute**\
-The Django Blog walkthrough acted as a guidance through out this project on how to set up packages and settings.
+The Django Blog walkthrough acted as guidance throughout this project on how to set up packages and settings.
 
 ## Content
 
 ### Images
 
-Most of the are taken from [Pexels](https://www.pexels.com/) and [iStock](https://www.istockphoto.com/se) otherwise the images are from myself or my friends.
+Most of the images are taken from [Pexels](https://www.pexels.com/) and [iStock](https://www.istockphoto.com/se) otherwise the images are from myself or my friends.
 
 **Navbar**
-The image from the navbar is a reconstuation from [Dreamstime](https://www.dreamstime.com/people-climb-rock-black-silhouette-climber-support-partner-wall-vector-man-climbing-activity-motivation-sport-extreme-image212028867)
+The image from the navbar is a reconstruction from [Dreamstime](https://www.dreamstime.com/people-climb-rock-black-silhouette-climber-support-partner-wall-vector-man-climbing-activity-motivation-sport-extreme-image212028867)
 
 ### Text Content
 
-Some text have been generated by ChatGPT
+Some text has been generated by ChatGPT
 
 ## Acknowledgments
 
-- My **Slackteam** and there amazing support and assistance.
-- Special thanks to **Malin Nilsson**, **Ellenor Vondrus**, and **Patricia Halley** for pushing me when i don't have any motivation.
+- My **Slackteam** and their amazing support and assistance.
+- Special thanks to **Malin Nilsson**, **Ellenor Vondrus**, and **Patricia Halley** for pushing me when I don't have any motivation.
 - My mentor, **Gareth McGirr**, for guiding and supporting me in the right direction.
-- My friends and family that i make test and come with feeedback
-- My husband for his unwavering support and for handling everything else while I focused on this project.
+- My friends and family that I make test the website and come back with feedback
+- My husband for his unwavering support and for handling everything else and our family while I focused on this project.
 
 [Back to the top](#climb-that-wall)
