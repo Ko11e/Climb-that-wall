@@ -21,21 +21,21 @@ For Admin access with relevant sign-in information: [Climb That Wall Admin](http
 3. [User Experience](#user-experience)
 4. [User Stories](#user-stories)
 5. [Structure](#structure)
-   - [Agile Development Process](#agile-development-process)
-   - [Database](#database)
-   - [Wireframe](#wireframe)
+   - [Agile Development Process](#agile-development-process)
+   - [Database](#database)
+   - [Wireframe](#wireframe)
 6. [Design Choices](#design-choices)
-   - [Color Scheme](#color-scheme)
-   - [Typography](#typography)
+   - [Color Scheme](#color-scheme)
+   - [Typography](#typography)
 7. [Features](#features)
-   - [Existing Features](#existing-features)
-   - [Future Features](#future-features)
+   - [Existing Features](#existing-features)
+   - [Future Features](#future-features)
 8. [Technologies Used](#technologies-used)
 9. [Packages and Libraries](#packages-and-libraries)
 10. [Testing](#testing)
 11. [Deployment](#deployment)
-    - [Workspace and application platfrom](#workspace-and-application-platfrom)
-    - [Github](#github)
+    - [Workspace and application platfrom](#workspace-and-application-platfrom)
+    - [Github](#github)
 12. [Credits](#credits)
 
 ## Overview
@@ -190,11 +190,13 @@ The website's content focuses on climbing gyms and climbing, so the navbar is lo
 
 The navbar is positioned on the left-hand side, and it becomes an offcanvas navbar on smaller screens. The Sign-in and Sign-out options are therefore located in the right corner of the screen, indicating whether the user is logged in or not by displaying the username of the logged-in user. Additionally, it shows if you are on your profile with a small line. See the images below for reference.
 
-Non-sign in user:
+Non-sign in user:\
 ![User image when not signed in](docs/images/features/non-sign-in.png)
-Sign-in user:
+
+Sign-in user:\
 ![User image when sign in](docs/images/features/Inloggad-user.png)
-Sign-in user on page profile:
+
+Sign-in user on page profile:\
 ![User image when sign in an on profile](docs/images/features/inloggad-user-profile.png)
 
 ### Footer
@@ -224,20 +226,20 @@ The profile page on the Climb that Wall website serves as a personalized hub for
 
 ![Image of the Profile](docs/images/features/Profile.png)
 
-- **Profile Picture and Username:**\
+**Profile Picture and Username:**\
 The top section of the profile page prominently displays the user's username, making it easy for others to identify whose profile they are viewing. Below the username, a profile picture, and about text provide additional context, helping other users connect with the profile owner.
 
- - *Bio:*\
+- *Bio:*\
  In addition to the profile picture and username, users can add a bio to share more about themselves with the community. This section provides an opportunity to express interests, preferences, and any other details they wish to share.
 
- - *Favorite Type of Climbing:*\
+- *Favorite Type of Climbing:*\
  Here, the user can select their favorite type of climbing from the available options: Boulder, Lead, Speed, or Outdoors.
 
- - *Edit/Delete Profile:*\
+- *Edit/Delete Profile:*\
  Users can easily edit their profile information directly from the profile page, including updating their profile picture, editing their bio, and selecting their favorite type of climbing.\
 Additionally, they have the option to delete their account if desired.
 
-- **Reviews/Climbing gyms**\
+**Reviews/Climbing gyms**\
 The profile page showcases the user's reviews of various climbing gyms on the website. For staff members, it also highlights the climbing gyms they have created. Users can easily browse their reviews and see their contributions to the community. Additionally, this section allows users to edit or delete their reviews and climbing gyms and create climbing gyms.
 
 <details>
