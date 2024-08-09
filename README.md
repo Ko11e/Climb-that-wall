@@ -1,6 +1,6 @@
 # Climb that Wall
 
-![Climb That Wall  responsive screenshot]()
+![Climb That Wall  responsive screenshot](docs/images/Multi-screen-mockup.png)
 
 ## Introduction
 
