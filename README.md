@@ -417,17 +417,17 @@ Go to the Resources Tab, Add-ons, search, and add Heroku Postgres
 7. **New App** \
 From the new app choose **Settings**, navigate to "Config Vars" and click **Reveal Config Vars**, \
 Config Vars for the development of this project:
- | VALUE |
- |:------------------|
- | CLOUDINARY_URL |
- | DISABLE_COLLECTSTATIC |
- | DATABASE_URL |
- | SECRET_KEY |
- | HOST |
+
+| VALUE |
+|:------------------|
+| CLOUDINARY_URL |
+| DISABLE_COLLECTSTATIC |
+| DATABASE_URL |
+| SECRET_KEY |
 
  Config Vars for production remove VALUE = DISABLE_COLLECTSTATIC
 
- **=> Go back to your code**
+ **_=> Go back to your code_**
 
 8. **Procfile** \
  Add the Procfile to your application's root directory ```echo web: node index.js > Procfile```. Heroku relies on this file to determine how to run your application, ensuring the correct setup of your web server. Use commands like `web: gunicorn PROJ_NAME.wsgi` in the Procfile to instruct Heroku on starting your web server with Gunicorn
