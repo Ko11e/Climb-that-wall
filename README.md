@@ -177,46 +177,52 @@ By combining decorative and functional fonts, the design achieves a balance betw
 The main purpose of the home page and the hero section is to be eye-catching and allow the user to easily get a quick understanding of what the website is about. This is achieved by a background image that connects to the website content, and also by having the main navbar placed on the left-hand side instead of on the top to reflect the content more about the navbar in the next section.
 The user is greeted by the name of the website a short text about the website, and an image of the hero is presented underneath.
 
-![Home page of the website]()
+![Home page of the website](docs/images/features/Home-page.png)
 
 ### Navbar
 
 The website's content focuses on climbing gyms and climbing, so the navbar is located on the left-hand side with a background of a silhouette of a lead climber. The intention was for the navbar's background to display the entire image, including the silhouette of the person securing the climber (refer to the first image). However, achieving this was challenging due to the varying heights of the different pages, though it has been successful on some pages or screen sizes. Additionally, the navbar is designed to appear as an offcanvas when accessed from a mobile or small tablet (refer to the second image), allowing the entire background image to be displayed.
 
-![navbar from the desktop]()
-![Navbar from the mobile]()
+![navbar from the desktop](docs/images/features/navbar-desktop.png)
+![Navbar from the mobile](docs/images/features/navbar-mobile.png)
 
 #### Signin links
 
 The navbar is positioned on the left-hand side, and it becomes an offcanvas navbar on smaller screens. The Sign-in and Sign-out options are therefore located in the right corner of the screen, indicating whether the user is logged in or not by displaying the username of the logged-in user. Additionally, it shows if you are on your profile with a small line. See the images below for reference.
 
 Non-sign in user:
-![User image when not signed in]()
+![User image when not signed in](docs/images/features/non-sign-in.png)
 Sign-in user:
-![User image when sign in]()
+![User image when sign in](docs/images/features/Inloggad-user.png)
+Sign-in user on page profile:
+![User image when sign in an on profile](docs/images/features/inloggad-user-profile.png)
 
 ### Footer
 
 The footer allows the user to navigate to the website's social media.
 <details>
     <summary>Image of the footer</summary>
- ![Footer from the website]()
+
+![Footer from the website](docs/images/features/footer.png)
+
 </details>
 
 ### Sign in/sign up Page
 
 When not logged in, users can easily access the sign-up and sign-in page through the links in the right-hand corner. The sign-up page for Climb That Wall uses a customized template from the Django Allauth package, which handles user authentication. While Allauth provides the core functionality, the template has been extensively modified and styled to align perfectly with the site's unique design. The sign-up page includes a prominent title and a user-friendly form with fields for user input, which also serves as the sign-in page. After successful registration or signing in, users are automatically redirected to the homepage, logged in, and ready to explore the site.
 
-![Sign up page]()
+![Sign up page](docs/images/features/sign-up.png)
 <details>
     <summary>Sign in page</summary>
- ![Sign in page]()
+
+ ![Sign in page](docs/images/features/sign-in.png)
+
 </details>
 
 ### Profile
 The profile page on the Climb that Wall website serves as a personalized hub for each user, allowing them to manage their account, and showcase their reviews, and if the user is registered as a staff they can see and manage their registered climbing gyms. Here's an overview of the key features and components of the profile page:
 
-![Image of the Profile]()
+![Image of the Profile](docs/images/features/Profile.png)
 
 - **Profile Picture and Username:**\
 The top section of the profile page prominently displays the user's username, making it easy for others to identify whose profile they are viewing. Below the username, a profile picture, and about text provide additional context, helping other users connect with the profile owner.
@@ -238,11 +244,11 @@ The profile page showcases the user's reviews of various climbing gyms on the we
 <summary>Image of the edit and delete function</summary>
 
 - Reveiws\
-![Reviews from the profile page]()
+![Reviews from the profile page](docs/images/features/reviews-profile.png)
 - Climbing gyms\
-![Climbing gyms from the profile page]()
+![Climbing gyms from the profile page](docs/images/features/climbing-gym-profile.png)
 - Create a Climbing gym\
-![Create climbing gym button]()
+![Create climbing gym button](docs/images/features/climbing-gym-profile.png)
 
 </details>
 
@@ -256,44 +262,45 @@ While the intention was to enable users to combine keyword searches with filters
 
 Nevertheless, whether users are searching for a specific climbing gym or exploring new options, the search functionality provides a convenient and user-friendly way to discover climbing gyms in the database.
 
-![Search view]()
+![Search view](docs/images/features/search-page.png)
 
 ### Climbing gym Detail page
 
 The full climbing gym details page is a template used to display the full information about a climbing gym. Each published climbing gym has a climbing gym details page. These pages are available for all users to view, including non-logged-in users. The main purpose of the page is to display the full information about the climbing gym. Users will generally navigate to a full climbing gym page by clicking the button on the climbing gym card either on the search page or the home page where the top three climbing gyms are presented.
 
-![Detailed view of a climbing gym]()
+![Detailed view of a climbing gym](docs/images/features/climbing-gym-details.png)
 
 #### Create Climbing gym
 
 The climbing gym page template is a page that features a climbing gym form to enable users to create a climbing gym on the website. The page isn't viewable by unauthenticated or non-staff users so they have to log in first. The page features similar styling to the rest of the site for consistency, and the header and footer nav menus are present for easy user navigation.
 
-![Create  climbing gym]()
+![Create climbing gym1](docs/images/features/create_gym1.png)
+![Create climbing gym2](docs/images/features/create_gym2.png)
+![Create climbing gym3](docs/images/features/create_gym3.png)
 
 #### Edit Climbing gym
 
 This page allows users who created the climbing gym to update the text content, such as the gym's name, address, and other relevant information, and also add or change images or social media links including websites, Facebook, and others. This feature ensures that the gym's profile remains accurate. The page is straightforward, with fields for each piece of data that can be edited and saved. This feature is particularly useful for gym owners or administrators who need to keep their facility's information current for the community.
 
-![Edit climbing gym image]()
+![Edit climbing gym image](docs/images/features/edit-climbing-gym.png)
 
 #### Review
 
 At the bottom of each climbing gym details page, there's a review section where logged-in users can post their feedback. The reviews are displayed in reverse chronological order, with the most recent at the top. Each review includes the author's username, profile photo, date, and the review content. While non-logged-in users can view the reviews, they cannot access the profiles of the reviewers or leave a review themselves.
 
-![Review section]()
+![Review section](docs/images/features/review-climbing-gym.png)
 
 ### Contact Form
 
 This page offers a simple and direct way for users to get in touch with the site administrators. It features a form where users can enter their names, select a topic (such as general inquiries, bug reports, or staff requests), and submit a message via email. The page emphasizes quick responses and is designed to help users with various concerns, including those interested in adding their climbing gym.
 
-![Contact us form]()
+![Contact us form](docs/images/features/contact-from.png)
 
 ### Page - 401, 403, 404 and 500
 
 The error page is automatically triggered when a user navigates to a site URL that doesn't exist(Error 404), is not authorized(Error 401/403), or Internal Server Error(Error 500). This could be because of several reasons, including a faulty link or an expired URL. Most users will not see this page, but it is there as a backup for users who encounter these rare errors. The purpose of the error pages is to notify the user that there has been an error. The Error pages provide a button link to the homepage for the user to easily navigate back home.
 
-![404 error page]()
-
+![404 error page](docs/images/features/error-404.png)
 
 ## Future Features
 
