@@ -34,7 +34,7 @@ For Admin access with relevant sign-in information: [Climb That Wall Admin](http
 9. [Packages and Libraries](#packages-and-libraries)
 10. [Testing](#testing)
 11. [Deployment](#deployment)
-    - [Workspace and application platfrom](#workspace-and-application-platfrom)
+    - [Workspace and application platfrom](#workspace-and-application-platform)
     - [Github](#github)
 12. [Credits](#credits)
 
